@@ -1,7 +1,7 @@
 local cmp = require('cmp')
 local snip = require('luasnip')
 
-local config = {
+cmp.setup({
   formatting = {
     format = function(entry, vim_item)
       local source_names = {
@@ -15,6 +15,7 @@ local config = {
     end,
   },
   mapping = cmp.mapping.preset.insert({
+    -- TODO why this mapping doesn't work anymore???
     ['<C-Space>'] = cmp.mapping.confirm({ behavior = cmp.ConfirmBehavior.Insert, select = true }),
     ['<C-d>'] = cmp.mapping.scroll_docs(-4),
     ['<C-e>'] = cmp.mapping.close(),
@@ -52,6 +53,4 @@ local config = {
     completion = cmp.config.window.bordered(),
     documentation = cmp.config.window.bordered(),
   },
-}
-
-cmp.setup(config)
+})
