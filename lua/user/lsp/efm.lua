@@ -8,7 +8,19 @@ local prettier_config = {
 return {
   cmd = { 'efm-langserver' },
   capabilities = common.capabilities,
-  filetypes = { 'css', 'html', 'javascript', 'javascriptreact', 'json', 'sass', 'scss', 'typescript', 'typescriptreact', 'yaml' },
+  filetypes = {
+    'css',
+    'html',
+    'javascript',
+    'javascriptreact',
+    'json',
+    'markdown',
+    'sass',
+    'scss',
+    'typescript',
+    'typescriptreact',
+    'yaml'
+  },
   init_options = { documentFormatting = true },
   on_attach = common.on_attach,
   root_dir = require('lspconfig').util.root_pattern('.git'),
@@ -19,6 +31,7 @@ return {
       javascript = { prettier_config },
       javascriptreact = { prettier_config },
       json = { prettier_config },
+      markdown = { prettier_config },
       sass = { prettier_config },
       scss = { prettier_config },
       typescript = { prettier_config },
