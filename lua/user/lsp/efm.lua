@@ -1,7 +1,7 @@
 local common = require('user.lsp.common')
 
 local prettier_config = {
-  formatCommand = 'prettier --find-config-path --stdin-filepath ${INPUT}',
+  formatCommand = [[$([ -n "$(command -v node_modules/.bin/prettier)" ] && echo "node_modules/.bin/prettier" || echo "prettier") --stdin-filepath ${INPUT}]],
   formatStdin = true,
 }
 

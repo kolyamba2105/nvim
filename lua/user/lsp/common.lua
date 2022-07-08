@@ -28,7 +28,6 @@ M.on_attach = function(_, bufnr)
   buf_set_keymap('n', '<leader>la', '<cmd>lua vim.lsp.buf.code_action()<CR>', opts)
   buf_set_keymap('n', '<leader>ld', '<cmd>Telescope lsp_definitions<CR>', opts)
   buf_set_keymap('n', '<leader>le', '<cmd>lua vim.diagnostic.open_float()<CR>', opts)
-  buf_set_keymap('n', '<leader>lf', '<cmd>lua vim.lsp.buf.format({ async = true })<CR>', opts)
   buf_set_keymap('n', '<leader>ll', '<cmd>Telescope diagnostics<CR>', opts)
   buf_set_keymap('n', '<leader>ln', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
   buf_set_keymap('n', '<leader>lq', '<cmd>lua vim.diagnostic.setloclist()<CR>', opts)
@@ -37,29 +36,24 @@ M.on_attach = function(_, bufnr)
   buf_set_keymap('n', '<leader>lt', '<cmd>Telescope lsp_type_definitions<CR>', opts)
   buf_set_keymap('n', '<leader>lw', '<cmd>Telescope lsp_dynamic_workspace_symbols<CR>', opts)
 
+  buf_set_keymap('n', '<leader>lf', [[
+    <cmd>lua vim.lsp.buf.format({ async = true, filter = function(client) return client.name == "efm" or client.name == "sumneko_lua" end })<CR>
+  ]], opts)
+
   vim.api.nvim_create_autocmd('BufWritePre', {
-    callback = function() vim.lsp.buf.format() end,
+    callback = function()
+      vim.lsp.buf.format({
+        filter = function(client) return client.name == "efm" or client.name == "sumneko_lua" end
+      })
+    end,
     group = vim.api.nvim_create_augroup('Format', { clear = true }),
   })
-end
-
-M.disable_formatting = function(client)
-  client.server_capabilities.document_formatting = false
-  client.server_capabilities.document_range_formatting = false
 end
 
 M.capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
 
 M.default_config = {
   on_attach = M.on_attach,
-  capabilities = M.capabilities
-}
-
-M.no_formatting_config = {
-  on_attach = function(client, bufnr)
-    M.on_attach(client, bufnr)
-    M.disable_formatting(client)
-  end,
   capabilities = M.capabilities
 }
 

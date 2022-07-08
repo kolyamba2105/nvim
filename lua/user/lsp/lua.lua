@@ -2,9 +2,7 @@ local common = require('user.lsp.common')
 
 return {
   capabilities = common.capabilities,
-  on_attach = function(client, bufnr)
-    common.on_attach(client, bufnr)
-  end,
+  on_attach = common.on_attach,
   settings = {
     Lua = {
       diagnostics = {
