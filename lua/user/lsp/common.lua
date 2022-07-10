@@ -14,11 +14,10 @@ M.diagnostic_config = function()
   vim.lsp.handlers['textDocument/hover'] = vim.lsp.with(vim.lsp.handlers.hover, { border = "rounded" })
 end
 
-M.on_attach = function(_, bufnr)
+M.on_attach = function(client, bufnr)
   local buf_set_keymap = function(...) vim.api.nvim_buf_set_keymap(bufnr or 0, ...) end
-  local buf_set_option = function(...) vim.api.nvim_buf_set_option(bufnr or 0, ...) end
 
-  buf_set_option('omnifunc', 'v:lua.vim.lsp.omnifunc')
+  vim.api.nvim_buf_set_option(bufnr or 0, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
 
   local opts = { noremap = true, silent = true }
 
@@ -36,18 +35,23 @@ M.on_attach = function(_, bufnr)
   buf_set_keymap('n', '<leader>lt', '<cmd>Telescope lsp_type_definitions<CR>', opts)
   buf_set_keymap('n', '<leader>lw', '<cmd>Telescope lsp_dynamic_workspace_symbols<CR>', opts)
 
-  buf_set_keymap('n', '<leader>lf', [[
-    <cmd>lua vim.lsp.buf.format({ async = true, filter = function(client) return client.name == "efm" or client.name == "sumneko_lua" end })<CR>
-  ]], opts)
+  local format_group = vim.api.nvim_create_augroup('Format', { clear = true })
 
-  vim.api.nvim_create_autocmd('BufWritePre', {
-    callback = function()
-      vim.lsp.buf.format({
-        filter = function(client) return client.name == "efm" or client.name == "sumneko_lua" end
-      })
-    end,
-    group = vim.api.nvim_create_augroup('Format', { clear = true }),
-  })
+  if (client.name == "sumneko_lua") then
+    buf_set_keymap('n', '<leader>lf', '<cmd>lua vim.lsp.buf.format({ async = true })<CR>', opts)
+
+    vim.api.nvim_create_autocmd('BufWritePre', {
+      callback = function() vim.lsp.buf.format() end,
+      group = format_group,
+    })
+  else
+    buf_set_keymap('n', '<leader>lf', '<cmd>lua vim.lsp.buf.format({ async = true, name = "efm" })<CR>', opts)
+
+    vim.api.nvim_create_autocmd('BufWritePre', {
+      callback = function() vim.lsp.buf.format({ name = "efm" }) end,
+      group = format_group,
+    })
+  end
 end
 
 M.capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
