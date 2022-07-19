@@ -7,6 +7,7 @@ set cursorline
 set expandtab
 set foldmethod=syntax
 set ignorecase
+set mouse=
 set nobackup
 set nofoldenable
 set noswapfile
