@@ -1,13 +1,22 @@
 local lualine = require('lualine')
+local common = require('user.common')
 
 local setup_config = function()
-  local empty_sep = { left = '', right = '' }
+  local function separators()
+    local empty_sep = { left = '', right = '' }
+
+    if common.is_linux() then
+      return nil
+    else
+      return empty_sep
+    end
+  end
 
   local config = {
     options = {
       globalstatus = true,
-      section_separators = empty_sep,
-      component_separators = empty_sep,
+      section_separators = separators(),
+      component_separators = separators(),
       theme = 'gruvbox-material',
     },
     sections = {
