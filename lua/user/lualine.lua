@@ -3,12 +3,10 @@ local common = require('user.common')
 
 local setup_config = function()
   local function separators()
-    local empty_sep = { left = '', right = '' }
-
     if common.is_linux() then
       return nil
     else
-      return empty_sep
+      return { left = '', right = '' }
     end
   end
 
