@@ -1,5 +1,4 @@
-local lualine = require('lualine')
-local common = require('user.common')
+local common = require('common')
 
 local setup_config = function()
   local function separators()
@@ -32,4 +31,4 @@ local setup_config = function()
   return config
 end
 
-lualine.setup(setup_config())
+require('lualine').setup(setup_config())
