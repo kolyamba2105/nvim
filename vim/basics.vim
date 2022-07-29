@@ -20,6 +20,7 @@ set shiftwidth=2
 set shortmess+=c
 set signcolumn=yes
 set smartindent
+set so=20
 set splitbelow
 set splitright
 set tabstop=2 softtabstop=2
