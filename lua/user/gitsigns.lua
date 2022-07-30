@@ -1,10 +1,35 @@
 require('gitsigns').setup {
   signs = {
-    add = { hl = 'GitSignsAdd', text = '+', numhl = 'GitSignsAddNr', linehl = 'GitSignsAddLn' },
-    change = { hl = 'GitSignsChange', text = '~', numhl = 'GitSignsChangeNr', linehl = 'GitSignsChangeLn' },
-    delete = { hl = 'GitSignsDelete', text = '-', numhl = 'GitSignsDeleteNr', linehl = 'GitSignsDeleteLn' },
-    topdelete = { hl = 'GitSignsDelete', text = '‾', numhl = 'GitSignsDeleteNr', linehl = 'GitSignsDeleteLn' },
-    changedelete = { hl = 'GitSignsChange', text = '_', numhl = 'GitSignsChangeNr', linehl = 'GitSignsChangeLn' },
+    add = {
+      hl = 'GitSignsAdd',
+      linehl = 'GitSignsAddLn',
+      numhl = 'GitSignsAddNr',
+      text = '+',
+    },
+    change = {
+      hl = 'GitSignsChange',
+      linehl = 'GitSignsChangeLn',
+      numhl = 'GitSignsChangeNr',
+      text = '~',
+    },
+    delete = {
+      hl = 'GitSignsDelete',
+      linehl = 'GitSignsDeleteLn',
+      numhl = 'GitSignsDeleteNr',
+      text = '-',
+    },
+    topdelete = {
+      hl = 'GitSignsDelete',
+      text = '‾',
+      numhl = 'GitSignsDeleteNr',
+      linehl = 'GitSignsDeleteLn',
+    },
+    changedelete = {
+      hl = 'GitSignsChange',
+      linehl = 'GitSignsChangeLn',
+      numhl = 'GitSignsChangeNr',
+      text = '_',
+    },
   },
   numhl = true,
 }

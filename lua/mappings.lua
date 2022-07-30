@@ -1,24 +1,29 @@
--- Move between windows (splits)
-vim.api.nvim_set_keymap('n', '<C-A-h>', '<CMD>wincmd h<CR>', { noremap = true, silent = true })
-vim.api.nvim_set_keymap('n', '<C-A-j>', '<CMD>wincmd j<CR>', { noremap = true, silent = true })
-vim.api.nvim_set_keymap('n', '<C-A-k>', '<CMD>wincmd k<CR>', { noremap = true, silent = true })
-vim.api.nvim_set_keymap('n', '<C-A-l>', '<CMD>wincmd l<CR>', { noremap = true, silent = true })
+local map = vim.api.nvim_set_keymap
+local buf_map = vim.api.nvim_buf_set_keymap
 
--- Create splits
-vim.api.nvim_set_keymap('n', '<leader>h', '<CMD>sp<CR>', { noremap = true, silent = true })
-vim.api.nvim_set_keymap('n', '<leader>v', '<CMD>vsp<CR>', { noremap = true, silent = true })
+-- Move between windows (splits)
+map('n', '<C-A-h>', '<cmd>wincmd h<cr>', { noremap = true, silent = true })
+map('n', '<C-A-j>', '<cmd>wincmd j<cr>', { noremap = true, silent = true })
+map('n', '<C-A-k>', '<cmd>wincmd k<cr>', { noremap = true, silent = true })
+map('n', '<C-A-l>', '<cmd>wincmd l<cr>', { noremap = true, silent = true })
+
+-- create splits
+map('n', '<leader>h', '<cmd>sp<cr>', { noremap = true, silent = true })
+map('n', '<leader>v', '<cmd>vsp<cr>', { noremap = true, silent = true })
 
 -- Close current buffer/window
-vim.api.nvim_set_keymap('n', '<C-c>', '<CMD>close<CR>', { noremap = true, silent = true })
-vim.api.nvim_set_keymap('n', '<C-d>', '<CMD>bdelete<CR>', { noremap = true, silent = true })
+map('n', '<C-c>', '<cmd>close<cr>', { noremap = true, silent = true })
+map('n', '<C-d>', '<cmd>bdelete<cr>', { noremap = true, silent = true })
 
 -- Save file
-vim.api.nvim_set_keymap('n', '<leader>w', '<CMD>w<CR>', { noremap = true })
-vim.api.nvim_set_keymap('n', '<leader>W', '<CMD>wall<CR>', { noremap = true })
+map('n', '<leader>w', '<cmd>w<cr>', { noremap = true })
+map('n', '<leader>W', '<cmd>wall<cr>', { noremap = true })
 
 -- Sort visually selected items
-vim.api.nvim_set_keymap('v', '<leader>s', '<CMD>sort<CR>', { noremap = true })
+map('v', '<leader>s', '<cmd>sort<cr>', { noremap = true })
 
 -- Apply macros
-vim.api.nvim_set_keymap('n', 'Q', '@q', { noremap = true })
-vim.api.nvim_set_keymap('v', 'Q', '<CMD>norm @q<CR>', { noremap = true })
+map('n', 'Q', '@q', { noremap = true })
+map('v', 'Q', '<cmd>norm @q<cr>', { noremap = true })
+
+return { buf_map = buf_map, map = map }

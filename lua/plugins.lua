@@ -1,5 +1,5 @@
 return require('packer').startup(function(use)
-  use 'wbthomason/packer.nvim'
+  use { 'wbthomason/packer.nvim' }
 
   use { 'L3MON4D3/LuaSnip' }
   use { 'ggandor/lightspeed.nvim' }
@@ -33,7 +33,7 @@ return require('packer').startup(function(use)
     require('user.treesitter')
   end, run = ':TSUpdate' }
   use { 'sainnhe/gruvbox-material', config = function()
-    require('user.colorscheme')
+    vim.cmd('colorscheme gruvbox-material')
   end }
   use { 'tpope/vim-commentary' }
   use { 'tpope/vim-fugitive', config = function()
