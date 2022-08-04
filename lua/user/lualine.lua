@@ -1,7 +1,7 @@
-local common = require('common')
+local is_linux = require('common').is_linux
 
 local function separators()
-  if common.is_linux() then return nil else return { left = '', right = '' } end
+  if is_linux() then return nil else return { left = '', right = '' } end
 end
 
 require('lualine').setup {

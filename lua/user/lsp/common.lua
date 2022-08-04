@@ -1,3 +1,5 @@
+local telescope = require('telescope.builtin')
+
 local M = {}
 
 M.diagnostic_config = function()
@@ -18,31 +20,32 @@ M.diagnostic_config = function()
   })
 end
 
+M.buf_set_keymap = function(lhs, rhs)
+  vim.keymap.set('n', lhs, rhs, { buffer = true, noremap = true, silent = true })
+end
+
+
 M.on_attach = function(client, bufnr)
   vim.api.nvim_buf_set_option(bufnr or 0, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
 
-  local buf_set_keymap = function(lhs, rhs)
-    vim.api.nvim_buf_set_keymap(bufnr or 0, 'n', lhs, rhs, { noremap = true, silent = true })
-  end
-
-  buf_set_keymap(']g', '<cmd>lua vim.diagnostic.goto_next()<cr>')
-  buf_set_keymap('[g', '<cmd>lua vim.diagnostic.goto_prev()<cr>')
-  buf_set_keymap('<leader>k', '<cmd>lua vim.lsp.buf.hover()<cr>')
-  buf_set_keymap('<leader>la', '<cmd>lua vim.lsp.buf.code_action()<cr>')
-  buf_set_keymap('<leader>ld', '<cmd>Telescope lsp_definitions<cr>')
-  buf_set_keymap('<leader>le', '<cmd>lua vim.diagnostic.open_float()<cr>')
-  buf_set_keymap('<leader>ll', '<cmd>Telescope diagnostics<cr>')
-  buf_set_keymap('<leader>ln', '<cmd>lua vim.lsp.buf.rename()<cr>')
-  buf_set_keymap('<leader>lq', '<cmd>lua vim.diagnostic.setloclist()<cr>')
-  buf_set_keymap('<leader>lr', '<cmd>Telescope lsp_references<cr>')
-  buf_set_keymap('<leader>ls', '<cmd>Telescope lsp_document_symbols<cr>')
-  buf_set_keymap('<leader>lt', '<cmd>Telescope lsp_type_definitions<cr>')
-  buf_set_keymap('<leader>lw', '<cmd>Telescope lsp_dynamic_workspace_symbols<cr>')
+  M.buf_set_keymap(']g', vim.diagnostic.goto_next)
+  M.buf_set_keymap('[g', vim.diagnostic.goto_prev)
+  M.buf_set_keymap('<leader>k', vim.lsp.buf.hover)
+  M.buf_set_keymap('<leader>la', vim.lsp.buf.code_action)
+  M.buf_set_keymap('<leader>ld', telescope.lsp_definitions)
+  M.buf_set_keymap('<leader>le', vim.diagnostic.open_float)
+  M.buf_set_keymap('<leader>ll', telescope.diagnostics)
+  M.buf_set_keymap('<leader>ln', vim.lsp.buf.rename)
+  M.buf_set_keymap('<leader>lq', vim.diagnostic.setloclist)
+  M.buf_set_keymap('<leader>lr', telescope.lsp_references)
+  M.buf_set_keymap('<leader>ls', telescope.lsp_document_symbols)
+  M.buf_set_keymap('<leader>lt', telescope.lsp_type_definitions)
+  M.buf_set_keymap('<leader>lw', telescope.lsp_dynamic_workspace_symbols)
 
   local format_group = vim.api.nvim_create_augroup('Format', { clear = true })
 
   if (client.name == "sumneko_lua") then
-    buf_set_keymap('<leader>lf', '<cmd>lua vim.lsp.buf.format({ async = true })<cr>')
+    M.buf_set_keymap('<leader>lf', function() vim.lsp.buf.format({ async = true }) end)
 
     vim.api.nvim_create_autocmd('BufWritePre', {
       callback = function() vim.lsp.buf.format() end,
@@ -51,7 +54,7 @@ M.on_attach = function(client, bufnr)
 
     return
   else
-    buf_set_keymap('<leader>lf', '<cmd>lua vim.lsp.buf.format({ async = true, name = "efm" })<cr>')
+    M.buf_set_keymap('<leader>lf', function() vim.lsp.buf.format({ async = true, name = 'efm' }) end)
 
     vim.api.nvim_create_autocmd('BufWritePre', {
       callback = function() vim.lsp.buf.format({ name = "efm" }) end,

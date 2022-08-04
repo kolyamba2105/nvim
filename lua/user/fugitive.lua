@@ -1,6 +1,6 @@
-local map = require('mappings').map
+local map = require('mappings')
 
-local opts = { noremap = true, silent = true }
+local opts = { silent = true }
 
 map('n', '<leader>gg', '<cmd>Git<cr>', opts)
 map('n', '<leader>gb', '<cmd>Git blame<cr>', opts)

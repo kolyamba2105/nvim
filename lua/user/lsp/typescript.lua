@@ -1,4 +1,3 @@
-local buf_map = require('mappings').buf_map
 local common = require('user.lsp.common')
 
 require('typescript').setup({
@@ -7,9 +6,8 @@ require('typescript').setup({
     capabilities = common.capabilities,
     on_attach = function(client, bufnr)
       common.on_attach(client, bufnr)
-
-      buf_map(bufnr, 'n', '<leader>lo', '<cmd>TypescriptOrganizeImports<cr>', { noremap = true, silent = true })
-      buf_map(bufnr, 'n', '<leader>lu', '<cmd>TypescriptRemoveUnused<cr>', { noremap = true, silent = true })
+      common.buf_set_keymap('<leader>lo', '<cmd>TypescriptOrganizeImports<cr>')
+      common.buf_set_keymap('<leader>lu', '<cmd>TypescriptRemoveUnused<cr>')
     end,
   }
 })

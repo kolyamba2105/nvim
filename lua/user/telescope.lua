@@ -1,6 +1,7 @@
-local map = require('mappings').map
+local telescope = require('telescope')
+local map = require('mappings')
 
-local opts = { noremap = true, silent = true }
+local opts = { silent = true }
 
 map('n', '<leader>tb', '<cmd>Telescope buffers<cr>', opts)
 map('n', '<leader>tc', '<cmd>Telescope command_history<cr>', opts)
@@ -17,7 +18,7 @@ map('n', '<leader>tt', '<cmd>Telescope file_browser<cr>', opts)
 map('n', '<leader>gc', '<cmd>Telescope git_commits<cr>', opts)
 map('n', '<leader>gs', '<cmd>Telescope git_status<cr>', opts)
 
-require('telescope').setup {
+telescope.setup {
   defaults = {
     layout_strategy = 'vertical',
   },
@@ -38,4 +39,4 @@ require('telescope').setup {
   },
 }
 
-require('telescope').load_extension('ui-select')
+telescope.load_extension('ui-select')
