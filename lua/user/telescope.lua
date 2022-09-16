@@ -17,6 +17,7 @@ map('n', '<leader>tt', '<cmd>Telescope file_browser<cr>', opts)
 -- Git
 map('n', '<leader>gc', '<cmd>Telescope git_commits<cr>', opts)
 map('n', '<leader>gs', '<cmd>Telescope git_status<cr>', opts)
+map('n', '<leader>gr', '<cmd>Telescope git_branches<cr>', opts)
 
 telescope.setup {
   defaults = {
