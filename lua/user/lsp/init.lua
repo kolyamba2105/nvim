@@ -14,5 +14,6 @@ lsp.jsonls.setup(common.default_config)
 lsp.sumneko_lua.setup(require('user.lsp.lua'))
 lsp.tailwindcss.setup(common.default_config)
 lsp.yamlls.setup(common.default_config)
+lsp.rust_analyzer.setup(common.default_config)
 
 require('user.lsp.typescript')
