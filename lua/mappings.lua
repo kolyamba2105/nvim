@@ -36,4 +36,7 @@ map('v', '//', "y/\\V<C-R>=escape(@\",'/\\')<CR><CR>")
 map('n', 'Q', '@q')
 map('v', 'Q', '<cmd>norm @q<cr>')
 
+-- Paste and preserve copied data
+map('x', '<leader>p', '"_dP')
+
 return map
