@@ -27,7 +27,6 @@ local local_options = {
   undofile       = true,
   updatetime     = 100,
   wildignore     = '*/tmp/*,*.so,*.swp,*.zip,*.svg,*.png,*.jpg,*.gif,node_modules',
-  winbar         = '%f',
   wrap           = false,
   writebackup    = false,
 }
@@ -38,7 +37,9 @@ end
 
 local global_options = {
   mapleader = ' ',
-  neovide_cursor_animation_length = 0,
+  neovide_cursor_animation_length = 0.05,
+  neovide_cursor_trail_size = 0.25,
+  neovide_input_macos_alt_is_meta = true,
 }
 
 for k, v in pairs(global_options) do
