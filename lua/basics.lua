@@ -9,6 +9,7 @@ local local_options = {
   emoji          = false,
   expandtab      = true,
   foldlevelstart = 99,
+  guifont        = 'Iosevka Nerd Font',
   ignorecase     = true,
   laststatus     = 3,
   number         = true,
@@ -26,6 +27,7 @@ local local_options = {
   undofile       = true,
   updatetime     = 100,
   wildignore     = '*/tmp/*,*.so,*.swp,*.zip,*.svg,*.png,*.jpg,*.gif,node_modules',
+  winbar         = '%f',
   wrap           = false,
   writebackup    = false,
 }
@@ -36,6 +38,7 @@ end
 
 local global_options = {
   mapleader = ' ',
+  neovide_cursor_animation_length = 0,
 }
 
 for k, v in pairs(global_options) do

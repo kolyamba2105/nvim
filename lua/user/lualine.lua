@@ -1,7 +1,7 @@
 local is_linux = require('common').is_linux
 
 local function separators()
-  if is_linux() then return nil else return { left = '', right = '' } end
+  if is_linux() or vim.g.neovide then return nil else return { left = '', right = '' } end
 end
 
 require('lualine').setup {
