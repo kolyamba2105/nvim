@@ -9,7 +9,7 @@ local local_options = {
   emoji          = false,
   expandtab      = true,
   foldlevelstart = 99,
-  guifont        = 'Iosevka Nerd Font',
+  guifont        = 'Iosevka Nerd Font:h16',
   ignorecase     = true,
   laststatus     = 3,
   number         = true,
@@ -38,7 +38,7 @@ end
 local global_options = {
   mapleader = ' ',
   neovide_cursor_animation_length = 0.05,
-  neovide_cursor_trail_size = 0.25,
+  neovide_cursor_trail_size = 0.15,
   neovide_input_macos_alt_is_meta = true,
 }
 
