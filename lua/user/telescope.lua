@@ -3,27 +3,37 @@ local map = require('mappings')
 
 local opts = { silent = true }
 
-map('n', '<leader>tb', '<cmd>Telescope buffers<cr>', opts)
-map('n', '<leader>tc', '<cmd>Telescope command_history<cr>', opts)
-map('n', '<leader>tf', '<cmd>Telescope find_files<cr>', opts)
-map('n', '<leader>tg', '<cmd>Telescope live_grep<cr>', opts)
-map('n', '<leader>th', '<cmd>Telescope help_tags<cr>', opts)
-map('n', '<leader>tj', '<cmd>Telescope jumplist<cr>', opts)
-map('n', '<leader>tm', '<cmd>Telescope marks<cr>', opts)
-map('n', '<leader>tr', '<cmd>Telescope grep_string<cr>', opts)
-map('n', '<leader>ts', '<cmd>Telescope search_history<cr>', opts)
-map('n', '<leader>tt', '<cmd>Telescope file_browser<cr>', opts)
+local function get_picker(picker)
+  return function()
+    return require('telescope.builtin')[picker](require('telescope.themes').get_ivy({}))
+  end
+
+end
+
+map('n', '<leader>tb', get_picker('buffers'), opts)
+map('n', '<leader>tc', get_picker('command_history'), opts)
+map('n', '<leader>tf', get_picker('find_files'), opts)
+map('n', '<leader>tg', get_picker('live_grep'), opts)
+map('n', '<leader>th', get_picker('help_tags'), opts)
+map('n', '<leader>tj', get_picker('jumplist'), opts)
+map('n', '<leader>tm', get_picker('marks'), opts)
+map('n', '<leader>tr', get_picker('grep_string'), opts)
+map('n', '<leader>ts', get_picker('search_history'), opts)
 
 -- Git
-map('n', '<leader>gc', '<cmd>Telescope git_commits<cr>', opts)
-map('n', '<leader>gs', '<cmd>Telescope git_status<cr>', opts)
-map('n', '<leader>gr', '<cmd>Telescope git_branches<cr>', opts)
+map('n', '<leader>gc', get_picker('git_commits'), opts)
+map('n', '<leader>gs', get_picker('git_status'), opts)
+map('n', '<leader>gr', get_picker('git_branches'), opts)
 
 telescope.setup {
   defaults = {
-    layout_strategy = 'vertical',
+    layout_strategy = 'flex',
+    layout_config = {
+      prompt_position = 'top',
+    },
   },
   pickers = {
+    theme = 'ivy',
     buffers = {
       mappings = {
         i = {
@@ -41,3 +51,5 @@ telescope.setup {
 }
 
 telescope.load_extension('ui-select')
+
+return get_picker
