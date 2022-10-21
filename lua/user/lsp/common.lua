@@ -44,7 +44,7 @@ M.on_attach = function(client, bufnr)
 
   local format_group = vim.api.nvim_create_augroup('Format', { clear = true })
 
-  if (client.name == "sumneko_lua") then
+  if (client.name == "sumneko_lua" or client.name == "prismals") then
     M.buf_set_keymap('<leader>lf', function() vim.lsp.buf.format({ async = true }) end)
 
     vim.api.nvim_create_autocmd('BufWritePre', {
@@ -63,7 +63,7 @@ M.on_attach = function(client, bufnr)
   end
 end
 
-M.capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
+M.capabilities = require('cmp_nvim_lsp').default_capabilities(vim.lsp.protocol.make_client_capabilities())
 
 M.default_config = {
   on_attach = M.on_attach,
