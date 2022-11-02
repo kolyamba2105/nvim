@@ -38,5 +38,6 @@ return require('packer').startup(function(use)
     require('user.fugitive')
   end }
   use { 'tpope/vim-repeat' }
+  use { 'tpope/vim-surround' }
   use { 'tpope/vim-unimpaired' }
 end)
