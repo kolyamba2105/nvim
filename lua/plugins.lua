@@ -5,6 +5,9 @@ return require('packer').startup(function(use)
   use { 'echasnovski/mini.nvim', config = function()
     require('user.mini')
   end }
+  use { "catppuccin/nvim", as = "catppuccin", config = function()
+    vim.cmd [[ colorscheme catppuccin ]]
+  end }
   use { 'hrsh7th/cmp-buffer' }
   use { 'hrsh7th/cmp-nvim-lsp' }
   use { 'hrsh7th/cmp-path' }
@@ -31,9 +34,7 @@ return require('packer').startup(function(use)
   use { 'nvim-treesitter/nvim-treesitter', config = function()
     require('user.treesitter')
   end, run = ':TSUpdate' }
-  use { 'sainnhe/gruvbox-material', config = function()
-    vim.cmd('colorscheme gruvbox-material')
-  end }
+  use { 'sainnhe/gruvbox-material' }
   use { 'tpope/vim-fugitive', config = function()
     require('user.fugitive')
   end }

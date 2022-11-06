@@ -24,7 +24,6 @@ M.buf_set_keymap = function(lhs, rhs)
   vim.keymap.set('n', lhs, rhs, { buffer = true, noremap = true, silent = true })
 end
 
-
 M.on_attach = function(client, bufnr)
   vim.api.nvim_buf_set_option(bufnr or 0, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
 
