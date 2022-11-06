@@ -19,6 +19,9 @@ return require('packer').startup(function(use)
   use { 'lewis6991/gitsigns.nvim', config = function()
     require('user.gitsigns')
   end }
+  use { 'nvim-lualine/lualine.nvim', config = function()
+    require('user.lualine')
+  end }
   use { 'lukas-reineke/indent-blankline.nvim', config = function()
     require('user.indent-blankline')
   end }
