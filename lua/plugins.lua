@@ -6,7 +6,7 @@ return require('packer').startup(function(use)
     require('user.mini')
   end }
   use { "catppuccin/nvim", as = "catppuccin", config = function()
-    vim.cmd [[ colorscheme catppuccin ]]
+    require('user.catppuccin')
   end }
   use { 'hrsh7th/cmp-buffer' }
   use { 'hrsh7th/cmp-nvim-lsp' }
