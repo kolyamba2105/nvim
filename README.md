@@ -23,3 +23,8 @@ yarn global add @prisma/language-server @tailwindcss/language-server bash-langua
 ```sh
 brew install efm-langserver
 ```
+
+```sh
+# Without package manager
+go install github.com/mattn/efm-langserver@latest
+```
