@@ -10,6 +10,7 @@ local function get_picker(picker)
 
 end
 
+map('n', '<leader>ta', require('telescope.builtin').resume, opts)
 map('n', '<leader>tb', get_picker('buffers'), opts)
 map('n', '<leader>tc', get_picker('command_history'), opts)
 map('n', '<leader>tf', get_picker('find_files'), opts)
