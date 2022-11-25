@@ -20,6 +20,7 @@ map('n', '<leader>tj', get_picker('jumplist'), opts)
 map('n', '<leader>tm', get_picker('marks'), opts)
 map('n', '<leader>tr', get_picker('grep_string'), opts)
 map('n', '<leader>ts', get_picker('search_history'), opts)
+map('n', '<leader>tq', get_picker('quickfix'), opts)
 
 -- Git
 map('n', '<leader>gc', get_picker('git_commits'), opts)
