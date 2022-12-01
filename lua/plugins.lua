@@ -40,6 +40,9 @@ return require('packer').startup(function(use)
   use { 'nvim-tree/nvim-tree.lua', requires = { 'nvim-tree/nvim-web-devicons', }, tag = 'nightly', config = function()
     require('user.nvim-tree')
   end }
+  use { "nvim-zh/colorful-winsep.nvim", config = function()
+    require('colorful-winsep').setup()
+  end }
   use { 'tpope/vim-fugitive', config = function()
     require('user.fugitive')
   end }
