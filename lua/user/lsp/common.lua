@@ -40,26 +40,6 @@ M.on_attach = function(client, bufnr)
   M.buf_set_keymap('<leader>ls', get_picker('lsp_document_symbols'))
   M.buf_set_keymap('<leader>lt', get_picker('lsp_type_definitions'))
   M.buf_set_keymap('<leader>lw', get_picker('lsp_dynamic_workspace_symbols'))
-
-  local format_group = vim.api.nvim_create_augroup('Format', { clear = true })
-
-  if (client.name == "sumneko_lua" or client.name == "prismals") then
-    M.buf_set_keymap('<leader>lf', function() vim.lsp.buf.format({ async = true }) end)
-
-    vim.api.nvim_create_autocmd('BufWritePre', {
-      callback = function() vim.lsp.buf.format() end,
-      group = format_group,
-    })
-
-    return
-  else
-    M.buf_set_keymap('<leader>lf', function() vim.lsp.buf.format({ async = true, name = 'efm' }) end)
-
-    vim.api.nvim_create_autocmd('BufWritePre', {
-      callback = function() vim.lsp.buf.format({ name = "efm" }) end,
-      group = format_group,
-    })
-  end
 end
 
 M.capabilities = require('cmp_nvim_lsp').default_capabilities(vim.lsp.protocol.make_client_capabilities())

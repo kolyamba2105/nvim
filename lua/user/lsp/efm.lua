@@ -31,7 +31,16 @@ return {
   capabilities = common.capabilities,
   filetypes = keys(languages),
   init_options = { documentFormatting = true },
-  on_attach = common.on_attach,
+  on_attach = function(client, bufnr)
+    common.on_attach(client, bufnr)
+
+    common.buf_set_keymap('<leader>lf', function() vim.lsp.buf.format({ async = true }) end)
+
+    vim.api.nvim_create_autocmd('BufWritePre', {
+      callback = function() vim.lsp.buf.format({ name = "efm" }) end,
+      group = vim.api.nvim_create_augroup('EfmFormat', { clear = true }),
+    })
+  end,
   root_dir = require('lspconfig').util.root_pattern('.git'),
   settings = {
     languages = languages,
