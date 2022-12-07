@@ -30,6 +30,7 @@ return require('packer').startup(function(use)
   end }
   use { 'nvim-lua/plenary.nvim' }
   use { 'nvim-lua/popup.nvim' }
+  use { 'nvim-telescope/telescope-file-browser.nvim' }
   use { 'nvim-telescope/telescope-ui-select.nvim' }
   use { 'nvim-telescope/telescope.nvim', config = function()
     require('user.telescope')
