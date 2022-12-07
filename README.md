@@ -15,7 +15,7 @@ yarn global add prettier
 - Install language servers
 
 ```sh
-yarn global add @prisma/language-server @tailwindcss/language-server bash-language-server typescript-language-server vscode-langservers-extracted yaml-language-server
+yarn global add @prisma/language-server @tailwindcss/language-server bash-language-server graphql-language-service-cli typescript-language-server vscode-langservers-extracted yaml-language-server
 ```
 
 - Install efm language server
