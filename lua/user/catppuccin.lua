@@ -1,5 +1,8 @@
 require('catppuccin').setup {
   flavour = 'mocha',
+  integrations = {
+    nvimtree = false,
+  },
 }
 
 vim.cmd [[ colorscheme catppuccin ]]
