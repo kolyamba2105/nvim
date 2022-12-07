@@ -38,9 +38,6 @@ return require('packer').startup(function(use)
   use { 'nvim-treesitter/nvim-treesitter', config = function()
     require('user.treesitter')
   end, run = ':TSUpdate' }
-  use { 'nvim-tree/nvim-tree.lua', requires = { 'nvim-tree/nvim-web-devicons', }, tag = 'nightly', config = function()
-    require('user.nvim-tree')
-  end }
   use { 'tpope/vim-fugitive', config = function()
     require('user.fugitive')
   end }
