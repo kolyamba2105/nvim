@@ -31,8 +31,8 @@ map('n', '<leader>tq', get_picker_normal('quickfix'), opts)
 
 -- Git
 map('n', '<leader>gc', get_picker('git_commits'), opts)
-map('n', '<leader>gs', get_picker('git_status'), opts)
-map('n', '<leader>gr', get_picker('git_branches'), opts)
+map('n', '<leader>gs', get_picker_normal('git_status'), opts)
+map('n', '<leader>gr', get_picker_normal('git_branches'), opts)
 
 -- File browser
 local function file_browser()
