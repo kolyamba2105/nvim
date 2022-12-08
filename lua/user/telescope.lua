@@ -29,11 +29,7 @@ map('n', '<leader>gr', get_picker('git_branches'), opts)
 -- File browser
 local function file_browser()
   return telescope.extensions.file_browser.file_browser({
-    on_complete = {
-      function()
-        vim.cmd [[ stopinsert ]]
-      end
-    }
+    on_complete = { function() vim.cmd('stopinsert') end }
   })
 end
 
