@@ -10,7 +10,7 @@ local function get_picker(picker)
 end
 
 local enter_normal_mode = {
-  on_complete = { function() vim.cmd('stopinsert') end }
+  initial_mode = 'normal',
 }
 
 local function get_picker_normal(picker)
@@ -35,18 +35,13 @@ map('n', '<leader>gs', get_picker_normal('git_status'), opts)
 map('n', '<leader>gr', get_picker_normal('git_branches'), opts)
 
 -- File browser
-local function file_browser()
-  return telescope.extensions.file_browser.file_browser(enter_normal_mode)
-end
-
 local function file_browser_cwd()
   return telescope.extensions.file_browser.file_browser({
     cwd = vim.fn.expand('%:p:h'),
-    on_complete = { function() vim.cmd('stopinsert') end },
   })
 end
 
-map('n', '<C-n>', file_browser, opts)
+map('n', '<C-n>', telescope.extensions.file_browser.file_browser, opts)
 map('n', '<C-e>', file_browser_cwd, opts)
 
 telescope.setup {
@@ -60,6 +55,7 @@ telescope.setup {
     file_browser = {
       grouped = true,
       hidden = true,
+      initial_mode = 'normal',
       theme = 'ivy',
     }
   },
