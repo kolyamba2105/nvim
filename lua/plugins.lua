@@ -1,3 +1,7 @@
+local map = require('mappings')
+
+map('n', '<C-p>', '<cmd>PackerSync<cr>')
+
 return require('packer').startup(function(use)
   use { 'wbthomason/packer.nvim' }
 
