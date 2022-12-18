@@ -6,9 +6,7 @@ local M = {}
 local opts = { silent = true }
 
 M.get_picker = function(picker)
-  return function(options)
-    return require('telescope.builtin')[picker](require('telescope.themes').get_ivy(options))
-  end
+  return function(options) return require('telescope.builtin')[picker](options) end
 end
 
 local enter_normal_mode = {
@@ -47,22 +45,15 @@ map('n', '<C-n>', telescope.extensions.file_browser.file_browser, opts)
 map('n', '<C-e>', file_browser_cwd, opts)
 
 telescope.setup {
-  defaults = {
-    layout_strategy = 'flex',
-    layout_config = {
-      prompt_position = 'top',
-    },
-  },
+  defaults = require('telescope.themes').get_ivy(),
   extensions = {
     file_browser = {
       grouped = true,
       hidden = true,
       initial_mode = 'normal',
-      theme = 'ivy',
     }
   },
   pickers = {
-    theme = 'ivy',
     buffers = {
       mappings = {
         i = {
