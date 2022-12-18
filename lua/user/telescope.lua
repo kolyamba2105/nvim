@@ -3,19 +3,15 @@ local map = require('mappings')
 
 local M = {}
 
-local opts = { silent = true }
-
-M.get_picker = function(picker)
+function M.get_picker(picker)
   return function(options) return require('telescope.builtin')[picker](options) end
 end
 
-local enter_normal_mode = {
-  initial_mode = 'normal',
-}
-
-M.get_picker_normal = function(picker)
-  return function() M.get_picker(picker)(enter_normal_mode) end
+function M.get_picker_normal(picker)
+  return function() M.get_picker(picker)({ initial_mode = 'normal' }) end
 end
+
+local opts = { silent = true }
 
 map('n', '<leader>ta', require('telescope.builtin').resume, opts)
 map('n', '<leader>tb', M.get_picker_normal('buffers'), opts)
