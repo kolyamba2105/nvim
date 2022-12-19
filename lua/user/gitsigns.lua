@@ -38,6 +38,5 @@ require('gitsigns').setup {
 
 local opts = { silent = true }
 
-map('n', '<leader>g', '<cmd>Gitsigns blame_line<cr>', opts)
 map('n', '<leader>gd', '<cmd>Gitsigns diffthis<cr>', opts)
 map('n', '<leader>gq', '<cmd>Gitsigns setqflist<cr>', opts)
