@@ -47,7 +47,10 @@ telescope.setup {
       grouped = true,
       hidden = true,
       initial_mode = 'normal',
-    }
+    },
+    ['ui-select'] = {
+      initial_mode = 'normal',
+    },
   },
   pickers = {
     buffers = {
