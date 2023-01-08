@@ -6,7 +6,7 @@ return require('packer').startup(function(use)
   use { 'wbthomason/packer.nvim' }
 
   use { 'L3MON4D3/LuaSnip' }
-  use { 'akinsho/bufferline.nvim', tag = "v3.*", after = "catppuccin", config = function()
+  use { 'akinsho/bufferline.nvim', tag = "v3.*", config = function()
     require("user.bufferline")
   end }
   use { 'echasnovski/mini.nvim', config = function()
