@@ -12,9 +12,6 @@ return require('packer').startup(function(use)
   use { 'echasnovski/mini.nvim', config = function()
     require('user.mini')
   end }
-  use { "catppuccin/nvim", as = "catppuccin", config = function()
-    require('user.catppuccin')
-  end }
   use { 'hrsh7th/cmp-buffer' }
   use { 'hrsh7th/cmp-nvim-lsp' }
   use { 'hrsh7th/cmp-path' }
