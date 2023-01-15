@@ -39,7 +39,4 @@ map('v', 'Q', '<cmd>norm @q<cr>')
 -- Paste and preserve copied data
 map('x', '<leader>p', '"_dP')
 
--- Make
-map('n', '<C-m>', '<cmd>make<cr>')
-
 return map
