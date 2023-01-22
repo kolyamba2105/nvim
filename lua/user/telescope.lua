@@ -7,28 +7,28 @@ function M.get_picker(picker)
   return function(options) return require('telescope.builtin')[picker](options) end
 end
 
-function M.get_picker_normal(picker)
-  return function() M.get_picker(picker)({ initial_mode = 'normal' }) end
+function M.get_picker_insert(picker)
+  return function() M.get_picker(picker)({ initial_mode = 'insert' }) end
 end
 
 local opts = { silent = true }
 
-map('n', '<leader>ta', require('telescope.builtin').resume, opts)
-map('n', '<leader>tb', M.get_picker_normal('buffers'), opts)
-map('n', '<leader>tc', M.get_picker('command_history'), opts)
-map('n', '<leader>tf', M.get_picker('find_files'), opts)
-map('n', '<leader>tg', M.get_picker('live_grep'), opts)
-map('n', '<leader>th', M.get_picker('help_tags'), opts)
-map('n', '<leader>tj', M.get_picker_normal('jumplist'), opts)
-map('n', '<leader>tm', M.get_picker('marks'), opts)
-map('n', '<leader>tr', M.get_picker_normal('grep_string'), opts)
-map('n', '<leader>ts', M.get_picker('search_history'), opts)
-map('n', '<leader>tq', M.get_picker_normal('quickfix'), opts)
+map('n', '<leader>fa', M.get_picker('resume'), opts)
+map('n', '<leader>fb', M.get_picker('buffers'), opts)
+map('n', '<leader>fc', M.get_picker('command_history'), opts)
+map('n', '<leader>ff', M.get_picker_insert('find_files'), opts)
+map('n', '<leader>fg', M.get_picker_insert('live_grep'), opts)
+map('n', '<leader>fh', M.get_picker_insert('help_tags'), opts)
+map('n', '<leader>fj', M.get_picker('jumplist'), opts)
+map('n', '<leader>fm', M.get_picker('marks'), opts)
+map('n', '<leader>fr', M.get_picker('grep_string'), opts)
+map('n', '<leader>fs', M.get_picker_insert('search_history'), opts)
+map('n', '<leader>fq', M.get_picker('quickfix'), opts)
 
 -- Git
 map('n', '<leader>gc', M.get_picker('git_commits'), opts)
-map('n', '<leader>gs', M.get_picker_normal('git_status'), opts)
-map('n', '<leader>gr', M.get_picker_normal('git_branches'), opts)
+map('n', '<leader>gs', M.get_picker('git_status'), opts)
+map('n', '<leader>gr', M.get_picker('git_branches'), opts)
 
 -- File browser
 local function file_browser_cwd()
@@ -41,7 +41,7 @@ map('n', '<C-n>', telescope.extensions.file_browser.file_browser, opts)
 map('n', '<C-e>', file_browser_cwd, opts)
 
 telescope.setup {
-  defaults = require('telescope.themes').get_ivy(),
+  defaults = require('telescope.themes').get_ivy({ initial_mode = 'normal' }),
   extensions = {
     file_browser = {
       grouped = true,
