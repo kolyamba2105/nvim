@@ -41,7 +41,19 @@ map('n', '<C-n>', telescope.extensions.file_browser.file_browser, opts)
 map('n', '<C-e>', file_browser_cwd, opts)
 
 telescope.setup {
-  defaults = require('telescope.themes').get_ivy({ initial_mode = 'normal' }),
+  defaults = require('telescope.themes').get_ivy({
+    initial_mode = 'normal',
+    mappings = {
+      i = {
+        ['<c-h>'] = require('telescope.actions').file_split,
+        ['<c-x>'] = false,
+      },
+      n = {
+        ['<c-h>'] = require('telescope.actions').file_split,
+        ['<c-x>'] = false,
+      },
+    },
+  }),
   extensions = {
     file_browser = {
       grouped = true,
