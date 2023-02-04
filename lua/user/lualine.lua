@@ -13,5 +13,6 @@ require('lualine').setup {
       { 'diagnostics', sources = { 'nvim_diagnostic' } },
     },
     lualine_x = {},
-  }
+  },
+  extensions = { 'fugitive', 'quickfix' },
 }
