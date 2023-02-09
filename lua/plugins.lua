@@ -7,7 +7,6 @@ return require('packer').startup(function(use)
 
   use { "catppuccin/nvim", as = "catppuccin", config = function() require('user.catppuccin') end }
   use { 'L3MON4D3/LuaSnip' }
-  use { 'akinsho/bufferline.nvim', tag = "v3.*", after = "catppuccin", config = function() require("user.bufferline") end }
   use { 'echasnovski/mini.nvim', config = function() require('user.mini') end }
   use { 'hrsh7th/cmp-buffer' }
   use { 'hrsh7th/cmp-nvim-lsp' }
