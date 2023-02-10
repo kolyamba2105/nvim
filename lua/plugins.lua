@@ -2,6 +2,21 @@ local map = require('mappings')
 
 map('n', '<C-p>', '<cmd>PackerSync<cr>')
 
+local is_packer_installed = function()
+  local path = vim.fn.stdpath('data') .. '/site/pack/packer/start/packer.nvim'
+
+  if vim.fn.empty(vim.fn.glob(path)) > 0 then
+    vim.fn.system({ 'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim', path })
+    vim.cmd('packadd packer.nvim')
+
+    return true
+  end
+
+  return false
+end
+
+local is_installed = is_packer_installed()
+
 return require('packer').startup(function(use)
   use { 'wbthomason/packer.nvim' }
 
@@ -30,4 +45,6 @@ return require('packer').startup(function(use)
   use { 'tpope/vim-repeat' }
   use { 'tpope/vim-surround' }
   use { 'tpope/vim-unimpaired' }
+
+  if is_installed then require('packer').sync() end
 end)
