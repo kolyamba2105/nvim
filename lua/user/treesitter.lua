@@ -14,6 +14,7 @@ require("nvim-treesitter.configs").setup({
     "lua",
     "prisma",
     "scss",
+    "toml",
     "tsx",
     "typescript",
     "yaml",
