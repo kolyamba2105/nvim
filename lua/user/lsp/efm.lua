@@ -1,5 +1,4 @@
 local common = require("user.lsp.common")
-local keys = require("common").keys
 
 local prettier_config = {
   formatCommand = [[$([ -n "$(command -v node_modules/.bin/prettier)" ] && echo "node_modules/.bin/prettier" || echo "prettier") --stdin-filepath ${INPUT}]],
@@ -35,7 +34,7 @@ local languages = {
 return {
   cmd = { "efm-langserver" },
   capabilities = common.capabilities,
-  filetypes = keys(languages),
+  filetypes = vim.tbl_keys(languages),
   init_options = { documentFormatting = true },
   on_attach = function(client, bufnr)
     common.on_attach(client, bufnr)
