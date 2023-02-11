@@ -1,18 +1,18 @@
-require('lualine').setup {
+require("lualine").setup({
   options = {
     globalstatus = true,
-    theme = 'catppuccin',
+    theme = "catppuccin",
   },
   sections = {
     lualine_b = {
-      { 'branch' },
-      { 'diff' },
+      { "branch" },
+      { "diff" },
     },
     lualine_c = {
-      { 'filename' },
-      { 'diagnostics', sources = { 'nvim_diagnostic' } },
+      { "filename" },
+      { "diagnostics", sources = { "nvim_diagnostic" } },
     },
     lualine_x = {},
   },
-  extensions = { 'fugitive', 'quickfix' },
-}
+  extensions = { "fugitive", "quickfix" },
+})

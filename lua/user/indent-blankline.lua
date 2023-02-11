@@ -11,7 +11,7 @@ vim.api.nvim_set_hl(0, "IndentBlanklineIndent4", { fg = "#89dceb", nocombine = t
 vim.api.nvim_set_hl(0, "IndentBlanklineIndent5", { fg = "#f38ba8", nocombine = true })
 vim.api.nvim_set_hl(0, "IndentBlanklineIndent6", { fg = "#74c7ec", nocombine = true })
 
-require('indent_blankline').setup {
+require("indent_blankline").setup({
   show_end_of_line = true,
   space_char_blankline = " ",
   char_highlight_list = {
@@ -22,4 +22,4 @@ require('indent_blankline').setup {
     "IndentBlanklineIndent5",
     "IndentBlanklineIndent6",
   },
-}
+})

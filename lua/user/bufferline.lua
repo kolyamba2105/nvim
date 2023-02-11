@@ -1,10 +1,10 @@
-local map = require('mappings')
+local map = require("mappings")
 
-require("bufferline").setup {
+require("bufferline").setup({
   options = {
     diagnostics = "nvim_lsp",
   },
-  highlights = require('catppuccin.groups.integrations.bufferline').get()
-}
+  highlights = require("catppuccin.groups.integrations.bufferline").get(),
+})
 
-map('n', '<C-b>', '<cmd>BufferLinePick<cr>')
+map("n", "<C-b>", "<cmd>BufferLinePick<cr>")

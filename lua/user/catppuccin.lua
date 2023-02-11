@@ -1,11 +1,11 @@
-require('catppuccin').setup {
-  flavour = 'mocha',
+require("catppuccin").setup({
+  flavour = "mocha",
   integrations = {
     nvimtree = false,
   },
-}
+})
 
-vim.cmd [[ colorscheme catppuccin ]]
+vim.cmd([[ colorscheme catppuccin ]])
 
 vim.api.nvim_set_hl(0, "@conditional", { fg = "#cba6f7" })
 vim.api.nvim_set_hl(0, "@namespace", { fg = "#89b4fa" })

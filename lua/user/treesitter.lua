@@ -1,22 +1,22 @@
-require('nvim-treesitter.configs').setup {
+require("nvim-treesitter.configs").setup({
   ensure_installed = {
-    'bash',
-    'comment',
-    'css',
-    'dockerfile',
-    'fish',
-    'graphql',
-    'html',
-    'javascript',
-    'jsdoc',
-    'json',
-    'jsonc',
-    'lua',
-    'prisma',
-    'scss',
-    'tsx',
-    'typescript',
-    'yaml'
+    "bash",
+    "comment",
+    "css",
+    "dockerfile",
+    "fish",
+    "graphql",
+    "html",
+    "javascript",
+    "jsdoc",
+    "json",
+    "jsonc",
+    "lua",
+    "prisma",
+    "scss",
+    "tsx",
+    "typescript",
+    "yaml",
   },
   highlight = {
     enable = true,
@@ -27,7 +27,7 @@ require('nvim-treesitter.configs').setup {
   indent = {
     enable = true,
   },
-}
+})
 
-vim.wo.foldmethod = 'expr'
-vim.wo.foldexpr = 'nvim_treesitter#foldexpr()'
+vim.wo.foldmethod = "expr"
+vim.wo.foldexpr = "nvim_treesitter#foldexpr()"
