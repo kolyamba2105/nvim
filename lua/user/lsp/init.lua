@@ -14,7 +14,7 @@ lsp.html.setup(common.default_config)
 lsp.jsonls.setup(common.default_config)
 lsp.prismals.setup(require("user.lsp.prisma"))
 lsp.rust_analyzer.setup(common.default_config)
-lsp.sumneko_lua.setup(require("user.lsp.sumneko"))
+lsp.lua_ls.setup(require("user.lsp.sumneko"))
 lsp.tailwindcss.setup(common.default_config)
 lsp.yamlls.setup(common.default_config)
 
