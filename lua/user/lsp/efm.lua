@@ -15,6 +15,7 @@ local rust_config = {
   formatStdin = true,
 }
 
+-- Reference: https://github.com/creativenull/efmls-configs-nvim
 local languages = {
   css = { prettier_config },
   html = { prettier_config },
