@@ -1,4 +1,4 @@
-local telescope = require("user.telescope")
+local utils = require("user.telescope.utils")
 
 local M = {}
 
@@ -29,15 +29,15 @@ M.on_attach = function(client, bufnr)
   M.buf_set_keymap("[g", vim.diagnostic.goto_prev)
   M.buf_set_keymap("<leader>k", vim.lsp.buf.hover)
   M.buf_set_keymap("<leader>la", vim.lsp.buf.code_action)
-  M.buf_set_keymap("<leader>ld", telescope.get_picker("lsp_definitions"))
+  M.buf_set_keymap("<leader>ld", utils.get_picker("lsp_definitions"))
   M.buf_set_keymap("<leader>le", vim.diagnostic.open_float)
-  M.buf_set_keymap("<leader>ll", telescope.get_picker("diagnostics"))
+  M.buf_set_keymap("<leader>ll", utils.get_picker("diagnostics"))
   M.buf_set_keymap("<leader>ln", vim.lsp.buf.rename)
   M.buf_set_keymap("<leader>lq", vim.diagnostic.setloclist)
-  M.buf_set_keymap("<leader>lr", telescope.get_picker("lsp_references"))
-  M.buf_set_keymap("<leader>ls", telescope.get_picker_insert("lsp_document_symbols"))
-  M.buf_set_keymap("<leader>lt", telescope.get_picker("lsp_type_definitions"))
-  M.buf_set_keymap("<leader>lw", telescope.get_picker_insert("lsp_dynamic_workspace_symbols"))
+  M.buf_set_keymap("<leader>lr", utils.get_picker("lsp_references"))
+  M.buf_set_keymap("<leader>ls", utils.get_picker_insert("lsp_document_symbols"))
+  M.buf_set_keymap("<leader>lt", utils.get_picker("lsp_type_definitions"))
+  M.buf_set_keymap("<leader>lw", utils.get_picker_insert("lsp_dynamic_workspace_symbols"))
 end
 
 M.capabilities = require("cmp_nvim_lsp").default_capabilities(vim.lsp.protocol.make_client_capabilities())
