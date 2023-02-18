@@ -1,4 +1,4 @@
-local map = require("user.core.mappings")
+local map = require("core.mappings")
 
 vim.g.netrw_banner = 0
 vim.g.netrw_list_hide = ".DS_Store"

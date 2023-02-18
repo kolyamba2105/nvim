@@ -1,4 +1,4 @@
-local map = require("user.core.mappings")
+local map = require("core.mappings")
 
 require("gitsigns").setup({
   signs = {

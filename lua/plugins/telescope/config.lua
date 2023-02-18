@@ -1,6 +1,6 @@
-local map = require("user.core.mappings")
+local map = require("core.mappings")
 local telescope = require("telescope")
-local utils = require("user.plugins.telescope.utils")
+local utils = require("plugins.telescope.utils")
 
 local opts = { silent = true }
 

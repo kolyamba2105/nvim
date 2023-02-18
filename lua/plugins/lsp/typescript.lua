@@ -1,4 +1,4 @@
-local common = require("user.plugins.lsp.common")
+local common = require("plugins.lsp.common")
 
 require("typescript").setup({
   disable_formatting = true,
