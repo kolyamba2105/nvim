@@ -1,4 +1,4 @@
-local map = require("mappings")
+local map = require("user.core.mappings")
 
 -- Disable netrw
 vim.g.loaded_netrw = 1

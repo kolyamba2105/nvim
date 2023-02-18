@@ -1,4 +1,4 @@
-local common = require("user.lsp.common")
+local common = require("user.plugins.lsp.common")
 
 local prettier_config = {
   formatCommand = [[$([ -n "$(command -v node_modules/.bin/prettier)" ] && echo "node_modules/.bin/prettier" || echo "prettier") --stdin-filepath ${INPUT}]],

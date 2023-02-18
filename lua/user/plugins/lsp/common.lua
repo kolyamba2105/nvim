@@ -1,4 +1,4 @@
-local utils = require("user.telescope.utils")
+local utils = require("user.plugins.telescope.utils")
 
 local M = {}
 

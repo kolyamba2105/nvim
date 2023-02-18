@@ -1,0 +1,21 @@
+local lsp = require("lspconfig")
+local common = require("user.plugins.lsp.common")
+
+common.diagnostic_config()
+
+lsp.bashls.setup(common.default_config)
+lsp.cssls.setup(common.default_config)
+lsp.cssmodules_ls.setup(common.default_config)
+lsp.efm.setup(require("user.plugins.lsp.efm"))
+lsp.emmet_ls.setup(require("user.plugins.lsp.emmet"))
+lsp.eslint.setup(require("user.plugins.lsp.eslint"))
+lsp.graphql.setup(require("user.plugins.lsp.graphql"))
+lsp.html.setup(common.default_config)
+lsp.jsonls.setup(common.default_config)
+lsp.prismals.setup(require("user.plugins.lsp.prisma"))
+lsp.rust_analyzer.setup(common.default_config)
+lsp.lua_ls.setup(require("user.plugins.lsp.sumneko"))
+lsp.tailwindcss.setup(common.default_config)
+lsp.yamlls.setup(common.default_config)
+
+require("user.plugins.lsp.typescript")

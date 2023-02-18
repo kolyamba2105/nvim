@@ -1,4 +1,4 @@
-local common = require("user.lsp.common")
+local common = require("user.plugins.lsp.common")
 
 return {
   capabilities = common.capabilities,
