@@ -58,8 +58,8 @@ telescope.setup({
   pickers = {
     buffers = {
       mappings = {
-        i = {
-          ["<c-d>"] = "delete_buffer",
+        n = {
+          ["<c-x>"] = "delete_buffer",
         },
       },
     },
