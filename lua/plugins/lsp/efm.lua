@@ -1,7 +1,7 @@
 local common = require("plugins.lsp.common")
 
 local prettier_config = {
-  formatCommand = [[$([ -n "$(command -v node_modules/.bin/prettier)" ] && echo "node_modules/.bin/prettier" || echo "prettier") --stdin-filepath ${INPUT}]],
+  formatCommand = "prettier --stdin-filepath ${INPUT}",
   formatStdin = true,
 }
 
@@ -40,6 +40,10 @@ return {
   on_attach = function(client, bufnr)
     common.on_attach(client, bufnr)
     vim.api.nvim_buf_create_user_command(bufnr, "Format", function() vim.lsp.buf.format({ async = true }) end, {})
+
+    if not vim.tbl_contains({ "javascript", "javascriptreact", "typescript", "typescriptreact" }, vim.bo.filetype) then
+      common.buf_set_keymap("<leader>lf", vim.lsp.buf.format)
+    end
   end,
   root_dir = require("lspconfig").util.root_pattern(".git"),
   settings = {
