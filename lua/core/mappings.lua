@@ -2,12 +2,6 @@ local map = vim.keymap.set
 
 map("", "<leader>", "<Nop>")
 
--- Disable arrow keys
-map({ "n", "i", "v" }, "<down>", "<Nop>")
-map({ "n", "i", "v" }, "<left>", "<Nop>")
-map({ "n", "i", "v" }, "<right>", "<Nop>")
-map({ "n", "i", "v" }, "<up>", "<Nop>")
-
 -- Move between windows (splits)
 map("n", "<C-A-h>", "<cmd>wincmd h<cr>")
 map("n", "<C-A-j>", "<cmd>wincmd j<cr>")
@@ -28,9 +22,6 @@ map("n", "<leader>W", "<cmd>wall<cr>")
 
 -- Sort visually selected items
 map("v", "<leader>s", ":sort<cr>")
-
--- Search for visually selected text
-map("v", "//", "y/\\V<C-R>=escape(@\",'/\\')<CR><CR>")
 
 -- Apply macros
 map("n", "Q", "@q")
