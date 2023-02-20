@@ -1,3 +1,5 @@
+local map = require("core.mappings")
+
 require("lualine").setup({
   options = {
     globalstatus = true,
@@ -28,8 +30,8 @@ require("lualine").setup({
   },
 })
 
-vim.api.nvim_create_user_command(
-  "ToggleTabline",
-  function() vim.o.showtabline = vim.o.showtabline == 2 and 0 or 2 end,
-  {}
-)
+local function toggle_tabline() vim.o.showtabline = vim.o.showtabline == 2 and 0 or 2 end
+
+vim.api.nvim_create_user_command("ToggleTabline", toggle_tabline, {})
+
+map("n", "<leader>t", toggle_tabline)
