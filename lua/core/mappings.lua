@@ -2,12 +2,6 @@ local map = vim.keymap.set
 
 map("", "<leader>", "<Nop>")
 
--- Move between windows (splits)
-map("n", "<C-A-h>", "<cmd>wincmd h<cr>")
-map("n", "<C-A-j>", "<cmd>wincmd j<cr>")
-map("n", "<C-A-k>", "<cmd>wincmd k<cr>")
-map("n", "<C-A-l>", "<cmd>wincmd l<cr>")
-
 -- create splits
 map("n", "<leader>h", "<cmd>sp<cr>")
 map("n", "<leader>v", "<cmd>vsp<cr>")
