@@ -12,14 +12,15 @@ map("n", "<leader>fg", utils.get_picker_insert("live_grep"), opts)
 map("n", "<leader>fh", utils.get_picker_insert("help_tags"), opts)
 map("n", "<leader>fj", utils.get_picker("jumplist"), opts)
 map("n", "<leader>fm", utils.get_picker("marks"), opts)
+map("n", "<leader>fq", utils.get_picker("quickfix"), opts)
 map("n", "<leader>fr", utils.get_picker("grep_string"), opts)
 map("n", "<leader>fs", utils.get_picker_insert("search_history"), opts)
-map("n", "<leader>fq", utils.get_picker("quickfix"), opts)
 
 -- Git
 map("n", "<leader>gc", utils.get_picker("git_commits"), opts)
-map("n", "<leader>gs", utils.get_picker("git_status"), opts)
 map("n", "<leader>gr", utils.get_picker("git_branches"), opts)
+map("n", "<leader>gs", utils.get_picker("git_status"), opts)
+map("n", "<leader>gt", utils.get_picker("git_stash"), opts)
 
 -- File browser
 local function file_browser_cwd()
