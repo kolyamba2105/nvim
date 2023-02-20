@@ -27,3 +27,9 @@ require("lualine").setup({
     lualine_z = {},
   },
 })
+
+vim.api.nvim_create_user_command(
+  "ToggleTabline",
+  function() vim.o.showtabline = vim.o.showtabline == 2 and 0 or 2 end,
+  {}
+)
