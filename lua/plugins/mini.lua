@@ -3,6 +3,21 @@ require("mini.comment").setup()
 require("mini.misc").setup()
 require("mini.pairs").setup()
 
+-- Bracketed
+local disable = { suffix = "" }
+
+-- stylua: ignore start
+require("mini.bracketed").setup({
+  buffer      = disable,
+  conflict    = disable,
+  diagnostic  = { options = { severity = vim.diagnostic.severity.ERROR } },
+  oldfile     = disable,
+  quickfix    = disable,
+  undo        = disable,
+  yank        = disable,
+})
+-- stylua: ignore end
+
 -- Cursor word
 vim.api.nvim_create_autocmd("Filetype", {
   group = vim.api.nvim_create_augroup("cursorword_disable", { clear = false }),
