@@ -36,6 +36,5 @@ require("lazy").setup({
   { "nvim-treesitter/nvim-treesitter", config = function() require("plugins.treesitter") end, build = ":TSUpdate" },
   { "sitiom/nvim-numbertoggle" },
   { "tpope/vim-fugitive", config = function() require("plugins.fugitive") end },
-  { "tpope/vim-surround" },
   { "tpope/vim-unimpaired" },
 })
