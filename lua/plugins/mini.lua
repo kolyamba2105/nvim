@@ -1,7 +1,13 @@
-require("mini.bufremove").setup()
+local map = require("core.mappings")
+
 require("mini.comment").setup()
 require("mini.misc").setup()
 require("mini.pairs").setup()
+
+-- Bufremove
+require("mini.bufremove").setup()
+
+map("n", "<C-x>", require("mini.bufremove").delete)
 
 -- Bracketed
 local disable = { suffix = "" }

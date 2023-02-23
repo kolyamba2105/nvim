@@ -8,7 +8,6 @@ map("n", "<leader>v", "<cmd>vsp<cr>")
 
 -- Close current buffer/window
 map("n", "<C-c>", "<cmd>close<cr>")
-map("n", "<C-x>", "<cmd>bdelete<cr>")
 
 -- Save file
 map("n", "<leader>w", "<cmd>w<cr>")
