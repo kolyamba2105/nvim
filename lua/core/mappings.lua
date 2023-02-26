@@ -20,7 +20,4 @@ map("v", "<leader>s", ":sort<cr>")
 map("n", "Q", "@q")
 map("v", "Q", "<cmd>norm @q<cr>")
 
--- Paste and preserve copied data
-map("x", "<leader>p", '"_dP')
-
 return map
