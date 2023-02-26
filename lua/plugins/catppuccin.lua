@@ -5,10 +5,19 @@ require("catppuccin").setup({
   },
 })
 
-vim.cmd([[ colorscheme catppuccin ]])
+vim.cmd("colorscheme catppuccin")
 
-vim.api.nvim_set_hl(0, "@conditional", { fg = "#cba6f7" })
-vim.api.nvim_set_hl(0, "@namespace", { fg = "#89b4fa" })
-vim.api.nvim_set_hl(0, "@parameter", { fg = "#eba0ac" })
-vim.api.nvim_set_hl(0, "@tag.attribute", { fg = "#94e2d5" })
-vim.api.nvim_set_hl(0, "@text.emphasis", { fg = "#eba0ac" })
+local function remove_italic(hl)
+  vim.api.nvim_set_hl(0, hl, vim.tbl_extend("force", vim.api.nvim_get_hl_by_name(hl, {}), { italic = false }))
+end
+
+for _, hl in pairs({
+  "@conditional",
+  "@namespace",
+  "@parameter",
+  "@tag.attribute",
+  "@tag.attribute.tsx",
+  "@text.emphasis",
+}) do
+  remove_italic(hl)
+end
