@@ -1,5 +1,8 @@
 local map = require("core.mappings")
 
+-- AI
+require("mini.ai").setup()
+
 -- Bracketed
 local disable = { suffix = "" }
 
