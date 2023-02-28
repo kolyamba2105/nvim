@@ -39,6 +39,23 @@ require("mini.cursorword").setup({ delay = 500 })
 vim.api.nvim_set_hl(0, "MiniCursorword", { bg = "#45475a", fg = "#a6e3a1" })
 vim.api.nvim_set_hl(0, "MiniCursorwordCurrent", { bg = "#45475a", fg = "#a6e3a1" })
 
+-- Indentscope
+require("mini.indentscope").setup({
+  draw = {
+    delay = 0,
+    animation = function() return 0 end,
+  },
+})
+
+vim.api.nvim_create_autocmd("FileType", {
+  desc = "Disable mini.indentscope except for OCaml files",
+  pattern = "*",
+  group = vim.api.nvim_create_augroup("DisableMiniIndentScope", { clear = true }),
+  callback = function()
+    if vim.bo.filetype ~= "ocaml" then vim.b.miniindentscope_disable = true end
+  end,
+})
+
 -- Misc
 require("mini.misc").setup()
 
