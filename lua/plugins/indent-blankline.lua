@@ -23,3 +23,10 @@ require("indent_blankline").setup({
     "IndentBlanklineIndent6",
   },
 })
+
+vim.api.nvim_create_autocmd("FileType", {
+  desc = "Disable indent-blankline for OCaml files",
+  pattern = "ocaml",
+  group = vim.api.nvim_create_augroup("DisableIndentOCaml", { clear = true }),
+  callback = function() vim.g.indent_blankline_enabled = false end,
+})
