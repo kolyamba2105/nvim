@@ -22,6 +22,7 @@ local languages = {
   javascript = { prettier_config },
   javascriptreact = { prettier_config },
   json = { prettier_config },
+  jsonc = { prettier_config },
   lua = { lua_config },
   markdown = { prettier_config },
   rust = { rust_config },
