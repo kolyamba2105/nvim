@@ -1,3 +1,5 @@
+local map = require("core.mappings")
+
 local path = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 
 if not vim.loop.fs_stat(path) then
@@ -38,3 +40,5 @@ require("lazy").setup({
   { "tpope/vim-fugitive", config = function() require("plugins.fugitive") end },
   { "tpope/vim-unimpaired" },
 })
+
+map("n", "<C-p>", "<cmd>Lazy<cr>")
