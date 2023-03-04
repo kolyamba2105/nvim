@@ -1,13 +1,16 @@
+local function group(name) return vim.api.nvim_create_augroup(name, { clear = false }) end
+
 vim.api.nvim_create_autocmd("TextYankPost", {
   callback = function() vim.highlight.on_yank({ higroup = "IncSearch", timeout = 100 }) end,
   desc = "Hightlight selection on yank",
-  group = vim.api.nvim_create_augroup("HighlightYank", { clear = false }),
+  group = group("HighlightYank"),
   pattern = "*",
 })
 
 vim.api.nvim_create_autocmd("FileType", {
   callback = function() vim.cmd("compiler tsc | setlocal makeprg=yarn\\ tsc") end,
-  group = vim.api.nvim_create_augroup("TypeScriptOptions", { clear = false }),
+  desc = "Set compiler options for TypeScript files",
+  group = group("TypeScriptOptions"),
   pattern = {
     "typescript",
     "typescript.tsx",
@@ -17,6 +20,9 @@ vim.api.nvim_create_autocmd("FileType", {
 
 vim.api.nvim_create_autocmd("VimEnter", {
   callback = function() vim.o.showtabline = 0 end,
-  group = vim.api.nvim_create_augroup("DisableTabline", { clear = false }),
+  desc = "Disable tabline on init",
+  group = group("DisableTabline"),
   pattern = "*",
 })
+
+return group

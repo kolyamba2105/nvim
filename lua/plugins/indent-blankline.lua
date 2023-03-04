@@ -1,3 +1,5 @@
+local group = require("core.autocmds")
+
 vim.opt.list = true
 
 vim.opt.listchars = {
@@ -25,8 +27,8 @@ require("indent_blankline").setup({
 })
 
 vim.api.nvim_create_autocmd("FileType", {
-  desc = "Disable indent-blankline for OCaml files",
-  pattern = "ocaml",
-  group = vim.api.nvim_create_augroup("DisableIndentOCaml", { clear = true }),
   callback = function() vim.g.indent_blankline_enabled = false end,
+  desc = "Disable indent-blankline for OCaml files",
+  group = group("DisableIndentOCaml"),
+  pattern = "ocaml",
 })

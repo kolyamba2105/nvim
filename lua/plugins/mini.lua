@@ -1,3 +1,4 @@
+local group = require("core.autocmds")
 local map = require("core.mappings")
 
 -- AI
@@ -28,10 +29,10 @@ require("mini.comment").setup()
 
 -- Cursor word
 vim.api.nvim_create_autocmd("Filetype", {
-  group = vim.api.nvim_create_augroup("cursorword_disable", { clear = false }),
-  desc = "Disable cursorword in NvimTree",
-  pattern = "NvimTree",
   callback = function() vim.b.minicursorword_disable = true end,
+  desc = "Disable cursorword in NvimTree",
+  group = group("CursorWordDisableNvimTree"),
+  pattern = "NvimTree",
 })
 
 require("mini.cursorword").setup({ delay = 500 })
@@ -50,7 +51,7 @@ require("mini.indentscope").setup({
 vim.api.nvim_create_autocmd("FileType", {
   desc = "Disable mini.indentscope except for OCaml files",
   pattern = "*",
-  group = vim.api.nvim_create_augroup("DisableMiniIndentScope", { clear = true }),
+  group = group("DisableMiniIndentScope"),
   callback = function()
     if vim.bo.filetype ~= "ocaml" then vim.b.miniindentscope_disable = true end
   end,
