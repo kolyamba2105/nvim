@@ -28,7 +28,7 @@ map("n", "<C-x>", require("mini.bufremove").delete)
 require("mini.comment").setup()
 
 -- Cursor word
-vim.api.nvim_create_autocmd("Filetype", {
+vim.api.nvim_create_autocmd("FileType", {
   callback = function() vim.b.minicursorword_disable = true end,
   desc = "Disable cursorword in NvimTree",
   group = group("CursorWordDisableNvimTree"),
