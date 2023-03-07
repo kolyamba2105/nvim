@@ -1,5 +1,6 @@
 require("core.options")
 require("core.autocmds")
+require("core.cmds")
 require("core.mappings")
 require("core.netrw")
 require("plugins-setup")
