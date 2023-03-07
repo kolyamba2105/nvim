@@ -16,8 +16,9 @@ end
 vim.opt.rtp:prepend(path)
 
 require("lazy").setup({
-  { "catppuccin/nvim", as = "catppuccin", config = function() require("plugins.catppuccin") end },
+  { "JoosepAlviste/nvim-ts-context-commentstring" },
   { "L3MON4D3/LuaSnip" },
+  { "catppuccin/nvim", as = "catppuccin", config = function() require("plugins.catppuccin") end },
   { "echasnovski/mini.nvim", config = function() require("plugins.mini") end },
   { "hrsh7th/cmp-buffer" },
   { "hrsh7th/cmp-nvim-lsp" },
