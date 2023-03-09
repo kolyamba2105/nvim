@@ -1,6 +1,7 @@
 require("catppuccin").setup({
   flavour = "mocha",
   integrations = {
+    mini = true,
     nvimtree = false,
   },
 })

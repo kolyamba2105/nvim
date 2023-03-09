@@ -1,3 +1,4 @@
+local colors = require("catppuccin.palettes").get_palette("mocha")
 local group = require("core.autocmds")
 local map = require("core.mappings")
 
@@ -37,8 +38,8 @@ vim.api.nvim_create_autocmd("FileType", {
 
 require("mini.cursorword").setup({ delay = 500 })
 
-vim.api.nvim_set_hl(0, "MiniCursorword", { bg = "#45475a", fg = "#a6e3a1" })
-vim.api.nvim_set_hl(0, "MiniCursorwordCurrent", { bg = "#45475a", fg = "#a6e3a1" })
+vim.api.nvim_set_hl(0, "MiniCursorword", { bg = colors.surface1, fg = colors.green })
+vim.api.nvim_set_hl(0, "MiniCursorwordCurrent", { bg = colors.surface1, fg = colors.green })
 
 -- Indentscope
 require("mini.indentscope").setup({
