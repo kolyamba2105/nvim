@@ -1,5 +1,3 @@
-local map = require("core.mappings")
-
 require("lualine").setup({
   options = {
     globalstatus = true,
@@ -15,6 +13,7 @@ require("lualine").setup({
       { "diff" },
     },
     lualine_c = {
+      { "filename" },
       { "diagnostics", sources = { "nvim_diagnostic" } },
     },
     lualine_x = {},
