@@ -42,4 +42,4 @@ require("lazy").setup({
   { "tpope/vim-unimpaired" },
 })
 
-map("n", "<C-p>", "<cmd>Lazy<cr>")
+map("n", "<C-l>", "<cmd>Lazy<cr>")
