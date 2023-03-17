@@ -41,5 +41,3 @@ require("lazy").setup({
   { "tpope/vim-fugitive", config = function() require("plugins.fugitive") end },
   { "tpope/vim-unimpaired" },
 })
-
-map("n", "<C-l>", "<cmd>Lazy<cr>")
