@@ -1,2 +1,2 @@
 require("core")
-require("plugins-setup")
+require("laziness")
