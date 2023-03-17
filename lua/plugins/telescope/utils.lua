@@ -5,7 +5,7 @@ function M.get_picker(picker)
 end
 
 function M.get_picker_insert(picker)
-  return function() M.get_picker(picker)({ initial_mode = "insert" }) end
+  return function(options) M.get_picker(picker)(vim.tbl_extend("force", options or {}, { initial_mode = "insert" })) end
 end
 
 return M
