@@ -4,6 +4,8 @@ local utils = require("plugins.telescope.utils")
 
 local opts = { silent = true }
 
+map("n", "<C-p>", "<cmd>Telescope builtin initial_mode=insert<cr>", opts)
+
 map("n", "<leader>fa", utils.get_picker("resume"), opts)
 map("n", "<leader>fb", utils.get_picker("buffers"), opts)
 map("n", "<leader>fc", utils.get_picker("command_history"), opts)
