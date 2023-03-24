@@ -64,5 +64,8 @@ require("mini.misc").setup()
 -- Pairs
 require("mini.pairs").setup()
 
+-- SplitJoin
+require("mini.splitjoin").setup()
+
 -- Surround
 require("mini.surround").setup()
