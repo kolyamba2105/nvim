@@ -20,16 +20,4 @@ require("lualine").setup({
     lualine_x = {},
   },
   extensions = { "fugitive", "quickfix" },
-  tabline = {
-    lualine_a = { "buffers" },
-    lualine_b = {},
-    lualine_c = {},
-    lualine_x = {},
-    lualine_y = {},
-    lualine_z = {},
-  },
 })
-
-local function toggle_tabline() vim.o.showtabline = vim.o.showtabline == 2 and 0 or 2 end
-
-vim.api.nvim_create_user_command("ToggleTabline", toggle_tabline, {})
