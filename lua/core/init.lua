@@ -1,5 +1,6 @@
 require("core.options")
 require("core.autocmds")
 require("core.cmds")
+require("core.dynamic-color-column")
 require("core.mappings")
 require("core.netrw")
