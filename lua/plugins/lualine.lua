@@ -1,5 +1,6 @@
 require("lualine").setup({
   options = {
+    component_separators = { left = "", right = "" },
     globalstatus = true,
     refresh = {
       statusline = 500,
