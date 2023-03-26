@@ -1,5 +1,3 @@
-local map = require("core.mappings")
-
 local path = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 
 if not vim.loop.fs_stat(path) then
