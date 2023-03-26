@@ -4,7 +4,6 @@ local local_options = {
   cmdheight = 2,
   colorcolumn = "80",
   completeopt = "menu,menuone,noselect",
-  cursorcolumn = true,
   cursorline = true,
   emoji = false,
   expandtab = true,
