@@ -47,12 +47,9 @@ return {
             {}
         )
 
-        if
-            not vim.tbl_contains(
-                { "javascript", "javascriptreact", "typescript", "typescriptreact" },
-                vim.bo.filetype
-            )
-        then
+        local fts = { "javascript", "javascriptreact", "typescript", "typescriptreact" }
+
+        if not vim.tbl_contains(fts, vim.bo.filetype) then
             common.buf_set_keymap("<leader>lf", vim.lsp.buf.format)
         end
     end,
