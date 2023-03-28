@@ -26,53 +26,53 @@ map("n", "<leader>gt", utils.get_picker("git_stash"), opts)
 
 -- File browser
 local function file_browser_cwd()
-  return telescope.extensions.file_browser.file_browser({
-    cwd = vim.fn.expand("%:p:h"),
-  })
+    return telescope.extensions.file_browser.file_browser({
+        cwd = vim.fn.expand("%:p:h"),
+    })
 end
 
 map("n", "<C-n>", telescope.extensions.file_browser.file_browser, opts)
 map("n", "<C-e>", file_browser_cwd, opts)
 
 local mappings = {
-  ["<c-h>"] = require("telescope.actions").file_split,
-  ["<c-x>"] = false,
-  ["<c-q>"] = function(bufnr)
-    require("telescope.actions").smart_send_to_qflist(bufnr)
-    require("telescope.builtin").quickfix()
-  end,
+    ["<c-h>"] = require("telescope.actions").file_split,
+    ["<c-x>"] = false,
+    ["<c-q>"] = function(bufnr)
+        require("telescope.actions").smart_send_to_qflist(bufnr)
+        require("telescope.builtin").quickfix()
+    end,
 }
 
 telescope.setup({
-  defaults = require("telescope.themes").get_ivy({
-    initial_mode = "normal",
-    mappings = { i = mappings, n = mappings },
-  }),
-  extensions = {
-    file_browser = {
-      grouped = true,
-      hidden = true,
-      initial_mode = "normal",
-    },
-    ["ui-select"] = {
-      initial_mode = "normal",
-    },
-  },
-  pickers = {
-    buffers = {
-      mappings = {
-        n = {
-          ["<c-x>"] = "delete_buffer",
+    defaults = require("telescope.themes").get_ivy({
+        initial_mode = "normal",
+        mappings = { i = mappings, n = mappings },
+    }),
+    extensions = {
+        file_browser = {
+            grouped = true,
+            hidden = true,
+            initial_mode = "normal",
         },
-      },
+        ["ui-select"] = {
+            initial_mode = "normal",
+        },
     },
-    find_files = {
-      hidden = true,
+    pickers = {
+        buffers = {
+            mappings = {
+                n = {
+                    ["<c-x>"] = "delete_buffer",
+                },
+            },
+        },
+        find_files = {
+            hidden = true,
+        },
+        file_browser = {
+            hidden = true,
+        },
     },
-    file_browser = {
-      hidden = true,
-    },
-  },
 })
 
 telescope.load_extension("file_browser")
