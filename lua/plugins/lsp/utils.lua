@@ -25,7 +25,7 @@ M.buf_set_keymap = function(lhs, rhs)
     map("n", lhs, rhs, { buffer = true, noremap = true, silent = true })
 end
 
-M.on_attach = function(client, bufnr)
+M.on_attach = function(_, bufnr)
     vim.api.nvim_buf_set_option(bufnr or 0, "omnifunc", "v:lua.vim.lsp.omnifunc")
 
     M.buf_set_keymap("]g", vim.diagnostic.goto_next)
@@ -42,6 +42,24 @@ M.on_attach = function(client, bufnr)
     M.buf_set_keymap("<leader>lt", utils.get_picker("lsp_type_definitions"))
     M.buf_set_keymap("<leader>lw", utils.get_picker_insert("lsp_dynamic_workspace_symbols"))
 end
+
+M.format = {
+    autocmd = function(ft)
+        vim.api.nvim_create_autocmd("BufWritePre", {
+            callback = function() vim.lsp.buf.format() end,
+            group = vim.api.nvim_create_augroup(ft .. "Format", { clear = true }),
+        })
+    end,
+    command = function(bufnr)
+        vim.api.nvim_buf_create_user_command(
+            bufnr,
+            "Format",
+            function() vim.lsp.buf.format({ async = true }) end,
+            {}
+        )
+    end,
+    keymap = function() M.buf_set_keymap("<leader>lf", vim.lsp.buf.format) end,
+}
 
 M.capabilities =
     require("cmp_nvim_lsp").default_capabilities(vim.lsp.protocol.make_client_capabilities())

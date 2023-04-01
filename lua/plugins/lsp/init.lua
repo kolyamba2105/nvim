@@ -2,27 +2,163 @@ return {
     "neovim/nvim-lspconfig",
     config = function()
         local lsp = require("lspconfig")
-        local common = require("plugins.lsp.common")
+        local common = require("plugins.lsp.utils")
 
         common.diagnostic_config()
 
-        lsp.bashls.setup(common.default_config)
-        lsp.cssls.setup(common.default_config)
-        lsp.cssmodules_ls.setup(common.default_config)
-        lsp.efm.setup(require("plugins.lsp.efm"))
-        lsp.emmet_ls.setup(require("plugins.lsp.emmet"))
-        lsp.eslint.setup(require("plugins.lsp.eslint"))
-        lsp.graphql.setup(require("plugins.lsp.graphql"))
-        lsp.html.setup(common.default_config)
-        lsp.jsonls.setup(common.default_config)
-        lsp.lua_ls.setup(require("plugins.lsp.sumneko"))
-        lsp.ocamllsp.setup(require("plugins.lsp.ocaml"))
-        lsp.prismals.setup(require("plugins.lsp.prisma"))
-        lsp.rust_analyzer.setup(common.default_config)
-        lsp.tailwindcss.setup(common.default_config)
-        lsp.yamlls.setup(common.default_config)
+        local servers = {
+            bashls = "default",
+            cssls = "default",
+            cssmodules_ls = "default",
+            efm = function()
+                local prettier_config = {
+                    formatCommand = "prettier --stdin-filepath ${INPUT}",
+                    formatStdin = true,
+                }
 
-        require("plugins.lsp.typescript")
+                local lua_config = {
+                    formatCommand = "stylua --color Never -",
+                    formatStdin = true,
+                }
+
+                local rust_config = {
+                    formatCommand = "rustfmt",
+                    formatStdin = true,
+                }
+
+                -- Reference: https://github.com/creativenull/efmls-configs-nvim
+                local languages = {
+                    css = { prettier_config },
+                    html = { prettier_config },
+                    javascript = { prettier_config },
+                    javascriptreact = { prettier_config },
+                    json = { prettier_config },
+                    jsonc = { prettier_config },
+                    lua = { lua_config },
+                    markdown = { prettier_config },
+                    rust = { rust_config },
+                    sass = { prettier_config },
+                    scss = { prettier_config },
+                    typescript = { prettier_config },
+                    typescriptreact = { prettier_config },
+                    yaml = { prettier_config },
+                }
+
+                return {
+                    cmd = { "efm-langserver" },
+                    capabilities = common.capabilities,
+                    filetypes = vim.tbl_keys(languages),
+                    init_options = { documentFormatting = true },
+                    on_attach = function(client, bufnr)
+                        common.on_attach(client, bufnr)
+                        common.format.command(bufnr)
+
+                        local fts =
+                            { "javascript", "javascriptreact", "typescript", "typescriptreact" }
+
+                        if not vim.tbl_contains(fts, vim.bo.filetype) then
+                            common.format.keymap()
+                        end
+                    end,
+                    root_dir = require("lspconfig").util.root_pattern(".git"),
+                    settings = {
+                        languages = languages,
+                        rootMarkers = { ".git", "package.json" },
+                    },
+                }
+            end,
+            emmet_ls = "default",
+            eslint = function()
+                return {
+                    capabilities = common.capabilities,
+                    on_attach = function(client, bufnr)
+                        common.on_attach(client, bufnr)
+                        common.buf_set_keymap("<leader>lf", function() vim.cmd("EslintFixAll") end)
+                    end,
+                }
+            end,
+            graphql = function()
+                return {
+                    capabilities = common.capabilities,
+                    filetypes = {
+                        "graphql",
+                        "javascript",
+                        "javascript.jsx",
+                        "javascriptreact",
+                        "typescript",
+                        "typescript.tsx",
+                        "typescriptreact",
+                    },
+                    on_attach = common.on_attach,
+                }
+            end,
+            html = "default",
+            jsonls = "default",
+            lua_ls = function()
+                return {
+                    capabilities = common.capabilities,
+                    on_attach = function(client, bufnr)
+                        common.on_attach(client, bufnr)
+                        common.format.autocmd("Lua")
+                    end,
+                    settings = {
+                        Lua = {
+                            diagnostics = {
+                                globals = { "vim" },
+                            },
+                            format = {
+                                enable = false,
+                            },
+                            telemetry = {
+                                enable = false,
+                            },
+                        },
+                    },
+                }
+            end,
+            ocamllsp = function()
+                return {
+                    capabilities = common.capabilities,
+                    on_attach = function(client, bufnr)
+                        common.on_attach(client, bufnr)
+                        common.format.command(bufnr)
+                        common.format.keymap()
+                    end,
+                }
+            end,
+            prismals = function()
+                return {
+                    capabilities = common.capabilities,
+                    on_attach = function(client, bufnr)
+                        common.on_attach(client, bufnr)
+                        common.format.autocmd("Prisma")
+                    end,
+                }
+            end,
+            rust_analyzer = "default",
+            tailwindcss = "default",
+            yamlls = "default",
+        }
+
+        require("typescript").setup({
+            disable_formatting = true,
+            server = {
+                capabilities = common.capabilities,
+                on_attach = function(client, bufnr)
+                    common.on_attach(client, bufnr)
+                    common.buf_set_keymap("<leader>lo", "<cmd>TypescriptOrganizeImports<cr>")
+                    common.buf_set_keymap("<leader>lu", "<cmd>TypescriptRemoveUnused<cr>")
+                end,
+            },
+        })
+
+        for server, config in pairs(servers) do
+            if config == "default" then
+                lsp[server].setup(common.default_config)
+            else
+                lsp[server].setup(config())
+            end
+        end
     end,
     dependencies = {
         "hrsh7th/cmp-nvim-lsp",
