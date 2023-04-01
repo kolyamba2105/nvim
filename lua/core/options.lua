@@ -17,7 +17,6 @@ local local_options = {
     shiftwidth = 2,
     signcolumn = "yes:2",
     smartindent = true,
-    -- softtabstop = 2,
     splitbelow = true,
     splitright = true,
     swapfile = false,
