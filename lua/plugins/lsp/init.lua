@@ -73,7 +73,7 @@ return {
                     capabilities = common.capabilities,
                     on_attach = function(client, bufnr)
                         common.on_attach(client, bufnr)
-                        common.buf_set_keymap("<leader>lf", function() vim.cmd("EslintFixAll") end)
+                        common.map("<leader>lf", function() vim.cmd("EslintFixAll") end)
                     end,
                 }
             end,
@@ -146,8 +146,8 @@ return {
                 capabilities = common.capabilities,
                 on_attach = function(client, bufnr)
                     common.on_attach(client, bufnr)
-                    common.buf_set_keymap("<leader>lo", "<cmd>TypescriptOrganizeImports<cr>")
-                    common.buf_set_keymap("<leader>lu", "<cmd>TypescriptRemoveUnused<cr>")
+                    common.map("<leader>lo", "<cmd>TypescriptOrganizeImports<cr>")
+                    common.map("<leader>lu", "<cmd>TypescriptRemoveUnused<cr>")
                 end,
             },
         })
