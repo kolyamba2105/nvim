@@ -162,7 +162,6 @@ return {
     end,
     dependencies = {
         "hrsh7th/cmp-nvim-lsp",
-        "hrsh7th/nvim-cmp",
         "jose-elias-alvarez/typescript.nvim",
     },
     event = "BufRead",
