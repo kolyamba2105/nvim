@@ -5,7 +5,6 @@ return {
             flavour = "mocha",
             integrations = {
                 mini = true,
-                nvimtree = false,
             },
         })
 
