@@ -53,12 +53,9 @@ return {
                         common.on_attach(client, bufnr)
                         common.format.command(bufnr)
 
-                        local fts =
-                            { "javascript", "javascriptreact", "typescript", "typescriptreact" }
+                        local fts = { "javascript", "javascriptreact", "typescript", "typescriptreact" }
 
-                        if not vim.tbl_contains(fts, vim.bo.filetype) then
-                            common.format.keymap()
-                        end
+                        if not vim.tbl_contains(fts, vim.bo.filetype) then common.format.keymap() end
                     end,
                     root_dir = require("lspconfig").util.root_pattern(".git"),
                     settings = {

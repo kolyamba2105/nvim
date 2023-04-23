@@ -49,18 +49,12 @@ M.format = {
         })
     end,
     command = function(bufnr)
-        vim.api.nvim_buf_create_user_command(
-            bufnr,
-            "Format",
-            function() vim.lsp.buf.format({ async = true }) end,
-            {}
-        )
+        vim.api.nvim_buf_create_user_command(bufnr, "Format", function() vim.lsp.buf.format({ async = true }) end, {})
     end,
     keymap = function() M.map("<leader>lf", vim.lsp.buf.format) end,
 }
 
-M.capabilities =
-    require("cmp_nvim_lsp").default_capabilities(vim.lsp.protocol.make_client_capabilities())
+M.capabilities = require("cmp_nvim_lsp").default_capabilities(vim.lsp.protocol.make_client_capabilities())
 
 M.default_config = {
     on_attach = M.on_attach,

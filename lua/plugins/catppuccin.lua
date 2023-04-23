@@ -25,11 +25,7 @@ return {
         }
 
         local function update(hl, options)
-            vim.api.nvim_set_hl(
-                0,
-                hl,
-                vim.tbl_extend("force", vim.api.nvim_get_hl_by_name(hl, {}), options)
-            )
+            vim.api.nvim_set_hl(0, hl, vim.tbl_extend("force", vim.api.nvim_get_hl_by_name(hl, {}), options))
         end
 
         for setting, hls in pairs(groups) do
