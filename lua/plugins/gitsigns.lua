@@ -40,10 +40,11 @@ return {
         local map = require("core.mappings")
         local opts = { silent = true }
 
+        map("n", "<leader>b", "<cmd>Gitsigns blame_line<cr>", opts)
         map("n", "<leader>gd", "<cmd>Gitsigns diffthis<cr>", opts)
         map("n", "<leader>gq", "<cmd>Gitsigns setqflist<cr>", opts)
-        map("n", "]h", "<cmd>Gitsigns next_hunk<cr>", opts)
         map("n", "[h", "<cmd>Gitsigns prev_hunk<cr>", opts)
+        map("n", "]h", "<cmd>Gitsigns next_hunk<cr>", opts)
     end,
     event = "BufRead",
 }
