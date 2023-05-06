@@ -7,7 +7,7 @@ return {
         vim.opt.list = true
 
         vim.opt.listchars = {
-            eol = "",
+            eol = "",
         }
 
         vim.api.nvim_set_hl(0, "IndentBlanklineIndent1", { fg = colors.pink, nocombine = true })
