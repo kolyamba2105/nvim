@@ -51,6 +51,7 @@ return {
                 borderchars = { "─", "│", "─", "│", "┌", "┐", "┘", "└" },
                 initial_mode = "normal",
                 mappings = { i = mappings, n = mappings },
+                file_ignore_patterns = { "^.*%.test%..*$" },
             }),
             extensions = {
                 file_browser = {
