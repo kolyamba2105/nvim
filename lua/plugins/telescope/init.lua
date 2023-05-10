@@ -48,6 +48,7 @@ return {
 
         telescope.setup({
             defaults = require("telescope.themes").get_ivy({
+                borderchars = { "─", "│", "─", "│", "┌", "┐", "┘", "└" },
                 initial_mode = "normal",
                 mappings = { i = mappings, n = mappings },
             }),
