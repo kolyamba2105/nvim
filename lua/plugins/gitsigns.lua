@@ -45,6 +45,7 @@ return {
         map("n", "<leader>gq", "<cmd>Gitsigns setqflist<cr>", opts)
         map("n", "[h", "<cmd>Gitsigns prev_hunk<cr>", opts)
         map("n", "]h", "<cmd>Gitsigns next_hunk<cr>", opts)
+        map("v", "<leader>gr", "<cmd>Gitsigns reset_hunk<cr>", opts)
     end,
     event = "BufRead",
 }
