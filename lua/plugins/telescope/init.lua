@@ -1,6 +1,7 @@
 return {
     "nvim-telescope/telescope.nvim",
     config = function()
+        local group = require("core.autocmds")
         local map = require("core.mappings")
         local telescope = require("telescope")
         local utils = require("plugins.telescope.utils")
@@ -26,6 +27,19 @@ return {
         map("n", "<leader>gr", utils.get_picker("git_branches"), opts)
         map("n", "<leader>gs", utils.get_picker("git_status"), opts)
         map("n", "<leader>gt", utils.get_picker("git_stash"), opts)
+
+        vim.api.nvim_create_autocmd("VimEnter", {
+            callback = function()
+                local arg = vim.api.nvim_eval("argv(0)")
+
+                if arg == "" or vim.fn.isdirectory(arg) ~= 0 then
+                    vim.defer_fn(utils.get_picker_insert("find_files"), 10)
+                end
+            end,
+            desc = "Open telescope on init",
+            group = group("OpenTelescope"),
+            pattern = "*",
+        })
 
         -- File browser
         local function file_browser_cwd()
