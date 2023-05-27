@@ -27,16 +27,6 @@ return {
         map("n", "<leader>gs", utils.get_picker("git_status"), opts)
         map("n", "<leader>gt", utils.get_picker("git_stash"), opts)
 
-        -- File browser
-        local function file_browser_cwd()
-            return telescope.extensions.file_browser.file_browser({
-                cwd = vim.fn.expand("%:p:h"),
-            })
-        end
-
-        map("n", "<C-n>", telescope.extensions.file_browser.file_browser, opts)
-        map("n", "<C-e>", file_browser_cwd, opts)
-
         local mappings = {
             ["<c-h>"] = require("telescope.actions").file_split,
             ["<c-x>"] = false,
@@ -53,11 +43,6 @@ return {
                 mappings = { i = mappings, n = mappings },
             }),
             extensions = {
-                file_browser = {
-                    grouped = true,
-                    hidden = true,
-                    initial_mode = "normal",
-                },
                 ["ui-select"] = {
                     initial_mode = "normal",
                 },
@@ -73,19 +58,14 @@ return {
                 find_files = {
                     hidden = true,
                 },
-                file_browser = {
-                    hidden = true,
-                },
             },
         })
 
-        telescope.load_extension("file_browser")
         telescope.load_extension("fzf")
         telescope.load_extension("ui-select")
     end,
     dependencies = {
         { "nvim-lua/plenary.nvim" },
-        { "nvim-telescope/telescope-file-browser.nvim" },
         { "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
         { "nvim-telescope/telescope-ui-select.nvim" },
     },
