@@ -2,7 +2,7 @@ return {
     "nvim-tree/nvim-tree.lua",
     config = function()
         local function make_view()
-            local ratio = { width = 0.5, height = 0.8 }
+            local ratio = { width = 0.4, height = 0.8 }
 
             return {
                 float = {
@@ -24,7 +24,7 @@ return {
                         local row = ((vim.opt.lines:get() - window.height) / 2) - vim.opt.cmdheight:get()
 
                         return {
-                            border = "rounded",
+                            border = { "┌", "─", "┐", "│", "┘", "─", "└", "│" },
                             col = col,
                             height = height,
                             relative = "editor",
@@ -44,12 +44,16 @@ return {
             modified = {
                 enable = true,
             },
+            renderer = {
+                indent_markers = {
+                    enable = true,
+                },
+            },
             view = make_view(),
         })
 
         local map = require("core.mappings")
 
-        map("n", "<C-n>", "<cmd>NvimTreeToggle<cr>")
-        map("n", "<C-.>", "<cmd>NvimTreeFindFile<cr>")
+        map("n", "<C-n>", "<cmd>NvimTreeFindFileToggle<cr>")
     end,
 }
