@@ -4,7 +4,6 @@ return {
         require("catppuccin").setup({
             flavour = "mocha",
             integrations = {
-                dropbar = { enabled = true },
                 mini = true,
             },
         })
