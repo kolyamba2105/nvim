@@ -61,6 +61,19 @@ return {
             end,
         })
 
+        -- Jump2d
+        require("mini.jump2d").setup()
+
+        -- Map
+        require("mini.map").setup()
+
+        map("n", "<leader>mc", require("mini.map").close)
+        map("n", "<leader>mf", require("mini.map").toggle_focus)
+        map("n", "<leader>mo", require("mini.map").open)
+        map("n", "<leader>mr", require("mini.map").refresh)
+        map("n", "<leader>ms", require("mini.map").toggle_side)
+        map("n", "<leader>mt", require("mini.map").toggle)
+
         -- Misc
         require("mini.misc").setup()
 
