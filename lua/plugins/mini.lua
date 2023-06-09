@@ -84,6 +84,13 @@ return {
             },
         })
 
+        vim.api.nvim_create_autocmd("BufRead", {
+            desc = "Open mini-map on BufRead",
+            pattern = "*",
+            group = group("OpenMiniMap"),
+            callback = mini_map.open,
+        })
+
         map("n", "<leader>mc", mini_map.close)
         map("n", "<leader>mf", mini_map.toggle_focus)
         map("n", "<leader>mo", mini_map.open)
@@ -106,5 +113,4 @@ return {
     dependencies = {
         "catppuccin/nvim",
     },
-    event = "BufRead",
 }
