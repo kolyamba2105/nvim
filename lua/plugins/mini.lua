@@ -113,4 +113,5 @@ return {
     dependencies = {
         "catppuccin/nvim",
     },
+    event = "BufReadPre",
 }
