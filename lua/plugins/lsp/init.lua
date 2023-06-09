@@ -137,14 +137,17 @@ return {
             yamlls = "default",
         }
 
-        require("typescript").setup({
+        local typescript = require("typescript")
+
+        typescript.setup({
             disable_formatting = true,
             server = {
                 capabilities = common.capabilities,
                 on_attach = function(client, bufnr)
                     common.on_attach(client, bufnr)
-                    common.map("<leader>lo", "<cmd>TypescriptOrganizeImports<cr>")
-                    common.map("<leader>lu", "<cmd>TypescriptRemoveUnused<cr>")
+                    common.map("<leader>lm", typescript.actions.addMissingImports)
+                    common.map("<leader>lo", typescript.actions.organizeImports)
+                    common.map("<leader>lu", typescript.actions.removeUnused)
                 end,
             },
         })
