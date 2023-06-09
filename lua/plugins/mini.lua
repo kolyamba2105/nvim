@@ -65,14 +65,31 @@ return {
         require("mini.jump2d").setup()
 
         -- Map
-        require("mini.map").setup()
+        local mini_map = require("mini.map")
 
-        map("n", "<leader>mc", require("mini.map").close)
-        map("n", "<leader>mf", require("mini.map").toggle_focus)
-        map("n", "<leader>mo", require("mini.map").open)
-        map("n", "<leader>mr", require("mini.map").refresh)
-        map("n", "<leader>ms", require("mini.map").toggle_side)
-        map("n", "<leader>mt", require("mini.map").toggle)
+        mini_map.setup({
+            integrations = {
+                mini_map.gen_integration.builtin_search(),
+                mini_map.gen_integration.diagnostic(),
+                mini_map.gen_integration.gitsigns(),
+            },
+            symbols = {
+                encode = mini_map.gen_encode_symbols.dot("3x2"),
+                scroll_line = "▶",
+                scroll_view = "┃",
+            },
+            window = {
+                show_integration_count = false,
+                winblend = 75,
+            },
+        })
+
+        map("n", "<leader>mc", mini_map.close)
+        map("n", "<leader>mf", mini_map.toggle_focus)
+        map("n", "<leader>mo", mini_map.open)
+        map("n", "<leader>mr", mini_map.refresh)
+        map("n", "<leader>ms", mini_map.toggle_side)
+        map("n", "<leader>mt", mini_map.toggle)
 
         -- Misc
         require("mini.misc").setup()
