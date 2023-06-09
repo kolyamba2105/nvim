@@ -54,6 +54,6 @@ return {
 
         local map = require("core.mappings")
 
-        map("n", "<C-n>", "<cmd>NvimTreeFindFileToggle<cr>")
+        map("n", "<leader>e", "<cmd>NvimTreeFindFileToggle<cr>")
     end,
 }
