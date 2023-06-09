@@ -143,6 +143,11 @@ return {
             disable_formatting = true,
             server = {
                 capabilities = common.capabilities,
+                settings = {
+                    diagnostics = {
+                        ignoredCodes = { 80006 },
+                    },
+                },
                 on_attach = function(client, bufnr)
                     common.on_attach(client, bufnr)
                     common.map("<leader>lm", typescript.actions.addMissingImports)
