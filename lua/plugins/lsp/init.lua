@@ -145,7 +145,11 @@ return {
                 capabilities = common.capabilities,
                 settings = {
                     diagnostics = {
-                        ignoredCodes = { 80006 },
+                        ignoredCodes = {
+                            80001,
+                            80005,
+                            80006,
+                        },
                     },
                 },
                 on_attach = function(client, bufnr)
