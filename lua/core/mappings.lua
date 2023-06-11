@@ -1,23 +1,26 @@
-local map = vim.keymap.set
+vim.keymap.set("", "<leader>", "<Nop>")
 
-map("", "<leader>", "<Nop>")
-
--- create splits
-map("n", "<leader>h", "<cmd>sp<cr>")
-map("n", "<leader>v", "<cmd>vsp<cr>")
-
--- Close current buffer/window
-map("n", "<C-c>", "<cmd>close<cr>")
-
--- Save file
-map("n", "<leader>w", "<cmd>w<cr>")
-map("n", "<leader>W", "<cmd>wall<cr>")
-
--- Sort visually selected items
-map("v", "<leader>s", ":sort<cr>")
-
--- Apply macros
-map("n", "Q", "@q")
-map("v", "Q", "<cmd>norm @q<cr>")
-
-return map
+vim.keymap.set("n", "<leader>h", "<cmd>sp<cr>", {
+    desc = "Create horizontal split",
+})
+vim.keymap.set("n", "<leader>v", "<cmd>vsp<cr>", {
+    desc = "Create vertical split",
+})
+vim.keymap.set("n", "<C-c>", "<cmd>close<cr>", {
+    desc = "Close buffer/window",
+})
+vim.keymap.set("n", "<leader>w", "<cmd>w<cr>", {
+    desc = "Save file",
+})
+vim.keymap.set("n", "<leader>W", "<cmd>wall<cr>", {
+    desc = "Save all files",
+})
+vim.keymap.set("v", "<leader>s", ":sort<cr>", {
+    desc = "Sort selected items",
+})
+vim.keymap.set("n", "Q", "@q", {
+    desc = "Apply macro",
+})
+vim.keymap.set("v", "Q", "<cmd>norm @q<cr>", {
+    desc = "Apply macro multiple times",
+})

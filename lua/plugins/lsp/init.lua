@@ -70,7 +70,11 @@ return {
                     capabilities = common.capabilities,
                     on_attach = function(client, bufnr)
                         common.on_attach(client, bufnr)
-                        common.map("<leader>lf", function() vim.cmd("EslintFixAll") end)
+                        common.map({
+                            lhs = "<leader>lf",
+                            rhs = "<cmd>EslintFixAll<cr>",
+                            desc = "ESLint fix all",
+                        })
                     end,
                 }
             end,
@@ -154,9 +158,21 @@ return {
                 },
                 on_attach = function(client, bufnr)
                     common.on_attach(client, bufnr)
-                    common.map("<leader>lm", typescript.actions.addMissingImports)
-                    common.map("<leader>lo", typescript.actions.organizeImports)
-                    common.map("<leader>lu", typescript.actions.removeUnused)
+                    common.map({
+                        lhs = "<leader>lm",
+                        rhs = typescript.actions.addMissingImports,
+                        desc = "TypeScript - Add missing imports",
+                    })
+                    common.map({
+                        lhs = "<leader>lo",
+                        rhs = typescript.actions.organizeImports,
+                        desc = "TypeScript - Organize imports",
+                    })
+                    common.map({
+                        lhs = "<leader>lu",
+                        rhs = typescript.actions.removeUnused,
+                        desc = "TypeScript - Remove unused",
+                    })
                 end,
             },
         })

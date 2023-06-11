@@ -52,8 +52,9 @@ return {
             view = make_view(),
         })
 
-        local map = require("core.mappings")
-
-        map("n", "<leader>e", "<cmd>NvimTreeFindFileToggle<cr>")
+        vim.keymap.set("n", "<leader>e", "<cmd>NvimTreeFindFileToggle<cr>", {
+            desc = "Open file explorer",
+            silent = true,
+        })
     end,
 }

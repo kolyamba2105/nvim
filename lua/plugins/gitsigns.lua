@@ -37,16 +37,34 @@ return {
             numhl = true,
         })
 
-        local map = require("core.mappings")
-        local opts = { silent = true }
-
-        map("n", "[h", "<cmd>Gitsigns prev_hunk<cr>", opts)
-        map("n", "]h", "<cmd>Gitsigns next_hunk<cr>", opts)
-        map("n", "<leader>b", "<cmd>Gitsigns blame_line<cr>", opts)
-        map("n", "<leader>gd", "<cmd>Gitsigns diffthis<cr>", opts)
-        map("n", "<leader>gq", "<cmd>Gitsigns setqflist<cr>", opts)
-        map("v", "<leader>gr", "<cmd>Gitsigns reset_hunk<cr>", opts)
-        map("v", "<leader>gs", "<cmd>Gitsigns stage_hunk<cr>", opts)
+        vim.keymap.set("n", "[h", "<cmd>Gitsigns prev_hunk<cr>", {
+            desc = "Go to previous hunk",
+            silent = true,
+        })
+        vim.keymap.set("n", "]h", "<cmd>Gitsigns next_hunk<cr>", {
+            desc = "Go to next hunk",
+            silent = true,
+        })
+        vim.keymap.set("n", "<leader>b", "<cmd>Gitsigns blame_line<cr>", {
+            desc = "Blame line",
+            silent = true,
+        })
+        vim.keymap.set("n", "<leader>gd", "<cmd>Gitsigns diffthis<cr>", {
+            desc = "Show diff",
+            silent = true,
+        })
+        vim.keymap.set("n", "<leader>gq", "<cmd>Gitsigns setqflist<cr>", {
+            desc = "Set quick-fix list",
+            silent = true,
+        })
+        vim.keymap.set("v", "<leader>gr", "<cmd>Gitsigns reset_hunk<cr>", {
+            desc = "Reset hunk",
+            silent = true,
+        })
+        vim.keymap.set("v", "<leader>gs", "<cmd>Gitsigns stage_hunk<cr>", {
+            desc = "Stage hunk",
+            silent = true,
+        })
     end,
     event = "BufRead",
 }

@@ -3,7 +3,6 @@ return {
     config = function()
         local colors = require("catppuccin.palettes").get_palette("mocha")
         local group = require("core.autocmds")
-        local map = require("core.mappings")
 
         -- AI
         require("mini.ai").setup()
@@ -26,7 +25,10 @@ return {
         -- Bufremove
         require("mini.bufremove").setup()
 
-        map("n", "<C-x>", require("mini.bufremove").delete)
+        vim.keymap.set("n", "<C-x>", require("mini.bufremove").delete, {
+            desc = "Remove buffer",
+            silent = true,
+        })
 
         -- Comment
         require("mini.comment").setup()
@@ -98,12 +100,30 @@ return {
             callback = mini_map.open,
         })
 
-        map("n", "<leader>mc", mini_map.close)
-        map("n", "<leader>mf", mini_map.toggle_focus)
-        map("n", "<leader>mo", mini_map.open)
-        map("n", "<leader>mr", mini_map.refresh)
-        map("n", "<leader>ms", mini_map.toggle_side)
-        map("n", "<leader>mt", mini_map.toggle)
+        vim.keymap.set("n", "<leader>mc", mini_map.close, {
+            desc = "Close",
+            silent = true,
+        })
+        vim.keymap.set("n", "<leader>mf", mini_map.toggle_focus, {
+            desc = "Toggle focus",
+            silent = true,
+        })
+        vim.keymap.set("n", "<leader>mo", mini_map.open, {
+            desc = "Open",
+            silent = true,
+        })
+        vim.keymap.set("n", "<leader>mr", mini_map.refresh, {
+            desc = "Refresh",
+            silent = true,
+        })
+        vim.keymap.set("n", "<leader>ms", mini_map.toggle_side, {
+            desc = "Toggle side",
+            silent = true,
+        })
+        vim.keymap.set("n", "<leader>mt", mini_map.toggle, {
+            desc = "Toggle",
+            silent = true,
+        })
 
         -- Misc
         require("mini.misc").setup()

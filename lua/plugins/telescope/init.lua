@@ -1,31 +1,76 @@
 return {
     "nvim-telescope/telescope.nvim",
     config = function()
-        local map = require("core.mappings")
         local telescope = require("telescope")
         local utils = require("plugins.telescope.utils")
 
-        local opts = { silent = true }
+        vim.keymap.set("n", "<C-p>", "<cmd>Telescope builtin initial_mode=insert<cr>", {
+            desc = "Built-in pickers",
+            silent = true,
+        })
 
-        map("n", "<C-p>", "<cmd>Telescope builtin initial_mode=insert<cr>", opts)
-
-        map("n", "<leader>fa", utils.get_picker("resume"), opts)
-        map("n", "<leader>fb", utils.get_picker("buffers"), opts)
-        map("n", "<leader>fc", utils.get_picker("command_history"), opts)
-        map("n", "<leader>ff", utils.get_picker_insert("find_files"), opts)
-        map("n", "<leader>fg", utils.get_picker_insert("live_grep"), opts)
-        map("n", "<leader>fh", utils.get_picker_insert("help_tags"), opts)
-        map("n", "<leader>fj", utils.get_picker("jumplist"), opts)
-        map("n", "<leader>fm", utils.get_picker("marks"), opts)
-        map("n", "<leader>fq", utils.get_picker("quickfix"), opts)
-        map("n", "<leader>fr", utils.get_picker("grep_string"), opts)
-        map("n", "<leader>fs", utils.get_picker_insert("search_history"), opts)
+        vim.keymap.set("n", "<leader>fa", utils.get_picker("resume"), {
+            desc = "Resume",
+            silent = true,
+        })
+        vim.keymap.set("n", "<leader>fb", utils.get_picker("buffers"), {
+            desc = "Buffers",
+            silent = true,
+        })
+        vim.keymap.set("n", "<leader>fc", utils.get_picker("command_history"), {
+            desc = "Command history",
+            silent = true,
+        })
+        vim.keymap.set("n", "<leader>ff", utils.get_picker_insert("find_files"), {
+            desc = "Find files",
+            silent = true,
+        })
+        vim.keymap.set("n", "<leader>fg", utils.get_picker_insert("live_grep"), {
+            desc = "Live grep",
+            silent = true,
+        })
+        vim.keymap.set("n", "<leader>fh", utils.get_picker_insert("help_tags"), {
+            desc = "Help tags",
+            silent = true,
+        })
+        vim.keymap.set("n", "<leader>fj", utils.get_picker("jumplist"), {
+            desc = "JumpList",
+            silent = true,
+        })
+        vim.keymap.set("n", "<leader>fm", utils.get_picker("marks"), {
+            desc = "Marks",
+            silent = true,
+        })
+        vim.keymap.set("n", "<leader>fq", utils.get_picker("quickfix"), {
+            desc = "QuickFix list",
+            silent = true,
+        })
+        vim.keymap.set("n", "<leader>fr", utils.get_picker("grep_string"), {
+            desc = "Grep string",
+            silent = true,
+        })
+        vim.keymap.set("n", "<leader>fs", utils.get_picker_insert("search_history"), {
+            desc = "Search history",
+            silent = true,
+        })
 
         -- Git
-        map("n", "<leader>gc", utils.get_picker("git_commits"), opts)
-        map("n", "<leader>gr", utils.get_picker("git_branches"), opts)
-        map("n", "<leader>gs", utils.get_picker("git_status"), opts)
-        map("n", "<leader>gt", utils.get_picker("git_stash"), opts)
+        vim.keymap.set("n", "<leader>gc", utils.get_picker("git_commits"), {
+            desc = "Commits",
+            silent = true,
+        })
+        vim.keymap.set("n", "<leader>gr", utils.get_picker("git_branches"), {
+            desc = "Branches",
+            silent = true,
+        })
+        vim.keymap.set("n", "<leader>gs", utils.get_picker("git_status"), {
+            desc = "Status",
+            silent = true,
+        })
+        vim.keymap.set("n", "<leader>gt", utils.get_picker("git_stash"), {
+            desc = "Stash",
+            silent = true,
+        })
 
         local mappings = {
             ["<c-h>"] = require("telescope.actions").file_split,
