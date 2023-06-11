@@ -25,7 +25,7 @@ return {
         }
 
         local function update(hl, options)
-            vim.api.nvim_set_hl(0, hl, vim.tbl_extend("force", vim.api.nvim_get_hl_by_name(hl, {}), options))
+            vim.api.nvim_set_hl(0, hl, vim.tbl_extend("force", vim.api.nvim_get_hl(0, { name = hl }), options))
         end
 
         for setting, hls in pairs(groups) do
@@ -33,6 +33,8 @@ return {
                 update(hl, { [setting] = false })
             end
         end
+
+        update("@keyword.export", vim.api.nvim_get_hl(0, { name = "Keyword" }))
     end,
     name = "catppuccin",
 }
