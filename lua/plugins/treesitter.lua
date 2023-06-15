@@ -20,6 +20,7 @@ return {
                 "jsonc",
                 "kdl",
                 "lua",
+                "markdown",
                 "prisma",
                 "scss",
                 "toml",
