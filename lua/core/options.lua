@@ -37,6 +37,7 @@ end
 
 local global_options = {
     mapleader = " ",
+    maplocalleader = " ",
 }
 
 local neovide_options = {

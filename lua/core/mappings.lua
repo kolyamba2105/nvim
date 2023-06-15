@@ -1,4 +1,4 @@
-vim.keymap.set("", "<leader>", "<Nop>")
+vim.keymap.set("", "<leader>", "<nop>")
 
 vim.keymap.set("n", "<leader>h", "<cmd>sp<cr>", {
     desc = "Create horizontal split",
