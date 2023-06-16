@@ -21,6 +21,6 @@ vim.keymap.set("v", "<leader>s", ":sort<cr>", {
 vim.keymap.set("n", "Q", "@q", {
     desc = "Apply macro",
 })
-vim.keymap.set("v", "Q", "<cmd>norm @q<cr>", {
+vim.keymap.set("v", "Q", ":norm @q<cr>", {
     desc = "Apply macro multiple times",
 })
