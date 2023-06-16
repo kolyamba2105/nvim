@@ -109,7 +109,7 @@ M.format = {
     command = function(bufnr)
         vim.api.nvim_buf_create_user_command(bufnr, "Format", function() vim.lsp.buf.format({ async = true }) end, {})
     end,
-    keymap = function() M.map({ lhs = "<leader>lf", rhs = vim.lsp.buf.format, desc = "Format" }) end,
+    keymap = function(key) M.map({ lhs = "<leader>l" .. (key or "f"), rhs = vim.lsp.buf.format, desc = "Format" }) end,
 }
 
 M.capabilities = require("cmp_nvim_lsp").default_capabilities(vim.lsp.protocol.make_client_capabilities())

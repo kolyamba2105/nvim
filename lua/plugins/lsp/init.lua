@@ -54,8 +54,7 @@ return {
                         common.format.command(bufnr)
 
                         local fts = { "javascript", "javascriptreact", "typescript", "typescriptreact" }
-
-                        if not vim.tbl_contains(fts, vim.bo.filetype) then common.format.keymap() end
+                        common.format.keymap(vim.tbl_contains(fts, vim.bo.filetype) and "p" or "f")
                     end,
                     root_dir = require("lspconfig").util.root_pattern(".git"),
                     settings = {
