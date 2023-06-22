@@ -56,7 +56,7 @@ return {
                         local fts = { "javascript", "javascriptreact", "typescript", "typescriptreact" }
                         common.format.keymap(vim.tbl_contains(fts, vim.bo.filetype) and "p" or "f")
                     end,
-                    root_dir = require("lspconfig").util.root_pattern(".git"),
+                    root_dir = lsp.util.root_pattern(".git"),
                     settings = {
                         languages = languages,
                         rootMarkers = { ".git", "package.json" },
@@ -69,11 +69,7 @@ return {
                     capabilities = common.capabilities,
                     on_attach = function(client, bufnr)
                         common.on_attach(client, bufnr)
-                        common.map({
-                            lhs = "<leader>lf",
-                            rhs = "<cmd>EslintFixAll<cr>",
-                            desc = "ESLint fix all",
-                        })
+                        common.map({ lhs = "<leader>lf", rhs = "<cmd>EslintFixAll<cr>", desc = "ESLint fix all" })
                     end,
                 }
             end,
@@ -142,6 +138,7 @@ return {
 
         local typescript = require("typescript")
 
+        -- https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md#tsserver
         typescript.setup({
             disable_formatting = true,
             server = {
@@ -173,6 +170,7 @@ return {
                         desc = "TypeScript - Remove unused",
                     })
                 end,
+                root_dir = lsp.util.root_pattern(".git"),
             },
         })
 
