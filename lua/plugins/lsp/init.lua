@@ -138,6 +138,17 @@ return {
 
         local typescript = require("typescript")
 
+        local inlayHints = {
+            includeInlayEnumMemberValueHints = true,
+            includeInlayFunctionLikeReturnTypeHints = true,
+            includeInlayFunctionParameterTypeHints = true,
+            includeInlayParameterNameHints = "all",
+            includeInlayParameterNameHintsWhenArgumentMatchesName = true,
+            includeInlayPropertyDeclarationTypeHints = true,
+            includeInlayVariableTypeHints = true,
+        }
+
+        -- https://github.com/typescript-language-server/typescript-language-server
         -- https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md#tsserver
         typescript.setup({
             disable_formatting = true,
@@ -150,6 +161,12 @@ return {
                             80005,
                             80006,
                         },
+                    },
+                    javascript = {
+                        inlayHints = inlayHints,
+                    },
+                    typescript = {
+                        inlayHints = inlayHints,
                     },
                 },
                 on_attach = function(client, bufnr)

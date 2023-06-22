@@ -63,6 +63,11 @@ M.on_attach = function(_, bufnr)
         desc = "Open diagnostic float",
     })
     M.map({
+        lhs = "<leader>lh",
+        rhs = function() vim.lsp.buf.inlay_hint(bufnr or 0) end,
+        desc = "Toggle inlay hints",
+    })
+    M.map({
         lhs = "<leader>ll",
         rhs = utils.get_picker("diagnostics"),
         desc = "Diagnostics",
