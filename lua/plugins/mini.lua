@@ -46,6 +46,14 @@ return {
         vim.api.nvim_set_hl(0, "MiniCursorword", { bg = colors.surface1, fg = colors.green })
         vim.api.nvim_set_hl(0, "MiniCursorwordCurrent", { bg = colors.surface1, fg = colors.green })
 
+        -- Files
+        require("mini.files").setup()
+
+        vim.keymap.set("n", "<C-n>", require("mini.files").open, {
+            desc = "Open files",
+            silent = true,
+        })
+
         -- Indentscope
         require("mini.indentscope").setup({
             draw = {
@@ -140,5 +148,4 @@ return {
     dependencies = {
         "catppuccin/nvim",
     },
-    event = "BufReadPre",
 }
