@@ -5,6 +5,23 @@ return {
         event = "BufRead",
     },
     {
+        "echasnovski/mini.basics",
+        config = function()
+            require("mini.basics").setup({
+                autocommands = {
+                    basic = false,
+                },
+                mappings = {
+                    basic = false,
+                },
+                options = {
+                    basic = false,
+                    win_borders = "double",
+                },
+            })
+        end,
+    },
+    {
         "echasnovski/mini.bracketed",
         config = function()
             local disable = { suffix = "" }
