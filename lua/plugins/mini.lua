@@ -66,7 +66,7 @@ return {
         config = function()
             require("mini.files").setup()
 
-            vim.keymap.set("n", "<C-n>", require("mini.files").open, {
+            vim.keymap.set("n", "-", require("mini.files").open, {
                 desc = "Open files",
                 silent = true,
             })
