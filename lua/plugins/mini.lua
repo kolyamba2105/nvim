@@ -150,13 +150,6 @@ return {
                 },
             })
 
-            vim.api.nvim_create_autocmd("BufRead", {
-                desc = "Open mini-map on BufRead",
-                pattern = "*",
-                group = group("OpenMiniMap"),
-                callback = mini_map.open,
-            })
-
             vim.keymap.set("n", "<leader>mc", mini_map.close, {
                 desc = "Close",
                 silent = true,
@@ -182,7 +175,7 @@ return {
                 silent = true,
             })
         end,
-        event = "BufReadPre",
+        event = "BufRead",
     },
     {
         "echasnovski/mini.misc",
