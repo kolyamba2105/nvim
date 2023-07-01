@@ -81,7 +81,12 @@ return {
     {
         "echasnovski/mini.files",
         config = function()
-            require("mini.files").setup()
+            require("mini.files").setup({
+                windows = {
+                    width_focus = 50,
+                    width_nofocus = 25,
+                },
+            })
 
             vim.keymap.set("n", "-", function() require("mini.files").open(vim.api.nvim_buf_get_name(0)) end, {
                 desc = "Open mini.files",
