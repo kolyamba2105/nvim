@@ -88,8 +88,12 @@ return {
                 },
             })
 
-            vim.keymap.set("n", "-", function() require("mini.files").open(vim.api.nvim_buf_get_name(0)) end, {
+            vim.keymap.set("n", "_", require("mini.files").open, {
                 desc = "Open mini.files",
+                silent = true,
+            })
+            vim.keymap.set("n", "-", function() require("mini.files").open(vim.api.nvim_buf_get_name(0)) end, {
+                desc = "Open mini.files (cwd)",
                 silent = true,
             })
         end,
