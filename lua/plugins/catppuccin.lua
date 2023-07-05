@@ -5,6 +5,7 @@ return {
             flavour = "mocha",
             integrations = {
                 mini = true,
+                which_key = true,
             },
         })
 
