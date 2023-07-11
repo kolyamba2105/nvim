@@ -136,58 +136,46 @@ return {
             yamlls = "default",
         }
 
-        local typescript = require("typescript")
-
-        local inlayHints = {
-            includeInlayEnumMemberValueHints = true,
-            includeInlayFunctionLikeReturnTypeHints = true,
-            includeInlayFunctionParameterTypeHints = true,
-            includeInlayParameterNameHints = "all",
-            includeInlayParameterNameHintsWhenArgumentMatchesName = true,
-            includeInlayPropertyDeclarationTypeHints = true,
-            includeInlayVariableTypeHints = true,
-        }
-
         -- https://github.com/typescript-language-server/typescript-language-server
         -- https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md#tsserver
-        typescript.setup({
-            disable_formatting = true,
-            server = {
-                capabilities = common.capabilities,
-                settings = {
-                    diagnostics = {
-                        ignoredCodes = {
-                            80001,
-                            80005,
-                            80006,
-                        },
-                    },
-                    javascript = {
-                        inlayHints = inlayHints,
-                    },
-                    typescript = {
-                        inlayHints = inlayHints,
-                    },
+        require("typescript-tools").setup({
+            capabilities = common.capabilities,
+            handlers = {
+                ["textDocument/publishDiagnostics"] = require("typescript-tools.api").filter_diagnostics({
+                    80001,
+                    80005,
+                    80006,
+                }),
+            },
+            on_attach = function()
+                common.on_attach()
+                common.map({
+                    lhs = "<leader>lm",
+                    rhs = "<cmd>TSToolsAddMissingImports<cr>",
+                    desc = "TypeScript - Add missing imports",
+                })
+                common.map({
+                    lhs = "<leader>lo",
+                    rhs = "<cmd>TSToolsOrganizeImports<cr>",
+                    desc = "TypeScript - Organize imports",
+                })
+                common.map({
+                    lhs = "<leader>lu",
+                    rhs = "<cmd>TSToolsRemoveUnusedImports<cr>",
+                    desc = "TypeScript - Remove unused imports",
+                })
+            end,
+            root_dir = lsp.util.root_pattern(".git"),
+            settings = {
+                tsserver_file_preferences = {
+                    includeInlayEnumMemberValueHints = true,
+                    includeInlayFunctionLikeReturnTypeHints = true,
+                    includeInlayFunctionParameterTypeHints = true,
+                    includeInlayParameterNameHints = "all",
+                    includeInlayParameterNameHintsWhenArgumentMatchesName = true,
+                    includeInlayPropertyDeclarationTypeHints = true,
+                    includeInlayVariableTypeHints = true,
                 },
-                on_attach = function(client, bufnr)
-                    common.on_attach(client, bufnr)
-                    common.map({
-                        lhs = "<leader>lm",
-                        rhs = typescript.actions.addMissingImports,
-                        desc = "TypeScript - Add missing imports",
-                    })
-                    common.map({
-                        lhs = "<leader>lo",
-                        rhs = typescript.actions.organizeImports,
-                        desc = "TypeScript - Organize imports",
-                    })
-                    common.map({
-                        lhs = "<leader>lu",
-                        rhs = typescript.actions.removeUnused,
-                        desc = "TypeScript - Remove unused",
-                    })
-                end,
-                root_dir = lsp.util.root_pattern(".git"),
             },
         })
 
@@ -201,7 +189,8 @@ return {
     end,
     dependencies = {
         "hrsh7th/cmp-nvim-lsp",
-        "jose-elias-alvarez/typescript.nvim",
+        "nvim-lua/plenary.nvim",
+        "pmizio/typescript-tools.nvim",
     },
     event = "BufRead",
 }
