@@ -161,8 +161,8 @@ return {
                 })
                 common.map({
                     lhs = "<leader>lu",
-                    rhs = "<cmd>TSToolsRemoveUnusedImports<cr>",
-                    desc = "TypeScript - Remove unused imports",
+                    rhs = "<cmd>TSToolsRemoveUnused<cr>",
+                    desc = "TypeScript - Remove unused",
                 })
             end,
             root_dir = lsp.util.root_pattern(".git"),
