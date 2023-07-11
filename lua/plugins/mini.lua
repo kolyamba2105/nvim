@@ -109,6 +109,7 @@ return {
                     delay = 0,
                     animation = function() return 0 end,
                 },
+                symbol = "|",
             })
 
             vim.api.nvim_create_autocmd("FileType", {
