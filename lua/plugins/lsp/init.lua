@@ -69,7 +69,7 @@ return {
                     capabilities = common.capabilities,
                     on_attach = function(client, bufnr)
                         common.on_attach(client, bufnr)
-                        common.map({ lhs = "<leader>lf", rhs = "<cmd>EslintFixAll<cr>", desc = "ESLint fix all" })
+                        common.map({ lhs = "<leader>lf", rhs = "<cmd>EslintFixAll<cr>", desc = "ESLint - Fix all" })
                     end,
                 }
             end,
