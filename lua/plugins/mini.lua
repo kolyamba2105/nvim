@@ -102,23 +102,12 @@ return {
     {
         "echasnovski/mini.indentscope",
         config = function()
-            local group = require("core.autocmds")
-
             require("mini.indentscope").setup({
                 draw = {
                     delay = 0,
                     animation = function() return 0 end,
                 },
                 symbol = "|",
-            })
-
-            vim.api.nvim_create_autocmd("FileType", {
-                desc = "Disable mini.indentscope except for OCaml files",
-                pattern = "*",
-                group = group("DisableMiniIndentScope"),
-                callback = function()
-                    if vim.bo.filetype ~= "ocaml" then vim.b.miniindentscope_disable = true end
-                end,
             })
         end,
         event = "BufRead",
