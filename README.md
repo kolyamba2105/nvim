@@ -1,15 +1,9 @@
 # Neovim
 
-- Install global `yarn` packages
+- Install tools and language servers
 
 ```sh
-yarn global add prettier
-```
-
-- Install language servers
-
-```sh
-yarn global add @prisma/language-server @tailwindcss/language-server bash-language-server graphql-language-service-cli typescript-language-server vscode-langservers-extracted yaml-language-server
+npm install -g @prisma/language-server @tailwindcss/language-server bash-language-server cssmodules-language-server emmet-ls graphql-language-service-cli prettier typescript typescript-language-server vscode-langservers-extracted yaml-language-server
 ```
 
 - Install efm language server
