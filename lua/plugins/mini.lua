@@ -104,10 +104,9 @@ return {
         config = function()
             require("mini.indentscope").setup({
                 draw = {
-                    delay = 0,
-                    animation = function() return 0 end,
+                    delay = 10,
+                    animation = function() return 10 end,
                 },
-                symbol = "|",
             })
         end,
         event = "BufRead",
