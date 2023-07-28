@@ -21,11 +21,6 @@ return {
                     formatStdin = true,
                 }
 
-                local rust_config = {
-                    formatCommand = "rustfmt",
-                    formatStdin = true,
-                }
-
                 -- Reference: https://github.com/creativenull/efmls-configs-nvim
                 local languages = {
                     css = { prettier_config },
@@ -36,7 +31,6 @@ return {
                     jsonc = { prettier_config },
                     lua = { lua_config },
                     markdown = { prettier_config },
-                    rust = { rust_config },
                     sass = { prettier_config },
                     scss = { prettier_config },
                     typescript = { prettier_config },
@@ -131,7 +125,6 @@ return {
                     end,
                 }
             end,
-            rust_analyzer = "default",
             tailwindcss = "default",
             yamlls = "default",
         }
