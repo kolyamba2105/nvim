@@ -11,8 +11,12 @@ return {
             cssls = "default",
             cssmodules_ls = "default",
             efm = function()
+                local bin = string.format("%s/%s", vim.loop.cwd(), "node_modules/.bin/prettier")
                 local prettier_config = {
-                    formatCommand = "prettier --stdin-filepath ${INPUT}",
+                    formatCommand = string.format(
+                        "%s --stdin-filepath ${INPUT}",
+                        vim.fn.filereadable(bin) == 0 and "prettier" or bin
+                    ),
                     formatStdin = true,
                 }
 
