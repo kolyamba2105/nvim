@@ -11,19 +11,11 @@ return {
             cssls = "default",
             cssmodules_ls = "default",
             efm = function()
-                local bin = string.format("%s/%s", vim.loop.cwd(), "node_modules/.bin/prettier")
-                local prettier_config = {
-                    formatCommand = string.format(
-                        "%s --stdin-filepath ${INPUT}",
-                        vim.fn.filereadable(bin) == 0 and "prettier" or bin
-                    ),
-                    formatStdin = true,
-                }
-
                 local lua_config = {
                     formatCommand = "stylua --color Never -",
                     formatStdin = true,
                 }
+                local prettier_config = require("plugins.lsp.prettier")
 
                 -- Reference: https://github.com/creativenull/efmls-configs-nvim
                 local languages = {
