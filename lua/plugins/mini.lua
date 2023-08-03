@@ -51,6 +51,60 @@ return {
         end,
     },
     {
+        "echasnovski/mini.clue",
+        config = function()
+            local clue = require("mini.clue")
+
+            clue.setup({
+                clues = {
+                    clue.gen_clues.builtin_completion(),
+                    clue.gen_clues.g(),
+                    clue.gen_clues.windows(),
+                    clue.gen_clues.z(),
+
+                    {
+                        desc = "Telescope",
+                        keys = "<Leader>f",
+                        mode = "n",
+                    },
+                    {
+                        desc = "Git",
+                        keys = "<Leader>g",
+                        mode = "n",
+                    },
+                    {
+                        desc = "LSP",
+                        keys = "<Leader>l",
+                        mode = "n",
+                    },
+                    {
+                        desc = "Mini map",
+                        keys = "<Leader>m",
+                        mode = "n",
+                    },
+                },
+                triggers = {
+                    { keys = "<C-w>", mode = "n" },
+                    { keys = "<C-x>", mode = "i" },
+                    { keys = "<Leader>", mode = "n" },
+                    { keys = "<Leader>", mode = "x" },
+                    { keys = "[", mode = "n" },
+                    { keys = "[", mode = "x" },
+                    { keys = "]", mode = "n" },
+                    { keys = "]", mode = "x" },
+                    { keys = "g", mode = "n" },
+                    { keys = "g", mode = "x" },
+                    { keys = "z", mode = "n" },
+                    { keys = "z", mode = "x" },
+                },
+                window = {
+                    delay = 1000,
+                },
+            })
+        end,
+        event = "VeryLazy",
+    },
+    {
         "echasnovski/mini.comment",
         config = function() require("mini.comment").setup() end,
         event = "BufRead",

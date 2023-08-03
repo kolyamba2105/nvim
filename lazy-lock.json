@@ -13,6 +13,7 @@
   "mini.basics": { "branch": "main", "commit": "c31a4725710db9733e8a8edb420f51fd617d72a3" },
   "mini.bracketed": { "branch": "main", "commit": "ac93e3d6df596c750200aa8529fd352ec91bbad2" },
   "mini.bufremove": { "branch": "main", "commit": "7821606e35c1ac931b56d8e3155f45ffe76ee7e5" },
+  "mini.clue": { "branch": "main", "commit": "290bb86f8e8672a078f150b388bb1bd3d5461682" },
   "mini.comment": { "branch": "main", "commit": "877acea5b2a32ff55f808fc0ebe9aa898648318c" },
   "mini.cursorword": { "branch": "main", "commit": "066770d17218d783dc76abde80fde89967f94907" },
   "mini.files": { "branch": "main", "commit": "2b3e9d27434273367e26f3dabc7dcc2c1c57dd3f" },
