@@ -2,6 +2,16 @@ local utils = require("plugins.telescope.utils")
 
 local M = {}
 
+M.signs = function()
+    local signs = { Error = "", Hint = "󰌶", Info = "󰋽", Warn = "" }
+
+    for severity, sign in pairs(signs) do
+        local name = "DiagnosticSign" .. severity
+
+        vim.fn.sign_define(name, { text = sign, texthl = name, numhl = name })
+    end
+end
+
 M.diagnostic_config = function()
     vim.diagnostic.config({
         float = {
@@ -18,6 +28,8 @@ M.diagnostic_config = function()
     vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {
         border = "double",
     })
+
+    M.signs()
 end
 
 M.map = function(opts)
