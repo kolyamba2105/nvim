@@ -1,15 +1,14 @@
+local string = require("core.string")
 local utils = require("plugins.telescope.utils")
 
 local M = {}
 
-M.signs = function()
-    local signs = { Error = "", Hint = "󰌶", Info = "󰋽", Warn = "" }
+M.signs = { error = "", hint = "󰌶", info = "󰋽", warn = "" }
 
-    for severity, sign in pairs(signs) do
-        local name = "DiagnosticSign" .. severity
+M.set_diagnostic_sign = function(severity, sign)
+    local name = "DiagnosticSign" .. string.capitalize(severity)
 
-        vim.fn.sign_define(name, { text = sign, texthl = name, numhl = name })
-    end
+    vim.fn.sign_define(name, { text = sign, texthl = name, numhl = name })
 end
 
 M.diagnostic_config = function()
@@ -29,7 +28,9 @@ M.diagnostic_config = function()
         border = "double",
     })
 
-    M.signs()
+    for severity, sign in pairs(M.signs) do
+        M.set_diagnostic_sign(severity, sign)
+    end
 end
 
 M.map = function(opts)

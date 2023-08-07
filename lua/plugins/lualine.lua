@@ -1,3 +1,6 @@
+local string = require("core.string")
+local lsp = require("plugins.lsp.utils")
+
 return {
     "nvim-lualine/lualine.nvim",
     dependencies = {
@@ -21,12 +24,16 @@ return {
                 { "mode", fmt = string.lower, icon = "" },
             },
             lualine_b = {
-                { "branch", icon = "" },
+                { "branch", icon = "" },
                 { "diff" },
             },
             lualine_c = {
                 { "filename", icon = "", path = 3 },
-                { "diagnostics", sources = { "nvim_diagnostic" } },
+                {
+                    "diagnostics",
+                    sources = { "nvim_diagnostic" },
+                    symbols = vim.tbl_map(string.pad_right, lsp.signs),
+                },
             },
             lualine_x = {},
         },
