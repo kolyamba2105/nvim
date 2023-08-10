@@ -7,17 +7,24 @@ return {
         common.diagnostic_config()
 
         local servers = {
-            bashls = "default",
-            cssls = "default",
-            cssmodules_ls = "default",
+            bashls = nil,
+            cssls = nil,
+            cssmodules_ls = nil,
             efm = function()
+                local prettier_executable = common.executable_path({
+                    { priority = 0, path = "prittier" },
+                    { priority = 1, path = string.format("%s/%s", vim.loop.cwd(), "node_modules/.bin/prettier") },
+                })
+                local prettier_config = {
+                    formatCommand = string.format("%s --stdin-filepath ${INPUT}", prettier_executable),
+                    formatStdin = true,
+                }
+
                 local lua_config = {
                     formatCommand = "stylua --color Never -",
                     formatStdin = true,
                 }
-                local prettier_config = require("plugins.lsp.prettier")
 
-                -- Reference: https://github.com/creativenull/efmls-configs-nvim
                 local languages = {
                     css = { prettier_config },
                     html = { prettier_config },
@@ -44,7 +51,7 @@ return {
                         common.format.command(bufnr)
 
                         local fts = { "javascript", "javascriptreact", "typescript", "typescriptreact" }
-                        common.format.keymap(vim.tbl_contains(fts, vim.bo.filetype) and "p" or "f")
+                        if not vim.tbl_contains(fts, vim.bo.filetype) then common.format.keymap() end
                     end,
                     root_dir = lsp.util.root_pattern(".git"),
                     settings = {
@@ -53,7 +60,7 @@ return {
                     },
                 }
             end,
-            emmet_ls = "default",
+            emmet_ls = nil,
             eslint = function()
                 return {
                     capabilities = common.capabilities,
@@ -78,8 +85,8 @@ return {
                     on_attach = common.on_attach,
                 }
             end,
-            html = "default",
-            jsonls = "default",
+            html = nil,
+            jsonls = nil,
             lua_ls = function()
                 return {
                     capabilities = common.capabilities,
@@ -121,55 +128,12 @@ return {
                     end,
                 }
             end,
-            tailwindcss = "default",
-            yamlls = "default",
+            tailwindcss = nil,
+            yamlls = nil,
         }
 
-        -- https://github.com/typescript-language-server/typescript-language-server
-        -- https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md#tsserver
-        require("typescript-tools").setup({
-            capabilities = common.capabilities,
-            handlers = {
-                ["textDocument/publishDiagnostics"] = require("typescript-tools.api").filter_diagnostics({
-                    80001,
-                    80005,
-                    80006,
-                }),
-            },
-            on_attach = function()
-                common.on_attach()
-                common.map({
-                    lhs = "<leader>lm",
-                    rhs = "<cmd>TSToolsAddMissingImports<cr>",
-                    desc = "TypeScript - Add missing imports",
-                })
-                common.map({
-                    lhs = "<leader>lo",
-                    rhs = "<cmd>TSToolsOrganizeImports<cr>",
-                    desc = "TypeScript - Organize imports",
-                })
-                common.map({
-                    lhs = "<leader>lu",
-                    rhs = "<cmd>TSToolsRemoveUnusedImports<cr>",
-                    desc = "TypeScript - Remove unused imports",
-                })
-            end,
-            root_dir = lsp.util.root_pattern(".git"),
-            settings = {
-                tsserver_file_preferences = {
-                    includeInlayEnumMemberValueHints = true,
-                    includeInlayFunctionLikeReturnTypeHints = true,
-                    includeInlayFunctionParameterTypeHints = true,
-                    includeInlayParameterNameHints = "all",
-                    includeInlayParameterNameHintsWhenArgumentMatchesName = true,
-                    includeInlayPropertyDeclarationTypeHints = true,
-                    includeInlayVariableTypeHints = true,
-                },
-            },
-        })
-
         for server, config in pairs(servers) do
-            if config == "default" then
+            if config == nil then
                 lsp[server].setup(common.default_config)
             else
                 lsp[server].setup(config())
@@ -178,8 +142,6 @@ return {
     end,
     dependencies = {
         "hrsh7th/cmp-nvim-lsp",
-        "nvim-lua/plenary.nvim",
-        "pmizio/typescript-tools.nvim",
     },
-    event = "BufRead",
+    event = "BufReadPost",
 }

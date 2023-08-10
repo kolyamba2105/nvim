@@ -121,13 +121,16 @@ M.format = {
     autocmd = function(ft)
         vim.api.nvim_create_autocmd("BufWritePre", {
             callback = function() vim.lsp.buf.format() end,
+            desc = "Format",
             group = vim.api.nvim_create_augroup(ft .. "Format", { clear = true }),
         })
     end,
     command = function(bufnr)
-        vim.api.nvim_buf_create_user_command(bufnr, "Format", function() vim.lsp.buf.format({ async = true }) end, {})
+        vim.api.nvim_buf_create_user_command(bufnr, "Format", function() vim.lsp.buf.format({ async = true }) end, {
+            desc = "Format",
+        })
     end,
-    keymap = function(key) M.map({ lhs = "<leader>l" .. (key or "f"), rhs = vim.lsp.buf.format, desc = "Format" }) end,
+    keymap = function() M.map({ lhs = "<leader>lf", rhs = vim.lsp.buf.format, desc = "Format" }) end,
 }
 
 M.capabilities = require("cmp_nvim_lsp").default_capabilities(vim.lsp.protocol.make_client_capabilities())
@@ -136,5 +139,15 @@ M.default_config = {
     on_attach = M.on_attach,
     capabilities = M.capabilities,
 }
+
+M.executable_path = function(entries)
+    table.sort(entries, function(a, b) return a.priority > b.priority end)
+
+    for _, entry in ipairs(entries) do
+        if vim.fn.filereadable(entry.path) ~= 0 then return entry.path end
+    end
+
+    return nil
+end
 
 return M
