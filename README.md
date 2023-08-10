@@ -3,7 +3,7 @@
 - Install tools and language servers
 
 ```sh
-npm install -g @prisma/language-server @tailwindcss/language-server bash-language-server cssmodules-language-server emmet-ls graphql-language-service-cli prettier typescript typescript-language-server vscode-langservers-extracted yaml-language-server
+yarn global add @prisma/language-server @tailwindcss/language-server bash-language-server cssmodules-language-server emmet-ls graphql-language-service-cli prettier typescript vscode-langservers-extracted yaml-language-server
 ```
 
 - Install efm language server
