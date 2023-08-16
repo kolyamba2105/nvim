@@ -7,9 +7,9 @@ return {
         common.diagnostic_config()
 
         local servers = {
-            bashls = nil,
-            cssls = nil,
-            cssmodules_ls = nil,
+            bashls = "default",
+            cssls = "default",
+            cssmodules_ls = "default",
             efm = function()
                 local prettier_executable = common.executable_path({
                     { priority = 0, path = "prittier" },
@@ -60,7 +60,7 @@ return {
                     },
                 }
             end,
-            emmet_ls = nil,
+            emmet_ls = "default",
             eslint = function()
                 return {
                     capabilities = common.capabilities,
@@ -85,8 +85,8 @@ return {
                     on_attach = common.on_attach,
                 }
             end,
-            html = nil,
-            jsonls = nil,
+            html = "default",
+            jsonls = "default",
             lua_ls = function()
                 return {
                     capabilities = common.capabilities,
@@ -128,12 +128,12 @@ return {
                     end,
                 }
             end,
-            tailwindcss = nil,
-            yamlls = nil,
+            tailwindcss = "default",
+            yamlls = "default",
         }
 
         for server, config in pairs(servers) do
-            if config == nil then
+            if config == "default" then
                 lsp[server].setup(common.default_config)
             else
                 lsp[server].setup(config())
