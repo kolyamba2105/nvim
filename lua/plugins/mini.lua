@@ -231,17 +231,26 @@ return {
     {
         "echasnovski/mini.misc",
         config = function() require("mini.misc").setup() end,
+        event = "VeryLazy",
+    },
+    {
+        "echasnovski/mini.operators",
+        config = function() require("mini.operators").setup() end,
+        event = "VeryLazy",
     },
     {
         "echasnovski/mini.pairs",
         config = function() require("mini.pairs").setup() end,
+        event = "VeryLazy",
     },
     {
         "echasnovski/mini.splitjoin",
         config = function() require("mini.splitjoin").setup() end,
+        event = "VeryLazy",
     },
     {
         "echasnovski/mini.surround",
         config = function() require("mini.surround").setup() end,
+        event = "VeryLazy",
     },
 }
