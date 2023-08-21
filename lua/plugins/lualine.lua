@@ -1,5 +1,4 @@
-local string = require("core.string")
-local lsp = require("plugins.lsp.utils")
+local string_utils = require("core.string-utils")
 
 return {
     "nvim-lualine/lualine.nvim",
@@ -21,7 +20,7 @@ return {
         },
         sections = {
             lualine_a = {
-                { "mode", fmt = string.capitalize, icon = "" },
+                { "mode", fmt = string_utils.capitalize, icon = "" },
             },
             lualine_b = {
                 { "branch", icon = "" },
@@ -29,11 +28,7 @@ return {
             },
             lualine_c = {
                 { "filename", icon = "", path = 3 },
-                {
-                    "diagnostics",
-                    sources = { "nvim_diagnostic" },
-                    symbols = vim.tbl_map(string.pad_right, lsp.signs),
-                },
+                { "diagnostics", sources = { "nvim_diagnostic" } },
             },
             lualine_x = {},
         },

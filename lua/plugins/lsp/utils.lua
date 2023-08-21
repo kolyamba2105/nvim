@@ -1,4 +1,4 @@
-local string = require("core.string")
+local string_utils = require("core.string-utils")
 local utils = require("plugins.telescope.utils")
 
 local M = {}
@@ -6,7 +6,7 @@ local M = {}
 M.signs = { error = "", hint = "󰌶", info = "󰋽", warn = "" }
 
 M.set_diagnostic_sign = function(severity, sign)
-    local name = "DiagnosticSign" .. string.capitalize(severity)
+    local name = "DiagnosticSign" .. string_utils.capitalize(severity)
 
     vim.fn.sign_define(name, { text = sign, texthl = name, numhl = name })
 end
