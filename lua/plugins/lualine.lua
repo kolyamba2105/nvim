@@ -30,7 +30,7 @@ return {
                 { "filename", icon = "", path = 3 },
                 { "diagnostics", sources = { "nvim_diagnostic" } },
             },
-            lualine_x = {},
+            lualine_x = { "filetype" },
         },
         extensions = {
             "fugitive",
