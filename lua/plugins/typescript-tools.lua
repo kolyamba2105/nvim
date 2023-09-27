@@ -2,12 +2,6 @@
 local lsp = require("lspconfig")
 local common = require("plugins.lsp.utils")
 
-local bin = "node_modules/typescript/lib/tsserver.js"
-local tsserver_path = common.executable_path({
-    { priority = 0, path = string.format("%s/%s/%s", os.getenv("HOME"), ".config/yarn/global", bin) },
-    { priority = 1, path = string.format("%s/%s", vim.loop.cwd(), bin) },
-})
-
 return {
     "pmizio/typescript-tools.nvim",
     dependencies = {
@@ -45,7 +39,6 @@ return {
             end,
             root_dir = lsp.util.root_pattern(".git"),
             settings = {
-                tsserver_path = tsserver_path,
                 tsserver_file_preferences = {
                     includeInlayEnumMemberValueHints = true,
                     includeInlayFunctionLikeReturnTypeHints = true,
