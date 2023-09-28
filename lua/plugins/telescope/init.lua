@@ -53,6 +53,10 @@ return {
             desc = "Search history",
             silent = true,
         })
+        vim.keymap.set("n", "<leader>ft", utils.get_picker_insert("treesitter"), {
+            desc = "Treesitter",
+            silent = true,
+        })
 
         -- Git
         vim.keymap.set("n", "<leader>gc", utils.get_picker("git_commits"), {
