@@ -12,7 +12,6 @@ local local_options = {
     ignorecase = true,
     laststatus = 3,
     number = true,
-    relativenumber = true,
     scrolloff = 16,
     shiftwidth = 2,
     signcolumn = "yes:2",
