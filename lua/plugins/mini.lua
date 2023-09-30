@@ -253,4 +253,8 @@ return {
         config = function() require("mini.surround").setup() end,
         event = "VeryLazy",
     },
+    {
+        "echasnovski/mini.trailspace",
+        config = function() require("mini.trailspace").setup() end,
+    },
 }
