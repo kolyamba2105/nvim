@@ -26,17 +26,15 @@ return {
         config = function()
             local disable = { suffix = "" }
 
-            -- stylua: ignore start
             require("mini.bracketed").setup({
-                buffer =        disable,
-                conflict =      disable,
-                diagnostic =    { options = { severity = vim.diagnostic.severity.ERROR } },
-                oldfile =       disable,
-                quickfix =      disable,
-                undo =          disable,
-                yank =          disable,
+                buffer = disable,
+                conflict = disable,
+                diagnostic = { options = { severity = vim.diagnostic.severity.ERROR } },
+                oldfile = disable,
+                quickfix = disable,
+                undo = disable,
+                yank = disable,
             })
-            -- stylua: ignore end
         end,
     },
     {
