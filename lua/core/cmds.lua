@@ -1,5 +1,31 @@
-vim.api.nvim_create_user_command("CopyBufferPath", function()
-    local path = vim.fn.fnamemodify(vim.api.nvim_buf_get_name(0), ":." .. vim.fn.getcwd())
+local function get_file_name() return vim.fn.fnamemodify(vim.api.nvim_buf_get_name(0), ":." .. vim.fn.getcwd()) end
 
-    vim.fn.setreg("+", path)
+local function get_test_name() return string.match(vim.api.nvim_get_current_line(), "[test|it]%(['\"]([^'\"]*)['\"]") end
+
+vim.api.nvim_create_user_command("CopyBufferPath", function()
+    local file_name = get_file_name()
+
+    vim.fn.setreg("+", file_name)
+    print(string.format("Copied: %s", file_name))
+end, {})
+
+vim.api.nvim_create_user_command("CopyTestCommand", function()
+    local command = string.format("yarn jest %s", get_file_name())
+
+    vim.fn.setreg("+", command)
+    print(string.format("Copied: %s", command))
+end, {})
+
+vim.api.nvim_create_user_command("CopyTestCaseCommand", function()
+    local file_name = get_file_name()
+    local test_name = get_test_name()
+
+    if test_name == nil then
+        print("Unable to resolve test name!")
+    else
+        local command = string.format('yarn jest %s -t "%s"', file_name, test_name)
+
+        vim.fn.setreg("+", command)
+        print(string.format("Copied: %s", command))
+    end
 end, {})
