@@ -7,6 +7,7 @@ local local_options = {
     cursorline = true,
     emoji = false,
     expandtab = true,
+    foldlevel = 99,
     foldlevelstart = 99,
     guifont = "JetBrainsMono Nerd Font:h14",
     ignorecase = true,
