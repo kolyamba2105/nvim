@@ -80,6 +80,11 @@ return {
                         keys = "<Leader>m",
                         mode = "n",
                     },
+                    {
+                        desc = "Mini visits",
+                        keys = "<Leader>a",
+                        mode = "n",
+                    },
                 },
                 triggers = {
                     { keys = "<C-w>", mode = "n" },
@@ -254,5 +259,18 @@ return {
     {
         "echasnovski/mini.trailspace",
         config = function() require("mini.trailspace").setup() end,
+    },
+    {
+        "echasnovski/mini.visits",
+        config = function()
+            local visits = require("mini.visits")
+
+            visits.setup()
+
+            vim.keymap.set("n", "<leader>as", visits.select_path, {
+                desc = "Select path",
+                silent = true,
+            })
+        end,
     },
 }
