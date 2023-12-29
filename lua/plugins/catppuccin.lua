@@ -7,6 +7,7 @@ return {
                 mini = true,
                 which_key = true,
             },
+            transparent_background = true,
         })
 
         vim.cmd("colorscheme catppuccin")
