@@ -26,6 +26,7 @@ return {
                 "toml",
                 "tsx",
                 "typescript",
+                "vimdoc",
                 "yaml",
             },
             highlight = {
