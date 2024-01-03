@@ -60,7 +60,6 @@ return {
                     },
                 }
             end,
-            emmet_ls = "default",
             eslint = function()
                 return {
                     capabilities = common.capabilities,
