@@ -1,6 +1,7 @@
 require("core.options")
 require("core.autocmds")
 require("core.cmds")
+require("core.center-split")
 require("core.prettier-config")
 require("core.mappings")
 require("core.netrw")
