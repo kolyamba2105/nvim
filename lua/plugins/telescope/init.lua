@@ -57,6 +57,12 @@ return {
             desc = "Treesitter",
             silent = true,
         })
+        vim.keymap.set(
+            "n",
+            "<leader>f/",
+            function() return utils.get_picker_insert("current_buffer_fuzzy_find")({ results_ts_highlight = false }) end,
+            { desc = "Current buffer", silent = true }
+        )
 
         -- Git
         vim.keymap.set("n", "<leader>gc", utils.get_picker("git_commits"), {
