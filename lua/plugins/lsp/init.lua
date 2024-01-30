@@ -51,7 +51,14 @@ return {
                         common.format.command(bufnr)
 
                         local fts = { "javascript", "javascriptreact", "typescript", "typescriptreact" }
-                        if not vim.tbl_contains(fts, vim.bo.filetype) then common.format.keymap() end
+
+                        if not vim.tbl_contains(fts, vim.bo.filetype) then return common.format.keymap() end
+
+                        local project_path = lsp.util.find_package_json_ancestor(vim.api.nvim_buf_get_name(bufnr))
+                        local package_json = string.format("%s/%s", project_path, "package.json")
+                        local package_data = require("core.json-utils").decode_json_file(package_json)
+
+                        if not package_data["devDependencies"]["eslint-plugin-prettier"] then common.format.keymap() end
                     end,
                     root_dir = lsp.util.root_pattern(".git"),
                     settings = {
