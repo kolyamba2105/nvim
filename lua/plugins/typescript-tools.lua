@@ -41,7 +41,7 @@ return {
             settings = {
                 jsx_close_tag = {
                     enable = true,
-                    filetypes = { "javascriptreact", "typescriptreact" },
+                    filetypes = { "javascript", "javascriptreact", "typescriptreact" },
                 },
                 tsserver_file_preferences = {
                     includeInlayEnumMemberValueHints = true,
