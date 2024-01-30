@@ -113,29 +113,6 @@ return {
         event = "BufRead",
     },
     {
-        "echasnovski/mini.cursorword",
-        config = function()
-            local colors = require("catppuccin.palettes").get_palette("mocha")
-            local group = require("core.autocmds")
-
-            require("mini.cursorword").setup({ delay = 500 })
-
-            vim.api.nvim_create_autocmd("FileType", {
-                callback = function() vim.b.minicursorword_disable = true end,
-                desc = "Disable cursorword in NvimTree",
-                group = group("CursorWordDisableNvimTree"),
-                pattern = "NvimTree",
-            })
-
-            vim.api.nvim_set_hl(0, "MiniCursorword", { bg = colors.surface1, fg = colors.green })
-            vim.api.nvim_set_hl(0, "MiniCursorwordCurrent", { bg = colors.surface1, fg = colors.green })
-        end,
-        dependencies = {
-            "catppuccin/nvim",
-        },
-        event = "BufRead",
-    },
-    {
         "echasnovski/mini.files",
         config = function()
             require("mini.files").setup({
