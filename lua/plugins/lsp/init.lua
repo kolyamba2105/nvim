@@ -3,6 +3,7 @@ return {
     config = function()
         local lsp = require("lspconfig")
         local common = require("plugins.lsp.utils")
+        local try_catch = require("utils.try-catch")
 
         common.diagnostic_config()
 
@@ -41,6 +42,14 @@ return {
                     yaml = { prettier_config },
                 }
 
+                local function resolve_package_json_path(bufnr)
+                    local project_path = lsp.util.find_package_json_ancestor(vim.api.nvim_buf_get_name(bufnr))
+
+                    if not project_path then error("Unable to resolve package.json path!") end
+
+                    return string.format("%s/%s", project_path, "package.json")
+                end
+
                 return {
                     cmd = { "efm-langserver" },
                     capabilities = common.capabilities,
@@ -54,11 +63,17 @@ return {
 
                         if not vim.tbl_contains(fts, vim.bo.filetype) then return common.format.keymap() end
 
-                        local project_path = lsp.util.find_package_json_ancestor(vim.api.nvim_buf_get_name(bufnr))
-                        local package_json = string.format("%s/%s", project_path, "package.json")
-                        local package_data = require("core.json-utils").decode_json_file(package_json)
+                        local path = try_catch(resolve_package_json_path, bufnr)
 
-                        if not package_data["devDependencies"]["eslint-plugin-prettier"] then common.format.keymap() end
+                        if not path.success then return print(path.error) end
+
+                        local json = try_catch(require("utils.json").decode_json_file, path.data)
+
+                        if not json.success then return print(json.error) end
+
+                        if not json.data["devDependencies"]["eslint-plugin-prettier"] then
+                            return common.format.keymap()
+                        end
                     end,
                     root_dir = lsp.util.root_pattern(".git"),
                     settings = {

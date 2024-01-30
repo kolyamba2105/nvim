@@ -1,4 +1,4 @@
-local string_utils = require("core.string-utils")
+local string_utils = require("utils.string")
 
 return {
     "nvim-lualine/lualine.nvim",
