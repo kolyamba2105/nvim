@@ -3,14 +3,10 @@ return {
     config = function()
         local lsp = require("lspconfig")
         local common = require("plugins.lsp.utils")
-        local try_catch = require("utils.try-catch")
 
         common.diagnostic_config()
 
         local servers = {
-            bashls = "default",
-            cssls = "default",
-            cssmodules_ls = "default",
             efm = function()
                 local prettier_executable = common.executable_path({
                     { priority = 0, path = string.format("%s/%s", os.getenv("HOME"), ".yarn/bin/prettier") },
@@ -42,14 +38,6 @@ return {
                     yaml = { prettier_config },
                 }
 
-                local function resolve_package_json_path(bufnr)
-                    local project_path = lsp.util.find_package_json_ancestor(vim.api.nvim_buf_get_name(bufnr))
-
-                    if not project_path then error("Unable to resolve package.json path!") end
-
-                    return string.format("%s/%s", project_path, "package.json")
-                end
-
                 return {
                     cmd = { "efm-langserver" },
                     capabilities = common.capabilities,
@@ -58,22 +46,7 @@ return {
                     on_attach = function(client, bufnr)
                         common.on_attach(client, bufnr)
                         common.format.command(bufnr)
-
-                        local fts = { "javascript", "javascriptreact", "typescript", "typescriptreact" }
-
-                        if not vim.tbl_contains(fts, vim.bo.filetype) then return common.format.keymap() end
-
-                        local path = try_catch(resolve_package_json_path, bufnr)
-
-                        if not path.success then return print(path.error) end
-
-                        local json = try_catch(require("utils.json").decode_json_file, path.data)
-
-                        if not json.success then return print(json.error) end
-
-                        if not json.data["devDependencies"]["eslint-plugin-prettier"] then
-                            return common.format.keymap()
-                        end
+                        common.format.keymap()
                     end,
                     root_dir = lsp.util.root_pattern(".git"),
                     settings = {
@@ -82,15 +55,17 @@ return {
                     },
                 }
             end,
+
             eslint = function()
                 return {
                     capabilities = common.capabilities,
                     on_attach = function(client, bufnr)
                         common.on_attach(client, bufnr)
-                        common.map({ lhs = "<leader>lf", rhs = "<cmd>EslintFixAll<cr>", desc = "ESLint - Fix all" })
+                        common.map({ lhs = "<leader>lx", rhs = "<cmd>EslintFixAll<cr>", desc = "ESLint - Fix all" })
                     end,
                 }
             end,
+
             graphql = function()
                 return {
                     capabilities = common.capabilities,
@@ -106,8 +81,7 @@ return {
                     on_attach = common.on_attach,
                 }
             end,
-            html = "default",
-            jsonls = "default",
+
             lua_ls = function()
                 return {
                     capabilities = common.capabilities,
@@ -130,6 +104,7 @@ return {
                     },
                 }
             end,
+
             ocamllsp = function()
                 return {
                     capabilities = common.capabilities,
@@ -140,6 +115,7 @@ return {
                     end,
                 }
             end,
+
             prismals = function()
                 return {
                     capabilities = common.capabilities,
@@ -149,6 +125,12 @@ return {
                     end,
                 }
             end,
+
+            bashls = "default",
+            cssls = "default",
+            cssmodules_ls = "default",
+            html = "default",
+            jsonls = "default",
             tailwindcss = "default",
             yamlls = "default",
         }

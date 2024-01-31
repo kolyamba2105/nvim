@@ -29,6 +29,7 @@ M.map = function(opts)
     })
 end
 
+-- TODO refactor on attach (higher-order function)
 M.on_attach = function(_, bufnr)
     vim.api.nvim_buf_set_option(bufnr or 0, "omnifunc", "v:lua.vim.lsp.omnifunc")
 
