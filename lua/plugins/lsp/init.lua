@@ -143,8 +143,5 @@ return {
             end
         end
     end,
-    dependencies = {
-        "hrsh7th/cmp-nvim-lsp",
-    },
     event = "BufReadPost",
 }
