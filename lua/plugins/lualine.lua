@@ -20,7 +20,7 @@ return {
         },
         sections = {
             lualine_a = {
-                { "mode", fmt = string_utils.capitalize, icon = "" },
+                { "mode", fmt = string_utils.capitalize, icon = "" },
             },
             lualine_b = {
                 { "branch", icon = "" },
