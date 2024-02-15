@@ -13,6 +13,7 @@ return {
                 "dockerfile",
                 "fish",
                 "graphql",
+                "groovy",
                 "html",
                 "javascript",
                 "jsdoc",
