@@ -25,31 +25,11 @@ return {
                 }),
                 ["<C-d>"] = cmp.mapping.scroll_docs(4),
                 ["<C-e>"] = cmp.mapping.close(),
-                ["<C-j>"] = cmp.mapping.select_next_item(),
-                ["<C-k>"] = cmp.mapping.select_prev_item(),
                 ["<C-u>"] = cmp.mapping.scroll_docs(-4),
                 ["<C-y>"] = cmp.mapping.confirm({
                     behavior = cmp.ConfirmBehavior.Insert,
                     select = true,
                 }),
-                ["<Tab>"] = function(fallback)
-                    if cmp.visible() then
-                        cmp.select_next_item()
-                    elseif snip.expand_or_jumpable() then
-                        snip.expand_or_jump()
-                    else
-                        fallback()
-                    end
-                end,
-                ["<S-Tab>"] = function(fallback)
-                    if cmp.visible() then
-                        cmp.select_prev_item()
-                    elseif snip.jumpable(-1) then
-                        snip.jump(-1)
-                    else
-                        fallback()
-                    end
-                end,
             }),
             sources = {
                 { name = "luasnip" },
