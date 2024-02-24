@@ -2,82 +2,76 @@ return {
     "nvim-telescope/telescope.nvim",
     config = function()
         local telescope = require("telescope")
-        local utils = require("plugins.telescope.utils")
+        local picker = require("plugins.telescope.picker")
 
         vim.keymap.set("n", "<C-p>", "<cmd>Telescope builtin initial_mode=insert<cr>", {
             desc = "Built-in pickers",
             silent = true,
         })
 
-        vim.keymap.set("n", "<leader>fa", utils.get_picker("resume"), {
+        vim.keymap.set("n", "<leader>fa", picker("resume"), {
             desc = "Resume",
             silent = true,
         })
-        vim.keymap.set("n", "<leader>fb", utils.get_picker("buffers"), {
+        vim.keymap.set("n", "<leader>fb", picker("buffers"), {
             desc = "Buffers",
             silent = true,
         })
-        vim.keymap.set("n", "<leader>fc", utils.get_picker("command_history"), {
+        vim.keymap.set("n", "<leader>fc", picker("command_history"), {
             desc = "Command history",
             silent = true,
         })
-        vim.keymap.set("n", "<leader>ff", utils.get_picker_insert("find_files"), {
+        vim.keymap.set("n", "<leader>ff", picker("find_files"), {
             desc = "Find files",
             silent = true,
         })
-        vim.keymap.set("n", "<leader>fg", utils.get_picker_insert("live_grep"), {
+        vim.keymap.set("n", "<leader>fg", picker("live_grep"), {
             desc = "Live grep",
             silent = true,
         })
-        vim.keymap.set("n", "<leader>fh", utils.get_picker_insert("help_tags"), {
+        vim.keymap.set("n", "<leader>fh", picker("help_tags"), {
             desc = "Help tags",
             silent = true,
         })
-        vim.keymap.set("n", "<leader>fj", utils.get_picker("jumplist"), {
+        vim.keymap.set("n", "<leader>fj", picker("jumplist"), {
             desc = "JumpList",
             silent = true,
         })
-        vim.keymap.set("n", "<leader>fm", utils.get_picker("marks"), {
+        vim.keymap.set("n", "<leader>fm", picker("marks"), {
             desc = "Marks",
             silent = true,
         })
-        vim.keymap.set("n", "<leader>fq", utils.get_picker("quickfix"), {
+        vim.keymap.set("n", "<leader>fq", picker("quickfix"), {
             desc = "QuickFix list",
             silent = true,
         })
-        vim.keymap.set("n", "<leader>fr", utils.get_picker("grep_string"), {
+        vim.keymap.set("n", "<leader>fr", picker("grep_string"), {
             desc = "Grep string",
             silent = true,
         })
-        vim.keymap.set("n", "<leader>fs", utils.get_picker_insert("search_history"), {
+        vim.keymap.set("n", "<leader>fs", picker("search_history"), {
             desc = "Search history",
             silent = true,
         })
-        vim.keymap.set("n", "<leader>ft", utils.get_picker_insert("treesitter"), {
+        vim.keymap.set("n", "<leader>ft", picker("treesitter"), {
             desc = "Treesitter",
             silent = true,
         })
-        vim.keymap.set(
-            "n",
-            "<leader>f/",
-            function() return utils.get_picker_insert("current_buffer_fuzzy_find")({ results_ts_highlight = false }) end,
-            { desc = "Current buffer", silent = true }
-        )
 
         -- Git
-        vim.keymap.set("n", "<leader>gc", utils.get_picker("git_commits"), {
+        vim.keymap.set("n", "<leader>gc", picker("git_commits"), {
             desc = "Commits",
             silent = true,
         })
-        vim.keymap.set("n", "<leader>gr", utils.get_picker("git_branches"), {
+        vim.keymap.set("n", "<leader>gr", picker("git_branches"), {
             desc = "Branches",
             silent = true,
         })
-        vim.keymap.set("n", "<leader>gs", utils.get_picker("git_status"), {
+        vim.keymap.set("n", "<leader>gs", picker("git_status"), {
             desc = "Status",
             silent = true,
         })
-        vim.keymap.set("n", "<leader>gt", utils.get_picker("git_stash"), {
+        vim.keymap.set("n", "<leader>gt", picker("git_stash"), {
             desc = "Stash",
             silent = true,
         })

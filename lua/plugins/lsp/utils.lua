@@ -1,4 +1,4 @@
-local utils = require("plugins.telescope.utils")
+local picker = require("plugins.telescope.picker")
 
 local M = {}
 
@@ -55,7 +55,7 @@ M.on_attach = function(_, bufnr)
     })
     M.map({
         lhs = "<leader>ld",
-        rhs = utils.get_picker("lsp_definitions"),
+        rhs = picker("lsp_definitions"),
         desc = "Definitions",
     })
     M.map({
@@ -70,7 +70,7 @@ M.on_attach = function(_, bufnr)
     })
     M.map({
         lhs = "<leader>ll",
-        rhs = utils.get_picker("diagnostics"),
+        rhs = picker("diagnostics"),
         desc = "Diagnostics",
     })
     M.map({
@@ -85,22 +85,22 @@ M.on_attach = function(_, bufnr)
     })
     M.map({
         lhs = "<leader>lr",
-        rhs = utils.get_picker("lsp_references"),
+        rhs = picker("lsp_references"),
         desc = "References",
     })
     M.map({
         lhs = "<leader>ls",
-        rhs = utils.get_picker_insert("lsp_document_symbols"),
+        rhs = picker("lsp_document_symbols"),
         desc = "Document symbols",
     })
     M.map({
         lhs = "<leader>lt",
-        rhs = utils.get_picker("lsp_type_definitions"),
+        rhs = picker("lsp_type_definitions"),
         desc = "Type definitions",
     })
     M.map({
         lhs = "<leader>lw",
-        rhs = utils.get_picker_insert("lsp_dynamic_workspace_symbols"),
+        rhs = picker("lsp_dynamic_workspace_symbols"),
         desc = "Dynamic workspace symbols",
     })
 end
