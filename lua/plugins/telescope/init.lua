@@ -93,7 +93,7 @@ return {
             }),
             extensions = {
                 ["ui-select"] = {
-                    initial_mode = "normal",
+                    initial_mode = "insert",
                 },
             },
             pickers = {
