@@ -27,7 +27,6 @@ return {
                 { "diff" },
             },
             lualine_c = {
-                { "filename", icon = "", path = 3 },
                 { "diagnostics", sources = { "nvim_diagnostic" } },
             },
             lualine_x = { "filetype" },
