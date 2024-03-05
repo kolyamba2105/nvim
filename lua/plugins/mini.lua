@@ -113,6 +113,21 @@ return {
         event = "BufRead",
     },
     {
+        "echasnovski/mini.cursorword",
+        config = function()
+            local colors = require("catppuccin.palettes").get_palette("mocha")
+
+            require("mini.cursorword").setup({ delay = 1000 })
+
+            vim.api.nvim_set_hl(0, "MiniCursorword", { bg = colors.surface1, fg = colors.peach })
+            vim.api.nvim_set_hl(0, "MiniCursorwordCurrent", { bg = colors.surface1, fg = colors.peach })
+        end,
+        dependencies = {
+            "catppuccin/nvim",
+        },
+        event = "BufRead",
+    },
+    {
         "echasnovski/mini.files",
         config = function()
             require("mini.files").setup({
