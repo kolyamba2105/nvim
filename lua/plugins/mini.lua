@@ -16,7 +16,7 @@ return {
                 },
                 options = {
                     basic = false,
-                    win_borders = "double",
+                    win_borders = vim.g.neovide and "single" or "double",
                 },
             })
         end,

@@ -5,7 +5,7 @@ local M = {}
 M.diagnostic_config = function()
     vim.diagnostic.config({
         float = {
-            border = "double",
+            border = vim.g.neovide and "single" or "double",
             show_header = false,
         },
         severity_sort = true,
@@ -13,10 +13,10 @@ M.diagnostic_config = function()
     })
 
     vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, {
-        border = "double",
+        border = vim.g.neovide and "single" or "double",
     })
     vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {
-        border = "double",
+        border = vim.g.neovide and "single" or "double",
     })
 end
 
