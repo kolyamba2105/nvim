@@ -10,6 +10,9 @@ return {
                     left = 6,
                 },
             },
+            win_configs = {
+                border = vim.g.neovide and "single" or "double",
+            },
         },
     },
 }
