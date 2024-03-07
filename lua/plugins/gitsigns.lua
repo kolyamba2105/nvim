@@ -2,6 +2,7 @@ return {
     "lewis6991/gitsigns.nvim",
     config = function()
         require("gitsigns").setup({
+            attach_to_untracked = true,
             signs = {
                 add = {
                     hl = "GitSignsAdd",
@@ -45,8 +46,8 @@ return {
             desc = "Go to next hunk",
             silent = true,
         })
-        vim.keymap.set("n", "<leader>b", "<cmd>Gitsigns blame_line<cr>", {
-            desc = "Blame line",
+        vim.keymap.set("n", "<leader>b", "<cmd>Gitsigns toggle_current_line_blame<cr>", {
+            desc = "Toggle current line blame",
             silent = true,
         })
         vim.keymap.set("n", "<leader>gd", "<cmd>Gitsigns diffthis<cr>", {
