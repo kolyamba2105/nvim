@@ -32,6 +32,15 @@ vim.api.nvim_create_autocmd("FileType", {
     },
 })
 
+vim.api.nvim_create_autocmd("FileType", {
+    callback = function() vim.opt.textwidth = 80 end,
+    desc = "Set editor options for *.md files",
+    group = group("MarkDownOptions"),
+    pattern = {
+        "markdown",
+    },
+})
+
 vim.api.nvim_create_autocmd("VimEnter", {
     callback = function() vim.o.showtabline = 0 end,
     desc = "Disable tabline on init",
