@@ -4,11 +4,6 @@ return {
         local telescope = require("telescope")
         local picker = require("plugins.telescope.picker")
 
-        vim.keymap.set("n", "<C-p>", "<cmd>Telescope builtin initial_mode=insert<cr>", {
-            desc = "Built-in pickers",
-            silent = true,
-        })
-
         vim.keymap.set("n", "<leader>fa", picker("resume"), {
             desc = "Resume",
             silent = true,
