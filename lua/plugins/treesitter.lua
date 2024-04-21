@@ -24,6 +24,7 @@ return {
                 "markdown",
                 "prisma",
                 "scss",
+                "sql",
                 "toml",
                 "tsx",
                 "typescript",
