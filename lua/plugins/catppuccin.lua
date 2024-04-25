@@ -20,6 +20,7 @@ return {
         vim.cmd.colorscheme("catppuccin")
 
         update("@keyword.export", vim.api.nvim_get_hl(0, { name = "Keyword" }))
+        update("@keyword.operator", vim.api.nvim_get_hl(0, { name = "Keyword" }))
     end,
     name = "catppuccin",
     priority = 1000,
