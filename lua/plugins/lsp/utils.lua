@@ -65,7 +65,7 @@ M.on_attach = function(_, bufnr)
     })
     M.map({
         lhs = "<leader>lh",
-        rhs = function() vim.lsp.inlay_hint.enable(bufnr or 0, not vim.lsp.inlay_hint.is_enabled(bufnr or 0)) end,
+        rhs = function() vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled()) end,
         desc = "Toggle inlay hints",
     })
     M.map({
