@@ -67,5 +67,6 @@ return {
             silent = true,
         })
     end,
+    enabled = false,
     event = "BufRead",
 }

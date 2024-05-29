@@ -120,6 +120,26 @@ return {
         event = "BufRead",
     },
     {
+        "echasnovski/mini.diff",
+        config = function()
+            require("mini.diff").setup({
+                options = {
+                    wrap_goto = true,
+                },
+                view = {
+                    signs = { add = "+", change = "~", delete = "-" },
+                    style = "sign",
+                },
+            })
+
+            vim.keymap.set("n", "<leader>gd", require("mini.diff").toggle_overlay, {
+                desc = "Show diff",
+                silent = true,
+            })
+        end,
+        event = "BufRead",
+    },
+    {
         "echasnovski/mini.files",
         config = function()
             require("mini.files").setup({
