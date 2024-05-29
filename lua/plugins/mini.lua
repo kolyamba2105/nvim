@@ -206,7 +206,7 @@ return {
                 integrations = {
                     mini_map.gen_integration.builtin_search(),
                     mini_map.gen_integration.diagnostic(),
-                    mini_map.gen_integration.gitsigns(),
+                    mini_map.gen_integration.diff(),
                 },
                 symbols = {
                     encode = mini_map.gen_encode_symbols.dot("3x2"),
