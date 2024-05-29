@@ -149,6 +149,17 @@ return {
         event = "VeryLazy",
     },
     {
+        "echasnovski/mini.hipatterns",
+        config = function()
+            require("mini.hipatterns").setup({
+                highlighters = {
+                    hex_color = require("mini.hipatterns").gen_highlighter.hex_color(),
+                },
+            })
+        end,
+        event = "BufRead",
+    },
+    {
         "echasnovski/mini.indentscope",
         config = function()
             require("mini.indentscope").setup({
