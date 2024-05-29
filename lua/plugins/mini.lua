@@ -9,13 +9,12 @@ return {
         config = function()
             require("mini.basics").setup({
                 autocommands = {
-                    basic = false,
+                    relnum_in_visual_mode = true,
                 },
                 mappings = {
-                    basic = false,
+                    windows = true,
                 },
                 options = {
-                    basic = false,
                     win_borders = vim.g.neovide and "single" or "double",
                 },
             })
