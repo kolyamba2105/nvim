@@ -24,16 +24,8 @@ return {
     {
         "echasnovski/mini.bracketed",
         config = function()
-            local disable = { suffix = "" }
-
             require("mini.bracketed").setup({
-                buffer = disable,
-                conflict = disable,
                 diagnostic = { options = { severity = vim.diagnostic.severity.ERROR } },
-                oldfile = disable,
-                quickfix = disable,
-                undo = disable,
-                yank = disable,
             })
         end,
     },
