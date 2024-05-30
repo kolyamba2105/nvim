@@ -266,6 +266,17 @@ return {
         event = "VeryLazy",
     },
     {
+        "echasnovski/mini.statusline",
+        config = function()
+            require("mini.statusline").setup({
+                set_vim_settings = false,
+            })
+        end,
+        dependencies = {
+            "nvim-tree/nvim-web-devicons",
+        },
+    },
+    {
         "echasnovski/mini.surround",
         config = function() require("mini.surround").setup() end,
         event = "VeryLazy",
