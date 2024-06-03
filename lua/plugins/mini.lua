@@ -12,7 +12,7 @@ return {
                     relnum_in_visual_mode = true,
                 },
                 mappings = {
-                    windows = true,
+                    windows = false,
                 },
                 options = {
                     win_borders = vim.g.neovide and "single" or "double",
