@@ -9,7 +9,7 @@ return {
         local servers = {
             efm = function()
                 local prettier_executable = common.executable_path({
-                    { priority = 0, path = string.format("%s/%s", os.getenv("HOME"), ".yarn/bin/prettier") },
+                    { priority = 0, path = string.format("%s/%s", "/opt/homebrew/bin", "prettier") },
                     { priority = 1, path = string.format("%s/%s", vim.loop.cwd(), "node_modules/.bin/prettier") },
                 })
                 local prettier_config = {
