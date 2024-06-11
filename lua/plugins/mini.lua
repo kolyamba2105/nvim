@@ -126,6 +126,7 @@ return {
                     wrap_goto = true,
                 },
                 view = {
+                    priority = 0,
                     signs = { add = "+", change = "~", delete = "-" },
                     style = "sign",
                 },
