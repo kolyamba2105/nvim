@@ -16,7 +16,7 @@ brew upgarde neovim
 ## Install tools and language servers
 
 ```sh
-npm i -g @prisma/language-server @tailwindcss/language-server bash-language-server cssmodules-language-server graphql-language-service-cli pnpm prettier serve typescript vscode-langservers-extracted yaml-language-server yarn
+npm i -g @prisma/language-server @tailwindcss/language-server bash-language-server cssmodules-language-server graphql-language-service-cli prettier serve typescript vscode-langservers-extracted yaml-language-server
 ```
 
 ## Install efm language server
