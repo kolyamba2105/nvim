@@ -137,7 +137,6 @@ return {
                 silent = true,
             })
         end,
-        event = "BufRead",
     },
     {
         "echasnovski/mini.files",
