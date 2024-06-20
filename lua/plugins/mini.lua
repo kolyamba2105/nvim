@@ -276,6 +276,7 @@ return {
         dependencies = {
             "nvim-tree/nvim-web-devicons",
         },
+        enabled = false,
     },
     {
         "echasnovski/mini.surround",

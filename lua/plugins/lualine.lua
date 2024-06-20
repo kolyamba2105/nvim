@@ -25,9 +25,10 @@ return {
             lualine_b = {
                 { "branch", icon = "" },
                 { "diff" },
+                { "diagnostics", sources = { "nvim_diagnostic" } },
             },
             lualine_c = {
-                { "diagnostics", sources = { "nvim_diagnostic" } },
+                "filename",
             },
             lualine_x = { "filetype" },
         },
@@ -36,5 +37,4 @@ return {
             "quickfix",
         },
     },
-    enabled = false,
 }
