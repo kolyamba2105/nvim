@@ -4,7 +4,7 @@ return {
         dependencies = {
             "nvim-telescope/telescope-fzf-native.nvim",
         },
-        enabled = true,
+        enabled = false,
         opts = {
             bar = {
                 padding = {
