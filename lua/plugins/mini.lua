@@ -171,6 +171,10 @@ return {
         event = "BufRead",
     },
     {
+        "echasnovski/mini.icons",
+        config = function() require("mini.icons").setup() end,
+    },
+    {
         "echasnovski/mini.indentscope",
         config = function()
             require("mini.indentscope").setup({
