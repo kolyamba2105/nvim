@@ -2,39 +2,42 @@ local string_utils = require("utils.string")
 
 return {
     "nvim-lualine/lualine.nvim",
-    dependencies = {
-        "nvim-tree/nvim-web-devicons",
-    },
-    opts = {
-        options = {
-            component_separators = {
-                left = nil,
-                right = nil,
+    config = function()
+        require("mini.icons").mock_nvim_web_devicons()
+
+        require("lualine").setup({
+            options = {
+                component_separators = {
+                    left = nil,
+                    right = nil,
+                },
+                globalstatus = true,
+                refresh = {
+                    statusline = 500,
+                    tabline = 500,
+                },
+                theme = "catppuccin",
             },
-            globalstatus = true,
-            refresh = {
-                statusline = 500,
-                tabline = 500,
+            sections = {
+                lualine_a = {
+                    { "mode", fmt = string_utils.capitalize, icon = "" },
+                },
+                lualine_b = {
+                    { "branch", icon = "" },
+                    { "diff" },
+                    { "diagnostics", sources = { "nvim_diagnostic" } },
+                },
+                lualine_c = {
+                    "filename",
+                },
+                lualine_x = {
+                    "filetype",
+                },
             },
-            theme = "catppuccin",
-        },
-        sections = {
-            lualine_a = {
-                { "mode", fmt = string_utils.capitalize, icon = "" },
+            extensions = {
+                "fugitive",
+                "quickfix",
             },
-            lualine_b = {
-                { "branch", icon = "" },
-                { "diff" },
-                { "diagnostics", sources = { "nvim_diagnostic" } },
-            },
-            lualine_c = {
-                "filename",
-            },
-            lualine_x = { "filetype" },
-        },
-        extensions = {
-            "fugitive",
-            "quickfix",
-        },
-    },
+        })
+    end,
 }
