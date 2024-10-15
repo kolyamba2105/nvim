@@ -21,12 +21,7 @@ M.diagnostic_config = function()
 end
 
 M.map = function(opts)
-    vim.keymap.set("n", opts.lhs, opts.rhs, {
-        buffer = true,
-        desc = opts.desc,
-        noremap = true,
-        silent = true,
-    })
+    vim.keymap.set("n", opts.lhs, opts.rhs, { buffer = true, desc = opts.desc, noremap = true, silent = true })
 end
 
 -- TODO refactor on attach (higher-order function)

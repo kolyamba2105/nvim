@@ -86,9 +86,9 @@ return {
                 mappings = { i = mappings, n = mappings },
             }),
             extensions = {
-                ["ui-select"] = {
+                ["ui-select"] = require("telescope.themes").get_cursor({
                     initial_mode = "insert",
-                },
+                }),
             },
             pickers = {
                 buffers = {
