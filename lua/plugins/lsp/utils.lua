@@ -116,7 +116,8 @@ M.format = {
     keymap = function() M.map({ lhs = "<leader>lf", rhs = vim.lsp.buf.format, desc = "Format" }) end,
 }
 
-M.capabilities = require("cmp_nvim_lsp").default_capabilities(vim.lsp.protocol.make_client_capabilities())
+-- Using nvim-cmp -> require("cmp_nvim_lsp").default_capabilities(vim.lsp.protocol.make_client_capabilities())
+M.capabilities = vim.lsp.protocol.make_client_capabilities()
 
 M.default_config = {
     on_attach = M.on_attach,
