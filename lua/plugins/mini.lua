@@ -99,6 +99,15 @@ return {
         event = "VeryLazy",
     },
     {
+        "echasnovski/mini.completion",
+        config = function()
+            require("mini.completion").setup({
+                window = { info = { border = "double" }, signature = { border = "double" } },
+            })
+        end,
+        event = "VeryLazy",
+    },
+    {
         "echasnovski/mini.comment",
         config = function() require("mini.comment").setup() end,
         event = "BufRead",
@@ -172,7 +181,13 @@ return {
     },
     {
         "echasnovski/mini.icons",
-        config = function() require("mini.icons").setup() end,
+        config = function()
+            require("mini.icons").setup()
+
+            require("mini.icons").mock_nvim_web_devicons()
+            require("mini.icons").tweak_lsp_kind()
+        end,
+        event = "VeryLazy",
     },
     {
         "echasnovski/mini.indentscope",

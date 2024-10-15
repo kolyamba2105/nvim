@@ -3,8 +3,6 @@ local string_utils = require("utils.string")
 return {
     "nvim-lualine/lualine.nvim",
     config = function()
-        require("mini.icons").mock_nvim_web_devicons()
-
         require("lualine").setup({
             options = {
                 component_separators = {
