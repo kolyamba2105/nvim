@@ -218,16 +218,16 @@ return {
     {
         "echasnovski/mini.map",
         config = function()
-            local mini_map = require("mini.map")
+            local MiniMap = require("mini.map")
 
-            mini_map.setup({
+            MiniMap.setup({
                 integrations = {
-                    mini_map.gen_integration.builtin_search(),
-                    mini_map.gen_integration.diagnostic(),
-                    mini_map.gen_integration.diff(),
+                    MiniMap.gen_integration.builtin_search(),
+                    MiniMap.gen_integration.diagnostic(),
+                    MiniMap.gen_integration.diff(),
                 },
                 symbols = {
-                    encode = mini_map.gen_encode_symbols.dot("3x2"),
+                    encode = MiniMap.gen_encode_symbols.dot("3x2"),
                     scroll_line = "▶",
                     scroll_view = "┃",
                 },
@@ -240,35 +240,32 @@ return {
             local group = require("core.autocmds")
 
             vim.api.nvim_create_autocmd("VimEnter", {
-                callback = function()
-                    print("Opening...")
-                    mini_map.open()
-                end,
+                callback = MiniMap.open,
                 desc = "Open MiniMap",
                 group = group("OpenMiniMap"),
             })
 
-            vim.keymap.set("n", "<leader>mc", mini_map.close, {
+            vim.keymap.set("n", "<leader>mc", MiniMap.close, {
                 desc = "Close",
                 silent = true,
             })
-            vim.keymap.set("n", "<leader>mf", mini_map.toggle_focus, {
+            vim.keymap.set("n", "<leader>mf", MiniMap.toggle_focus, {
                 desc = "Toggle focus",
                 silent = true,
             })
-            vim.keymap.set("n", "<leader>mo", mini_map.open, {
+            vim.keymap.set("n", "<leader>mo", MiniMap.open, {
                 desc = "Open",
                 silent = true,
             })
-            vim.keymap.set("n", "<leader>mr", mini_map.refresh, {
+            vim.keymap.set("n", "<leader>mr", MiniMap.refresh, {
                 desc = "Refresh",
                 silent = true,
             })
-            vim.keymap.set("n", "<leader>ms", mini_map.toggle_side, {
+            vim.keymap.set("n", "<leader>ms", MiniMap.toggle_side, {
                 desc = "Toggle side",
                 silent = true,
             })
-            vim.keymap.set("n", "<leader>mt", mini_map.toggle, {
+            vim.keymap.set("n", "<leader>mt", MiniMap.toggle, {
                 desc = "Toggle",
                 silent = true,
             })
