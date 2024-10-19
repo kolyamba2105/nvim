@@ -237,14 +237,6 @@ return {
                 },
             })
 
-            local group = require("core.autocmds")
-
-            vim.api.nvim_create_autocmd("VimEnter", {
-                callback = MiniMap.open,
-                desc = "Open MiniMap",
-                group = group("OpenMiniMap"),
-            })
-
             vim.keymap.set("n", "<leader>mc", MiniMap.close, {
                 desc = "Close",
                 silent = true,
@@ -270,7 +262,7 @@ return {
                 silent = true,
             })
         end,
-        event = "VimEnter",
+        event = "VeryLazy",
     },
     {
         "echasnovski/mini.misc",
