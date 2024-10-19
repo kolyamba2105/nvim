@@ -312,9 +312,6 @@ return {
                 set_vim_settings = false,
             })
         end,
-        dependencies = {
-            "nvim-tree/nvim-web-devicons",
-        },
         enabled = false,
     },
     {
