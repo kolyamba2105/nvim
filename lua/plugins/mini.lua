@@ -270,6 +270,27 @@ return {
         event = "VeryLazy",
     },
     {
+        "echasnovski/mini.notify",
+        config = function()
+            require("mini.notify").setup({
+                content = {
+                    format = function(notification)
+                        local time = vim.fn.strftime("%H:%M:%S", math.floor(notification.ts_update))
+
+                        return string.format("%s -> %s", time, notification.msg)
+                    end,
+                },
+                window = {
+                    config = {
+                        border = "double",
+                    },
+                },
+            })
+
+            vim.notify = require("mini.notify").make_notify()
+        end,
+    },
+    {
         "echasnovski/mini.operators",
         config = function() require("mini.operators").setup() end,
         event = "VeryLazy",
