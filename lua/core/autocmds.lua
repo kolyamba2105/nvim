@@ -1,17 +1,6 @@
 local function group(name) return vim.api.nvim_create_augroup(name, { clear = false }) end
 
 vim.api.nvim_create_autocmd("FileType", {
-    callback = function() vim.cmd("compiler tsc | setlocal makeprg=yarn\\ tsc") end,
-    desc = "Set compiler options for TypeScript files",
-    group = group("TypeScriptOptions"),
-    pattern = {
-        "typescript",
-        "typescript.tsx",
-        "typescriptreact",
-    },
-})
-
-vim.api.nvim_create_autocmd("FileType", {
     callback = function()
         vim.opt.colorcolumn = "120"
         vim.opt.shiftwidth = 4
