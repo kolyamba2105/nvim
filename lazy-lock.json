@@ -13,6 +13,7 @@
   "mini.cursorword": { "branch": "main", "commit": "7d1b38a17834acbbc4feff8e42aedc4ed0c6ff06" },
   "mini.diff": { "branch": "main", "commit": "24d46798be8a358d38d3adc92c7ebcbb2d6f67e0" },
   "mini.files": { "branch": "main", "commit": "6abe854f1410fc6aec69897a78b1db994c32d9c6" },
+  "mini.fuzzy": { "branch": "main", "commit": "ea9d1380ad925c4d0e890f68dbf830d2b19bae5d" },
   "mini.hipatterns": { "branch": "main", "commit": "797cbdc893cdcc2f0fbc05a23b4dae238a1fb0ae" },
   "mini.icons": { "branch": "main", "commit": "a2742459f0ee32806c2438ca06b4d8b331f3f4d4" },
   "mini.indentscope": { "branch": "main", "commit": "da9af64649e114aa79480c238fd23f6524bc0903" },

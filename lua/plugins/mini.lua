@@ -102,9 +102,15 @@ return {
         "echasnovski/mini.completion",
         config = function()
             require("mini.completion").setup({
+                lsp_completion = {
+                    process_items = require("mini.fuzzy").process_lsp_items,
+                },
                 window = { info = { border = "double" }, signature = { border = "double" } },
             })
         end,
+        dependencies = {
+            "echasnovski/mini.fuzzy",
+        },
         event = "VeryLazy",
     },
     {
@@ -166,6 +172,11 @@ return {
                 silent = true,
             })
         end,
+        event = "VeryLazy",
+    },
+    {
+        "echasnovski/mini.fuzzy",
+        config = function() require("mini.fuzzy").setup() end,
         event = "VeryLazy",
     },
     {
