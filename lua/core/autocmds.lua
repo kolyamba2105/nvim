@@ -23,11 +23,4 @@ vim.api.nvim_create_autocmd("FileType", {
     },
 })
 
-vim.api.nvim_create_autocmd("VimEnter", {
-    callback = function() vim.o.showtabline = 0 end,
-    desc = "Disable tabline on init",
-    group = group("DisableTabline"),
-    pattern = "*",
-})
-
 return group
