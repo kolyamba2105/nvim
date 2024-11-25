@@ -281,6 +281,26 @@ return {
         event = "VeryLazy",
     },
     {
+        "echasnovski/mini.move",
+        config = function()
+            require("mini.move").setup({
+                mappings = {
+                    -- stylua: ignore start
+                    left        = "<S-left>",
+                    right       = "<S-right>",
+                    down        = "<S-down>",
+                    up          = "<S-up>",
+                    line_left   = "<S-left>",
+                    line_right  = "<S-right>",
+                    line_down   = "<S-down>",
+                    line_up     = "<S-up>",
+                    -- stylua: ignore end
+                },
+            })
+        end,
+        event = "VeryLazy",
+    },
+    {
         "echasnovski/mini.notify",
         config = function()
             require("mini.notify").setup({
