@@ -320,6 +320,7 @@ return {
 
             vim.notify = require("mini.notify").make_notify()
         end,
+        enabled = false,
     },
     {
         "echasnovski/mini.operators",
