@@ -102,6 +102,7 @@ return {
         "echasnovski/mini.completion",
         config = function()
             require("mini.completion").setup({
+                delay = { completion = 50, info = 50, signature = 50 },
                 lsp_completion = {
                     process_items = require("mini.fuzzy").process_lsp_items,
                 },
