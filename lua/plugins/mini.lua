@@ -158,6 +158,9 @@ return {
         "echasnovski/mini.files",
         config = function()
             require("mini.files").setup({
+                content = {
+                    filter = function(entry) return entry.name ~= ".DS_Store" end,
+                },
                 windows = {
                     width_focus = 50,
                     width_nofocus = 25,
