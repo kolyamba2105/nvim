@@ -344,11 +344,54 @@ return {
     {
         "echasnovski/mini.statusline",
         config = function()
-            require("mini.statusline").setup({
+            local MiniStatusline = require("mini.statusline")
+
+            MiniStatusline.setup({
+                content = {
+                    active = function()
+                        -- stylua: ignore start
+                        local diagnostics       = MiniStatusline.section_diagnostics({ trunc_width = 75 })
+                        local diff              = MiniStatusline.section_diff({ trunc_width = 75 })
+                        local fileinfo          = MiniStatusline.section_fileinfo({ trunc_width = 120 })
+                        local filename          = MiniStatusline.section_filename({ trunc_width = 140 })
+                        local git               = MiniStatusline.section_git({ trunc_width = 40 })
+                        local lsp               = MiniStatusline.section_lsp({ trunc_width = 75 })
+                        local mode, mode_hl     = MiniStatusline.section_mode({ trunc_width = 120 })
+                        local search            = MiniStatusline.section_searchcount({ trunc_width = 75 })
+                        -- stylua: ignore start
+
+                        return MiniStatusline.combine_groups({
+                            {
+                                hl = mode_hl,
+                                strings = { mode },
+                            },
+                            {
+                                hl = "MiniStatuslineDevinfo",
+                                strings = { git, diff, diagnostics, lsp },
+                            },
+                            "%<",
+                            {
+                                hl = "MiniStatuslineFilename",
+                                strings = { filename },
+                            },
+                            "%=",
+                            {
+                                hl = "MiniStatuslineFileinfo",
+                                strings = { fileinfo },
+                            },
+                            {
+                                hl = mode_hl,
+                                strings = {
+                                    search,
+                                    MiniStatusline.is_truncated(75) and "%l:%2v" or '%l:%L %2v:%-2{virtcol("$") - 1}',
+                                },
+                            },
+                        })
+                    end,
+                },
                 set_vim_settings = false,
             })
         end,
-        enabled = false,
     },
     {
         "echasnovski/mini.surround",
