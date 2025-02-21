@@ -20,6 +20,12 @@ M.diagnostic_config = function()
     })
 end
 
+--- @class Opts
+--- @field desc string
+--- @field lhs string
+--- @field rhs (fun(): any) | string
+
+--- @param opts Opts
 M.map = function(opts)
     vim.keymap.set("n", opts.lhs, opts.rhs, { buffer = true, desc = opts.desc, noremap = true, silent = true })
 end
@@ -124,7 +130,13 @@ M.default_config = {
     capabilities = M.capabilities,
 }
 
-M.executable_path = function(entries)
+--- @class Entry
+--- @field priority number
+--- @field path string
+
+--- @param entries Entry[]
+--- @return string | nil
+function M.executable_path(entries)
     table.sort(entries, function(a, b) return a.priority > b.priority end)
 
     for _, entry in ipairs(entries) do
