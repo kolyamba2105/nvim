@@ -25,6 +25,7 @@ local local_options = {
     undofile = true,
     updatetime = 100,
     wildignore = "*/tmp/*,*.so,*.swp,*.zip,*.svg,*.png,*.jpg,*.gif,node_modules",
+    winborder = "double",
     wrap = false,
     writebackup = false,
 }
