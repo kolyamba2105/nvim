@@ -23,4 +23,21 @@ vim.api.nvim_create_autocmd("FileType", {
     },
 })
 
+vim.api.nvim_create_autocmd("FileType", {
+    callback = function()
+        vim.cmd("compiler tsc | setlocal makeprg=npx\\ tsc")
+
+        vim.keymap.set("n", "<leader>lc", "<cmd>make<cr>", {
+            desc = "Run TypeScript compiler",
+        })
+    end,
+    desc = "Set compiler options for TypeScript files",
+    group = group("TypeScriptOptions"),
+    pattern = {
+        "typescript",
+        "typescript.tsx",
+        "typescriptreact",
+    },
+})
+
 return group
