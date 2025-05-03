@@ -126,6 +126,44 @@ return {
                 }
             end,
 
+            ts_ls = function()
+                local function action(name) vim.lsp.buf.code_action({ apply = true, context = { only = { name } } }) end
+
+                return {
+                    capabilities = common.capabilities,
+                    on_attach = function()
+                        common.on_attach()
+                        common.map({
+                            lhs = "<leader>lm",
+                            rhs = function() action("source.addMissingImports.ts") end,
+                            desc = "TS - Add missing imports",
+                        })
+                        common.map({
+                            lhs = "<leader>lo",
+                            rhs = function() action("source.organizeImports.ts") end,
+                            desc = "TS - Organize imports",
+                        })
+                        common.map({
+                            lhs = "<leader>lu",
+                            rhs = function() action("source.removeUnusedImports.ts") end,
+                            desc = "TS - Remove unused imports",
+                        })
+                    end,
+                    init_options = {
+                        hostInfo = "neovim",
+                        preferences = {
+                            includeInlayEnumMemberValueHints = true,
+                            includeInlayFunctionLikeReturnTypeHints = true,
+                            includeInlayFunctionParameterTypeHints = true,
+                            includeInlayParameterNameHints = "all",
+                            includeInlayParameterNameHintsWhenArgumentMatchesName = true,
+                            includeInlayPropertyDeclarationTypeHints = true,
+                            includeInlayVariableTypeHints = true,
+                        },
+                    },
+                }
+            end,
+
             bashls = "default",
             cssls = "default",
             cssmodules_ls = "default",
