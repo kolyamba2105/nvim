@@ -89,17 +89,6 @@ return {
                 }
             end,
 
-            ocamllsp = function()
-                return {
-                    capabilities = common.capabilities,
-                    on_attach = function(client, bufnr)
-                        common.on_attach(client, bufnr)
-                        common.format.command(bufnr)
-                        common.format.keymap()
-                    end,
-                }
-            end,
-
             prismals = function()
                 return {
                     capabilities = common.capabilities,
