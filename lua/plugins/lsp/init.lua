@@ -66,22 +66,6 @@ return {
                 }
             end,
 
-            graphql = function()
-                return {
-                    capabilities = common.capabilities,
-                    filetypes = {
-                        "graphql",
-                        "javascript",
-                        "javascript.jsx",
-                        "javascriptreact",
-                        "typescript",
-                        "typescript.tsx",
-                        "typescriptreact",
-                    },
-                    on_attach = common.on_attach,
-                }
-            end,
-
             lua_ls = function()
                 return {
                     capabilities = common.capabilities,
