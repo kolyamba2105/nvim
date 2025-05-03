@@ -167,6 +167,7 @@ return {
             bashls = "default",
             cssls = "default",
             cssmodules_ls = "default",
+            emmet_language_server = "default",
             html = "default",
             jsonls = "default",
             tailwindcss = "default",
