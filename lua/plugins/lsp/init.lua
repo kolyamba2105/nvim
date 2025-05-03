@@ -89,16 +89,6 @@ return {
                 }
             end,
 
-            prismals = function()
-                return {
-                    capabilities = common.capabilities,
-                    on_attach = function(client, bufnr)
-                        common.on_attach(client, bufnr)
-                        common.format.autocmd("Prisma")
-                    end,
-                }
-            end,
-
             ts_ls = function()
                 local function action(name) vim.lsp.buf.code_action({ apply = true, context = { only = { name } } }) end
 
