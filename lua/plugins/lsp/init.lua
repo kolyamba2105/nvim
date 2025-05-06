@@ -90,7 +90,15 @@ return {
             end,
 
             ts_ls = function()
-                local function action(name) vim.lsp.buf.code_action({ apply = true, context = { only = { name } } }) end
+                local function action(opts)
+                    return function()
+                        vim.lsp.buf.code_action({
+                            apply = true,
+                            context = { only = { opts.name } },
+                            filter = function(ca) return ca.title == opts.title end,
+                        })
+                    end
+                end
 
                 return {
                     capabilities = common.capabilities,
@@ -98,17 +106,17 @@ return {
                         common.on_attach()
                         common.map({
                             lhs = "<leader>lm",
-                            rhs = function() action("source.addMissingImports.ts") end,
+                            rhs = action({ name = "source.addMissingImports.ts", title = "Add all missing imports" }),
                             desc = "TS - Add missing imports",
                         })
                         common.map({
                             lhs = "<leader>lo",
-                            rhs = function() action("source.organizeImports.ts") end,
+                            rhs = action({ name = "source.organizeImports.ts", title = "Organize Imports" }),
                             desc = "TS - Organize imports",
                         })
                         common.map({
                             lhs = "<leader>lu",
-                            rhs = function() action("source.removeUnusedImports.ts") end,
+                            rhs = action({ name = "source.removeUnusedImports.ts", title = "Remove Unused Imports" }),
                             desc = "TS - Remove unused imports",
                         })
                     end,
