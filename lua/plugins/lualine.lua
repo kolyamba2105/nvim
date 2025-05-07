@@ -1,4 +1,4 @@
-local string_utils = require("utils.string")
+local function capitalize(string) return string:sub(1, 1):upper() .. string:sub(2):lower() end
 
 return {
     "nvim-lualine/lualine.nvim",
@@ -18,7 +18,7 @@ return {
             },
             sections = {
                 lualine_a = {
-                    { "mode", fmt = string_utils.capitalize, icon = "" },
+                    { "mode", fmt = capitalize, icon = "" },
                 },
                 lualine_b = {
                     { "branch", icon = "" },
