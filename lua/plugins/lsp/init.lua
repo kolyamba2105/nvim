@@ -89,52 +89,6 @@ return {
                 }
             end,
 
-            ts_ls = function()
-                local function action(opts)
-                    return function()
-                        vim.lsp.buf.code_action({
-                            apply = true,
-                            context = { only = { opts.name } },
-                            filter = function(ca) return ca.title == opts.title end,
-                        })
-                    end
-                end
-
-                return {
-                    capabilities = common.capabilities,
-                    on_attach = function()
-                        common.on_attach()
-                        common.map({
-                            lhs = "<leader>lm",
-                            rhs = action({ name = "source.addMissingImports.ts", title = "Add all missing imports" }),
-                            desc = "TS - Add missing imports",
-                        })
-                        common.map({
-                            lhs = "<leader>lo",
-                            rhs = action({ name = "source.organizeImports.ts", title = "Organize Imports" }),
-                            desc = "TS - Organize imports",
-                        })
-                        common.map({
-                            lhs = "<leader>lu",
-                            rhs = action({ name = "source.removeUnusedImports.ts", title = "Remove Unused Imports" }),
-                            desc = "TS - Remove unused imports",
-                        })
-                    end,
-                    init_options = {
-                        hostInfo = "neovim",
-                        preferences = {
-                            includeInlayEnumMemberValueHints = true,
-                            includeInlayFunctionLikeReturnTypeHints = true,
-                            includeInlayFunctionParameterTypeHints = true,
-                            includeInlayParameterNameHints = "all",
-                            includeInlayParameterNameHintsWhenArgumentMatchesName = true,
-                            includeInlayPropertyDeclarationTypeHints = true,
-                            includeInlayVariableTypeHints = true,
-                        },
-                    },
-                }
-            end,
-
             bashls = "default",
             cssls = "default",
             cssmodules_ls = "default",
