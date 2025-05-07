@@ -89,6 +89,67 @@ return {
                 }
             end,
 
+            vtsls = function()
+                local settings = {
+                    inlayHints = {
+                        enumMemberValues = {
+                            enabled = true,
+                        },
+                        functionLikeReturnTypes = {
+                            enabled = true,
+                        },
+                        parameterNames = {
+                            enabled = "literals",
+                        },
+                        parameterTypes = {
+                            enabled = true,
+                        },
+                        propertyDeclarationTypes = {
+                            enabled = true,
+                        },
+                        variableTypes = {
+                            enabled = true,
+                        },
+                    },
+                }
+
+                local function action(name)
+                    return function()
+                        vim.lsp.buf.code_action({ apply = true, context = { diagnostics = {}, only = { name } } })
+                    end
+                end
+
+                return {
+                    capabilities = common.capabilities,
+                    on_attach = function()
+                        common.on_attach()
+
+                        common.map({
+                            lhs = "<leader>lm",
+                            rhs = action("source.addMissingImports.ts"),
+                            desc = "TypeScript - Add missing imports",
+                        })
+                        common.map({
+                            lhs = "<leader>lo",
+                            rhs = action("source.organizeImports"),
+                            desc = "TypeScript - Organize imports",
+                        })
+                    end,
+                    settings = {
+                        vtsls = {
+                            experimental = {
+                                completion = {
+                                    enableServerSideFuzzyMatch = true,
+                                    entriesLimit = 100,
+                                },
+                            },
+                        },
+                        javascript = settings,
+                        typescript = settings,
+                    },
+                }
+            end,
+
             bashls = "default",
             cssls = "default",
             cssmodules_ls = "default",
