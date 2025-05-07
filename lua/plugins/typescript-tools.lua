@@ -54,5 +54,6 @@ return {
             },
         })
     end,
+    enabled = false,
     event = "BufReadPost",
 }
