@@ -225,7 +225,7 @@ return {
                     desc = "TypeScript - Add missing imports",
                 })
                 vim.api.nvim_buf_create_user_command(buffer, "LspOrganizeImports", function() action("source.organizeImports") end, {
-                    desc = "TypeScript - Add missing imports",
+                    desc = "TypeScript - Organize imports",
                 })
                 -- stylua: ignore end
             end,
