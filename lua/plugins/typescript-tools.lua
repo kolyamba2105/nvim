@@ -39,7 +39,7 @@ return {
             root_dir = lsp.util.root_pattern(".git"),
             settings = {
                 jsx_close_tag = {
-                    enable = true,
+                    enable = false,
                     filetypes = { "javascript", "javascriptreact", "typescriptreact" },
                 },
                 tsserver_file_preferences = {
@@ -54,6 +54,5 @@ return {
             },
         })
     end,
-    enabled = false,
     event = "BufReadPost",
 }
