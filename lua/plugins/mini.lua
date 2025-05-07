@@ -104,7 +104,15 @@ return {
             require("mini.completion").setup({
                 delay = { completion = 50, info = 50, signature = 50 },
                 lsp_completion = {
-                    process_items = require("mini.fuzzy").process_lsp_items,
+                    process_items = function(...)
+                        local items = require("mini.fuzzy").process_lsp_items(...)
+
+                        for _, item in ipairs(items) do
+                            item.labelDetails = nil
+                        end
+
+                        return items
+                    end,
                 },
                 window = { info = { border = "double" }, signature = { border = "double" } },
             })
