@@ -388,6 +388,7 @@ return {
                             {
                                 hl = "MiniStatuslineDevinfo",
                                 strings = {
+                                    string.format(" %s", vim.fn.FugitiveHead()),
                                     MiniStatusLine.section_diff({ trunc_width = 75 }),
                                     MiniStatusLine.section_diagnostics({ trunc_width = 75 }),
                                 },
