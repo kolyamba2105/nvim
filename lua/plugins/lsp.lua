@@ -185,15 +185,7 @@ return {
 
         vim.lsp.config("lua_ls", {
             capabilities = capabilities,
-            on_attach = function(client, buffer)
-                on_attach(client, buffer)
-
-                vim.api.nvim_create_autocmd("BufWritePre", {
-                    callback = function() vim.lsp.buf.format() end,
-                    desc = "Format",
-                    group = vim.api.nvim_create_augroup("format/lua", { clear = true }),
-                })
-            end,
+            on_attach = on_attach,
             settings = {
                 Lua = {
                     diagnostics = {
