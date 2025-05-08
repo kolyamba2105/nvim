@@ -400,7 +400,6 @@ return {
                 set_vim_settings = false,
             })
         end,
-        enabled = false,
     },
     {
         "echasnovski/mini.surround",
