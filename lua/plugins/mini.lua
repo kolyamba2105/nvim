@@ -371,46 +371,46 @@ return {
     {
         "echasnovski/mini.statusline",
         config = function()
-            local MiniStatusline = require("mini.statusline")
+            local MiniStatusLine = require("mini.statusline")
 
-            MiniStatusline.setup({
+            MiniStatusLine.setup({
                 content = {
                     active = function()
-                        -- stylua: ignore start
-                        local diagnostics       = MiniStatusline.section_diagnostics({ trunc_width = 75 })
-                        local diff              = MiniStatusline.section_diff({ trunc_width = 75 })
-                        local fileinfo          = MiniStatusline.section_fileinfo({ trunc_width = 120 })
-                        local filename          = MiniStatusline.section_filename({ trunc_width = 140 })
-                        local git               = MiniStatusline.section_git({ trunc_width = 40 })
-                        local lsp               = MiniStatusline.section_lsp({ trunc_width = 75 })
-                        local mode, mode_hl     = MiniStatusline.section_mode({ trunc_width = 120 })
-                        local search            = MiniStatusline.section_searchcount({ trunc_width = 75 })
-                        -- stylua: ignore start
+                        local mode, mode_hl = MiniStatusLine.section_mode({ trunc_width = 120 })
 
-                        return MiniStatusline.combine_groups({
+                        return MiniStatusLine.combine_groups({
                             {
                                 hl = mode_hl,
-                                strings = { mode },
+                                strings = {
+                                    mode,
+                                },
                             },
                             {
                                 hl = "MiniStatuslineDevinfo",
-                                strings = { git, diff, diagnostics, lsp },
+                                strings = {
+                                    MiniStatusLine.section_diff({ trunc_width = 75 }),
+                                    MiniStatusLine.section_diagnostics({ trunc_width = 75 }),
+                                },
                             },
                             "%<",
                             {
                                 hl = "MiniStatuslineFilename",
-                                strings = { filename },
+                                strings = {
+                                    MiniStatusLine.section_filename({ trunc_width = 140 }),
+                                },
                             },
                             "%=",
                             {
                                 hl = "MiniStatuslineFileinfo",
-                                strings = { fileinfo },
+                                strings = {
+                                    MiniStatusLine.section_fileinfo({ trunc_width = 120 }),
+                                },
                             },
                             {
                                 hl = mode_hl,
                                 strings = {
-                                    search,
-                                    MiniStatusline.is_truncated(75) and "%l:%2v" or '%l:%L %2v:%-2{virtcol("$") - 1}',
+                                    MiniStatusLine.section_searchcount({ trunc_width = 75 }),
+                                    MiniStatusLine.is_truncated(75) and "%l:%2v" or '%l:%L %2v:%-2{virtcol("$") - 1}',
                                 },
                             },
                         })
