@@ -1,6 +1,6 @@
 ---@diagnostic disable: duplicate-doc-field
 
-local capabilities = vim.lsp.protocol.make_client_capabilities()
+local picker = require("plugins.telescope.picker")
 
 local function on_attach(_, buffer)
     vim.keymap.set("n", "]g", function() vim.diagnostic.jump({ count = 1, float = true }) end, {
@@ -103,6 +103,8 @@ return {
             underline = true,
             virtual_text = false,
         })
+
+        local capabilities = require("mini.completion").get_lsp_capabilities()
 
         vim.lsp.config("*", { capabilities = capabilities, on_attach = on_attach })
 
@@ -293,5 +295,8 @@ return {
             "yamlls",
         })
     end,
+    dependencies = {
+        "mini.completion",
+    },
     event = "BufReadPost",
 }
