@@ -167,10 +167,8 @@ return {
             filetypes = vim.tbl_keys(languages),
             init_options = { documentFormatting = true },
             on_attach = function(_, buffer)
-                vim.keymap.set("n", "<leader>lf", vim.lsp.buf.format, {
-                    buffer = buffer,
-                    desc = "Format",
-                    silent = true,
+                vim.api.nvim_buf_create_user_command(buffer, "LspFormat", function() vim.lsp.buf.format() end, {
+                    desc = "EFM - Format",
                 })
 
                 vim.api.nvim_create_autocmd("BufWritePre", {
