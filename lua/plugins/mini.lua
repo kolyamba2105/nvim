@@ -108,7 +108,12 @@ return {
                         local items = require("mini.fuzzy").process_lsp_items(...)
 
                         for _, item in ipairs(items) do
-                            item.labelDetails = nil
+                            if item.detail == "Emmet Abbreviation" then
+                                item.kind = 15
+                                item.labelDetails = nil
+                            else
+                                item.labelDetails = { detail = "C" }
+                            end
                         end
 
                         return items
