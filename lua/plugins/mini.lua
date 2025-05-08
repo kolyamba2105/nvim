@@ -350,6 +350,20 @@ return {
         event = "VeryLazy",
     },
     {
+        "echasnovski/mini.snippets",
+        config = function()
+            require("mini.snippets").setup({
+                snippets = {
+                    require("mini.snippets").gen_loader.from_lang(),
+                },
+            })
+        end,
+        dependencies = {
+            "rafamadriz/friendly-snippets",
+        },
+        enabled = false,
+    },
+    {
         "echasnovski/mini.splitjoin",
         config = function() require("mini.splitjoin").setup() end,
         event = "VeryLazy",
