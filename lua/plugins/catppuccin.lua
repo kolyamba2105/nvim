@@ -1,7 +1,3 @@
-local function update(hl, options)
-    vim.api.nvim_set_hl(0, hl, vim.tbl_extend("force", vim.api.nvim_get_hl(0, { name = hl }), options))
-end
-
 return {
     "catppuccin/nvim",
     config = function()
@@ -19,8 +15,8 @@ return {
 
         vim.cmd.colorscheme("catppuccin")
 
-        update("@keyword.export", vim.api.nvim_get_hl(0, { name = "Keyword" }))
-        update("@keyword.operator", vim.api.nvim_get_hl(0, { name = "Keyword" }))
+        vim.api.nvim_set_hl(0, "@keyword.export", vim.api.nvim_get_hl(0, { name = "Keyword" }))
+        vim.api.nvim_set_hl(0, "@keyword.operator", vim.api.nvim_get_hl(0, { name = "Keyword" }))
     end,
     name = "catppuccin",
     priority = 1000,
