@@ -1,4 +1,4 @@
-local picker = require("plugins.telescope.picker")
+---@diagnostic disable: duplicate-doc-field
 
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 
@@ -75,11 +75,11 @@ local function on_attach(_, buffer)
     })
 end
 
---- @class _Entry
+--- @class Entry
 --- @field priority number
 --- @field path string
 
---- @param entries _Entry[]
+--- @param entries Entry[]
 --- @return string | nil
 local function executable_path(entries)
     table.sort(entries, function(a, b) return a.priority > b.priority end)
