@@ -3,12 +3,12 @@ local picker = require("plugins.telescope.picker")
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 
 local function on_attach(_, buffer)
-    vim.keymap.set("n", "]g", vim.diagnostic.goto_next, {
+    vim.keymap.set("n", "]g", function() vim.diagnostic.jump({ count = 1, float = true }) end, {
         buffer = buffer,
         desc = "Go to next diagnostic",
         silent = true,
     })
-    vim.keymap.set("n", "[g", vim.diagnostic.goto_prev, {
+    vim.keymap.set("n", "[g", function() vim.diagnostic.jump({ count = -1, float = true }) end, {
         buffer = buffer,
         desc = "Go to prev diagnostic",
         silent = true,
@@ -75,11 +75,11 @@ local function on_attach(_, buffer)
     })
 end
 
---- @class ExecEntry
+--- @class _Entry
 --- @field priority number
 --- @field path string
 
---- @param entries ExecEntry[]
+--- @param entries _Entry[]
 --- @return string | nil
 local function executable_path(entries)
     table.sort(entries, function(a, b) return a.priority > b.priority end)
