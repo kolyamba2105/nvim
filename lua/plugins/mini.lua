@@ -382,7 +382,7 @@ return {
                             {
                                 hl = mode_hl,
                                 strings = {
-                                    mode,
+                                    string.format(" %s", mode),
                                 },
                             },
                             {
