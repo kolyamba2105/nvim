@@ -1,5 +1,24 @@
 return {
     {
+        "echasnovski/mini-git",
+        config = function()
+            require("mini.git").setup()
+
+            vim.keymap.set("n", "<leader>gg", "<cmd>Git status<cr>", {
+                desc = "Git status",
+                silent = true,
+            })
+            vim.keymap.set("n", "<leader>gc", "<cmd>Git commit<cr>", {
+                desc = "Git commit",
+                silent = true,
+            })
+            vim.keymap.set("n", "<leader>ga", "<cmd>Git add %<cr>", {
+                desc = "Git add (current file)",
+                silent = true,
+            })
+        end,
+    },
+    {
         "echasnovski/mini.ai",
         config = function() require("mini.ai").setup() end,
         event = "BufRead",
