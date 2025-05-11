@@ -54,7 +54,7 @@ return {
         })
 
         -- Git
-        vim.keymap.set("n", "<leader>gc", picker("git_commits"), {
+        vim.keymap.set("n", "<leader>gl", picker("git_commits"), {
             desc = "Commits",
             silent = true,
         })
