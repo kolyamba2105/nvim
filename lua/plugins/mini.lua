@@ -2,7 +2,11 @@ return {
     {
         "echasnovski/mini-git",
         config = function()
-            require("mini.git").setup()
+            require("mini.git").setup({
+                command = {
+                    split = "horizontal",
+                },
+            })
 
             vim.keymap.set("n", "<leader>gg", "<cmd>Git status<cr>", {
                 desc = "Git status",
