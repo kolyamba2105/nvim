@@ -328,6 +328,9 @@ return {
                         return string.format("%s -> %s", time, notification.msg)
                     end,
                 },
+                lsp_progress = {
+                    enable = false,
+                },
                 window = {
                     config = {
                         border = "double",
