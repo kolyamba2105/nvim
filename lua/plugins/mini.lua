@@ -118,6 +118,11 @@ return {
         event = "VeryLazy",
     },
     {
+        "echasnovski/mini.comment",
+        config = function() require("mini.comment").setup() end,
+        event = "BufRead",
+    },
+    {
         "echasnovski/mini.completion",
         config = function()
             require("mini.completion").setup({
@@ -145,11 +150,6 @@ return {
             "echasnovski/mini.fuzzy",
         },
         event = "VeryLazy",
-    },
-    {
-        "echasnovski/mini.comment",
-        config = function() require("mini.comment").setup() end,
-        event = "BufRead",
     },
     {
         "echasnovski/mini.cursorword",
