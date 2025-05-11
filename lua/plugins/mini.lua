@@ -176,7 +176,7 @@ return {
                 view = {
                     priority = 0,
                     signs = { add = "+", change = "~", delete = "-" },
-                    style = "sign",
+                    style = "number",
                 },
             })
 
