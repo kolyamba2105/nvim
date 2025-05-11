@@ -26,4 +26,5 @@ return {
             silent = true,
         })
     end,
+    enabled = false,
 }
