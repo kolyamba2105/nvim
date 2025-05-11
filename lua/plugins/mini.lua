@@ -409,7 +409,7 @@ return {
                             {
                                 hl = "MiniStatuslineDevinfo",
                                 strings = {
-                                    MiniStatusLine.section_git({ trunc_width = 40 }),
+                                    MiniStatusLine.section_git({ icon = "", trunc_width = 40 }),
                                     MiniStatusLine.section_diff({ trunc_width = 75 }),
                                     MiniStatusLine.section_diagnostics({ trunc_width = 75 }),
                                 },
