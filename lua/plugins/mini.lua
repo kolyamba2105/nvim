@@ -20,6 +20,10 @@ return {
                 desc = "Git add (current file)",
                 silent = true,
             })
+            vim.keymap.set("n", "<leader>gr", "<cmd>Git restore %<cr>", {
+                desc = "Git restore (current file)",
+                silent = true,
+            })
         end,
     },
     {
