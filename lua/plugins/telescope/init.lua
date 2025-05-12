@@ -58,7 +58,7 @@ return {
             desc = "Commits",
             silent = true,
         })
-        vim.keymap.set("n", "<leader>gr", picker("git_branches"), {
+        vim.keymap.set("n", "<leader>gb", picker("git_branches"), {
             desc = "Branches",
             silent = true,
         })
