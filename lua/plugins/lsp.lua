@@ -106,6 +106,8 @@ return {
 
         local capabilities = require("mini.completion").get_lsp_capabilities()
 
+        capabilities.textDocument.completion.completionItem.snippetSupport = true
+
         vim.lsp.config("*", { capabilities = capabilities, on_attach = on_attach })
 
         local prettier_executable = executable_path({
