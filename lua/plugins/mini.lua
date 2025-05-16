@@ -317,7 +317,14 @@ return {
     },
     {
         "echasnovski/mini.misc",
-        config = function() require("mini.misc").setup() end,
+        config = function()
+            require("mini.misc").setup()
+
+            vim.keymap.set("n", "<leader>z", require("mini.misc").zoom, {
+                desc = "Zoom",
+                silent = true,
+            })
+        end,
         event = "VeryLazy",
     },
     {
