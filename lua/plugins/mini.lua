@@ -320,7 +320,7 @@ return {
         config = function()
             require("mini.misc").setup()
 
-            vim.api.nvim_create_user_command("Zoom", function()
+            vim.api.nvim_create_user_command("ToggleZoom", function()
                 local screen_width = vim.opt.columns:get()
                 local window_width = 120
 
@@ -329,9 +329,8 @@ return {
                 local file_name = vim.fn.fnamemodify(vim.api.nvim_buf_get_name(0), ":." .. vim.fn.getcwd())
 
                 require("mini.misc").zoom(0, { col = center, title = file_name, width = window_width })
-            end, { desc = "Zoom file" })
+            end, { desc = "Toggle zoom" })
         end,
-        event = "VeryLazy",
     },
     {
         "echasnovski/mini.move",
