@@ -1,32 +1,5 @@
 return {
     {
-        "echasnovski/mini-git",
-        config = function()
-            require("mini.git").setup({
-                command = {
-                    split = "horizontal",
-                },
-            })
-
-            vim.keymap.set("n", "<leader>gg", "<cmd>Git status<cr>", {
-                desc = "Git status",
-                silent = true,
-            })
-            vim.keymap.set("n", "<leader>gc", "<cmd>Git commit<cr>", {
-                desc = "Git commit",
-                silent = true,
-            })
-            vim.keymap.set("n", "<leader>ga", "<cmd>Git add %<cr>", {
-                desc = "Git add (current file)",
-                silent = true,
-            })
-            vim.keymap.set("n", "<leader>gr", "<cmd>Git restore %<cr>", {
-                desc = "Git restore (current file)",
-                silent = true,
-            })
-        end,
-    },
-    {
         "echasnovski/mini.ai",
         config = function() require("mini.ai").setup() end,
         event = "BufRead",
@@ -429,7 +402,7 @@ return {
                             {
                                 hl = "MiniStatuslineDevinfo",
                                 strings = {
-                                    MiniStatusLine.section_git({ icon = "", trunc_width = 40 }),
+                                    string.format(" %s", vim.fn.FugitiveHead()),
                                     MiniStatusLine.section_diff({ trunc_width = 75 }),
                                     MiniStatusLine.section_diagnostics({ trunc_width = 75 }),
                                 },

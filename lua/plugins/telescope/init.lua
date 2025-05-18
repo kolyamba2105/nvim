@@ -54,11 +54,11 @@ return {
         })
 
         -- Git
-        vim.keymap.set("n", "<leader>gl", picker("git_commits"), {
+        vim.keymap.set("n", "<leader>gc", picker("git_commits"), {
             desc = "Commits",
             silent = true,
         })
-        vim.keymap.set("n", "<leader>gb", picker("git_branches"), {
+        vim.keymap.set("n", "<leader>gr", picker("git_branches"), {
             desc = "Branches",
             silent = true,
         })

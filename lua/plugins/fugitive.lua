@@ -1,12 +1,16 @@
 return {
     "tpope/vim-fugitive",
     config = function()
-        vim.keymap.set("n", "<leader>gg", "<cmd>Git<cr>", {
-            desc = "Open fugitive pane",
+        vim.keymap.set("n", "<leader>ga", "<cmd>Git add %<cr>", {
+            desc = "Add (current file)",
             silent = true,
         })
         vim.keymap.set("n", "<leader>gb", "<cmd>Git blame<cr>", {
             desc = "Blame",
+            silent = true,
+        })
+        vim.keymap.set("n", "<leader>gg", "<cmd>Git<cr>", {
+            desc = "Open fugitive pane",
             silent = true,
         })
         vim.keymap.set("n", "<leader>gn", "<cmd>Git commit --no-verify<cr>", {
@@ -26,5 +30,4 @@ return {
             silent = true,
         })
     end,
-    enabled = false,
 }
