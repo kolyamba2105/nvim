@@ -442,21 +442,7 @@ return {
     },
     {
         "echasnovski/mini.tabline",
-        config = function()
-            require("mini.tabline").setup()
-
-            vim.api.nvim_create_user_command("ToggleTabLine", function()
-                if vim.g.minitabline_disable then
-                    vim.opt.showtabline = 2
-                    vim.g.minitabline_disable = false
-
-                    MiniTabline.setup()
-                else
-                    vim.opt.showtabline = 0
-                    vim.g.minitabline_disable = true
-                end
-            end, { desc = "Toggle TabLine" })
-        end,
+        config = function() require("mini.tabline").setup() end,
     },
     {
         "echasnovski/mini.trailspace",
