@@ -390,42 +390,23 @@ return {
             MiniStatusLine.setup({
                 content = {
                     active = function()
-                        local mode, mode_hl = MiniStatusLine.section_mode({ trunc_width = 120 })
+                        local _, mode_hl = MiniStatusLine.section_mode({ trunc_width = 75 })
 
                         return MiniStatusLine.combine_groups({
                             {
                                 hl = mode_hl,
                                 strings = {
-                                    string.format(" %s", mode),
+                                    "λ",
                                 },
                             },
                             {
-                                hl = "MiniStatuslineDevinfo",
+                                hl = "StatusLine",
                                 strings = {
-                                    string.format(" %s", vim.fn.FugitiveHead()),
+                                    MiniStatusLine.section_filename({ trunc_width = 150 }),
+                                    "%<",
                                     MiniStatusLine.section_diff({ trunc_width = 75 }),
+                                    "%<",
                                     MiniStatusLine.section_diagnostics({ trunc_width = 75 }),
-                                },
-                            },
-                            "%<",
-                            {
-                                hl = "MiniStatuslineFilename",
-                                strings = {
-                                    MiniStatusLine.section_filename({ trunc_width = 140 }),
-                                },
-                            },
-                            "%=",
-                            {
-                                hl = "MiniStatuslineFileinfo",
-                                strings = {
-                                    MiniStatusLine.section_fileinfo({ trunc_width = 120 }),
-                                },
-                            },
-                            {
-                                hl = mode_hl,
-                                strings = {
-                                    MiniStatusLine.section_searchcount({ trunc_width = 75 }),
-                                    MiniStatusLine.is_truncated(75) and "%l:%2v" or '%l:%L %2v:%-2{virtcol("$") - 1}',
                                 },
                             },
                         })
