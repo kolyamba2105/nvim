@@ -407,6 +407,8 @@ return {
                                     MiniStatusLine.section_diff({ trunc_width = 75 }),
                                     "%<",
                                     MiniStatusLine.section_diagnostics({ trunc_width = 75 }),
+                                    "%=",
+                                    "%l:%v",
                                 },
                             },
                         })
