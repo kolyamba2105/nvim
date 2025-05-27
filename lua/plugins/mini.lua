@@ -392,6 +392,8 @@ return {
                     active = function()
                         local _, mode_hl = MiniStatusLine.section_mode({ trunc_width = 75 })
 
+                        local head = vim.fn.FugitiveHead()
+
                         return MiniStatusLine.combine_groups({
                             {
                                 hl = mode_hl,
@@ -402,7 +404,9 @@ return {
                             {
                                 hl = "StatusLine",
                                 strings = {
-                                    MiniStatusLine.section_filename({ trunc_width = 150 }),
+                                    vim.bo.buftype == "terminal" and "%t" or "%f%m",
+                                    "%<",
+                                    head ~= "" and string.format(" %s", head),
                                     "%<",
                                     MiniStatusLine.section_diff({ trunc_width = 75 }),
                                     "%<",
