@@ -56,12 +56,6 @@ vim.keymap.set("n", "<leader>v", "<cmd>vsp<cr>", {
 vim.keymap.set("n", "<C-c>", "<cmd>close<cr>", {
     desc = "Close buffer/window",
 })
-vim.keymap.set("n", "<leader>w", "<cmd>w<cr>", {
-    desc = "Save file",
-})
-vim.keymap.set("n", "<leader>W", "<cmd>wall<cr>", {
-    desc = "Save all files",
-})
 vim.keymap.set("v", "<leader>s", ":sort<cr>", {
     desc = "Sort selected items",
 })
