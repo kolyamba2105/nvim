@@ -10,4 +10,5 @@ return {
             pattern = "*.dbout",
         })
     end,
+    enabled = false,
 }
