@@ -27,22 +27,13 @@ local local_options = {
     undofile = true,
     updatetime = 100,
     wildignore = "*/tmp/*,*.so,*.swp,*.zip,*.svg,*.png,*.jpg,*.gif,node_modules",
+    winborder = "double",
     wrap = false,
     writebackup = false,
 }
 
 for k, v in pairs(local_options) do
     vim.opt[k] = v
-end
-
-local local_options_next = {
-    winborder = "double",
-}
-
-if vim.version.ge(vim.version(), "0.11.0") then
-    for k, v in pairs(local_options_next) do
-        vim.opt[k] = v
-    end
 end
 
 local global_options = {
