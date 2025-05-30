@@ -41,21 +41,7 @@ local global_options = {
     maplocalleader = " ",
 }
 
-local neovide_options = {
-    neovide_cursor_animation_length = 0.05,
-    neovide_cursor_trail_size = 0.1,
-    neovide_cursor_vfx_mode = "sonicboom",
-    neovide_input_macos_alt_is_meta = true,
-    neovide_padding_bottom = 12,
-    neovide_padding_left = 24,
-    neovide_padding_right = 24,
-    neovide_padding_top = 12,
-    neovide_scroll_animation_length = 0.3,
-}
-
-local options = vim.g.neovide and vim.tbl_extend("keep", neovide_options, global_options) or global_options
-
-for k, v in pairs(options) do
+for k, v in pairs(global_options) do
     vim.g[k] = v
 end
 
