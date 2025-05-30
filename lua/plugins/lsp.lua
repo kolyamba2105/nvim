@@ -289,6 +289,7 @@ return {
             "efm",
             "emmet_language_server",
             "eslint",
+            "gh_actions_ls",
             "html",
             "jsonls",
             "lua_ls",
