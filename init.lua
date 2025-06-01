@@ -6,6 +6,7 @@ local local_options = {
     backup = false,
     clipboard = "unnamed,unnamedplus",
     cmdheight = 2,
+    confirm = true,
     colorcolumn = "80",
     completeopt = "menuone,noselect,fuzzy",
     cursorline = true,
