@@ -84,10 +84,10 @@ local function group(name) return vim.api.nvim_create_augroup(name, { clear = fa
 
 vim.api.nvim_create_autocmd("FileType", {
     callback = function()
-        vim.opt.colorcolumn = "120"
-        vim.opt.shiftwidth = 4
-        vim.opt.softtabstop = 4
-        vim.opt.tabstop = 4
+        vim.wo.colorcolumn = "120"
+        vim.bo.shiftwidth = 4
+        vim.bo.softtabstop = 4
+        vim.bo.tabstop = 4
     end,
     desc = "Set Vim settings for Lua files",
     group = group("LuaEditorSettings"),
@@ -122,49 +122,34 @@ vim.api.nvim_create_autocmd("FileType", {
     },
 })
 
---- prettier auto-commands
-
-local filetypes = {
-    "css",
-    "graphql",
-    "html",
-    "javascript",
-    "javascript.jsx",
-    "javascriptreact",
-    "json",
-    "jsonc",
-    "markdown",
-    "scss",
-    "typescript",
-    "typescript.tsx",
-    "typescriptreact",
-    "yaml",
-}
-
 vim.api.nvim_create_autocmd("FileType", {
     callback = function()
-        local value = tonumber(vim.fn.system("prettier-output-config printWidth"))
+        local print = tostring(tonumber(vim.fn.system("prettier-output-config printWidth")))
+        local tab = tonumber(vim.fn.system("prettier-output-config tabWidth")) or 2
 
-        if value ~= nil then vim.cmd("setlocal colorcolumn=" .. value) end
+        vim.wo.colorcolumn = print
+        vim.bo.shiftwidth = tab
+        vim.bo.softtabstop = tab
+        vim.bo.tabstop = tab
     end,
-    desc = "Set colorcolumn based on Prettier printWidth",
-    group = group("PrettierOutputConfigPrintWidth"),
-    pattern = filetypes,
-})
-
-vim.api.nvim_create_autocmd("FileType", {
-    callback = function()
-        local value = tonumber(vim.fn.system("prettier-output-config tabWidth"))
-
-        if value ~= nil then
-            vim.cmd("setlocal shiftwidth=" .. value)
-            vim.cmd("setlocal softtabstop=" .. value)
-            vim.cmd("setlocal tabstop=" .. value)
-        end
-    end,
-    desc = "Set tab width based on Prettier tabWidth",
-    group = group("PettierOutputConfigTabWidth"),
-    pattern = filetypes,
+    desc = "Set editor settings based on prettier-output-config",
+    group = group("PrettierEditorSettings"),
+    pattern = {
+        "css",
+        "graphql",
+        "html",
+        "javascript",
+        "javascript.jsx",
+        "javascriptreact",
+        "json",
+        "jsonc",
+        "markdown",
+        "scss",
+        "typescript",
+        "typescript.tsx",
+        "typescriptreact",
+        "yaml",
+    },
 })
 
 --- plugin manager setup
