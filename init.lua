@@ -107,7 +107,9 @@ vim.api.nvim_create_autocmd("FileType", {
 
 vim.api.nvim_create_autocmd("FileType", {
     callback = function()
-        vim.cmd("compiler tsc | setlocal makeprg=npx\\ tsc")
+        vim.cmd.compiler("tsc")
+
+        vim.bo.makeprg = "npx tsc -b"
 
         vim.keymap.set("n", "<leader>lc", "<cmd>make<cr>", {
             desc = "Run TypeScript compiler",
