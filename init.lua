@@ -988,7 +988,7 @@ local plugins = {
         dependencies = {
             "mini.completion",
         },
-        event = "BufReadPost",
+        event = "BufReadPre",
     },
     {
         "nvim-treesitter/nvim-treesitter",
