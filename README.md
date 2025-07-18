@@ -16,7 +16,7 @@ brew upgarde neovim
 ## Install tools and language servers
 
 ```sh
-npm i -g @olrtg/emmet-language-server @tailwindcss/language-server @vtsls/language-server bash-language-server cssmodules-language-server gh-actions-language-server prettier serve typescript vscode-langservers-extracted yaml-language-server
+npm i -g @olrtg/emmet-language-server @tailwindcss/language-server @vtsls/language-server bash-language-server cssmodules-language-server gh-actions-language-server pnpm prettier serve typescript vscode-langservers-extracted yaml-language-server yarn
 ```
 
 ## Install efm language server
