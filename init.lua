@@ -277,6 +277,7 @@ local plugins = {
             local mocha = require("catppuccin.palettes").get_palette("mocha")
 
             require("catppuccin").setup({
+                auto_integrations = true,
                 color_overrides = {
                     mocha = { base = mocha.crust, mantle = mocha.crust },
                 },
@@ -291,11 +292,6 @@ local plugins = {
                     }
                 end,
                 flavour = "mocha",
-                integrations = {
-                    mini = {
-                        enabled = true,
-                    },
-                },
                 no_bold = true,
                 no_italic = true,
                 show_end_of_buffer = false,
