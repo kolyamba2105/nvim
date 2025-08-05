@@ -288,6 +288,9 @@ local plugins = {
                         ["@keyword.operator"] = {
                             fg = colors.mauve,
                         },
+                        ["@lsp.type.operator.toml"] = {
+                            fg = colors.overlay2,
+                        },
                         ["Pmenu"] = {
                             bg = mocha.mantle,
                         },
