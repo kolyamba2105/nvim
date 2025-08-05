@@ -1173,20 +1173,6 @@ local plugins = {
 
             telescope.load_extension("fzf")
             telescope.load_extension("ui-select")
-
-            if vim.version.lt(vim.version(), "0.11.0") then return end
-
-            vim.api.nvim_create_autocmd("User", {
-                pattern = "TelescopeFindPre",
-                callback = function()
-                    vim.opt.winborder = "none"
-
-                    vim.api.nvim_create_autocmd("WinLeave", {
-                        once = true,
-                        callback = function() vim.opt.winborder = "double" end,
-                    })
-                end,
-            })
         end,
         dependencies = {
             { "nvim-lua/plenary.nvim" },
