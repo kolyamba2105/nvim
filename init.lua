@@ -301,6 +301,7 @@ local plugins = {
         end,
         name = "catppuccin",
         priority = 1000,
+        version = "1.10.0",
     },
     {
         "Bekaboo/dropbar.nvim",
