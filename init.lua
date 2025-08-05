@@ -274,7 +274,12 @@ local plugins = {
     {
         "catppuccin/nvim",
         config = function()
+            local mocha = require("catppuccin.palettes").get_palette("mocha")
+
             require("catppuccin").setup({
+                color_overrides = {
+                    mocha = { base = mocha.crust, mantle = mocha.crust },
+                },
                 custom_highlights = function(colors)
                     return {
                         ["@keyword.export"] = {
