@@ -288,6 +288,15 @@ local plugins = {
                         ["@keyword.operator"] = {
                             fg = colors.mauve,
                         },
+                        ["Pmenu"] = {
+                            bg = mocha.mantle,
+                        },
+                        ["StatusLine"] = {
+                            bg = mocha.mantle,
+                        },
+                        ["StatusLineNC"] = {
+                            bg = mocha.mantle,
+                        },
                     }
                 end,
                 flavour = "mocha",
