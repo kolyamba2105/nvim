@@ -1002,6 +1002,7 @@ local plugins = {
                 "jsonls",
                 "lua_ls",
                 "tailwindcss",
+                "tombi",
                 "vtsls",
                 "yamlls",
             })
