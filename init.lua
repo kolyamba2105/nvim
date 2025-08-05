@@ -297,6 +297,9 @@ local plugins = {
                         ["StatusLineNC"] = {
                             bg = mocha.mantle,
                         },
+                        ["WinSeparator"] = {
+                            fg = mocha.mantle,
+                        },
                     }
                 end,
                 flavour = "mocha",
