@@ -193,11 +193,7 @@ local function on_attach(_, buffer)
     vim.keymap.set(
         "n",
         "<leader>k",
-        function()
-            vim.lsp.buf.hover({
-                close_events = { "BufLeave", "CursorMoved", "WinLeave" },
-            })
-        end,
+        function() vim.lsp.buf.hover({ close_events = { "BufHidden", "CursorMoved" } }) end,
         {
             buffer = buffer,
             desc = "Hover",
