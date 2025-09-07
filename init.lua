@@ -190,11 +190,20 @@ local function on_attach(_, buffer)
         desc = "Go to prev diagnostic",
         silent = true,
     })
-    vim.keymap.set("n", "<leader>k", vim.lsp.buf.hover, {
-        buffer = buffer,
-        desc = "Hover",
-        silent = true,
-    })
+    vim.keymap.set(
+        "n",
+        "<leader>k",
+        function()
+            vim.lsp.buf.hover({
+                close_events = { "BufLeave", "CursorMoved", "WinLeave" },
+            })
+        end,
+        {
+            buffer = buffer,
+            desc = "Hover",
+            silent = true,
+        }
+    )
     vim.keymap.set("n", "<leader>la", vim.lsp.buf.code_action, {
         buffer = buffer,
         desc = "Code action",
