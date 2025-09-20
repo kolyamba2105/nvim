@@ -97,15 +97,6 @@ vim.api.nvim_create_autocmd("FileType", {
 })
 
 vim.api.nvim_create_autocmd("FileType", {
-    callback = function() vim.opt.textwidth = 80 end,
-    desc = "Set editor options for *.md files",
-    group = group("MarkDownOptions"),
-    pattern = {
-        "markdown",
-    },
-})
-
-vim.api.nvim_create_autocmd("FileType", {
     callback = function()
         vim.cmd.compiler("tsc")
 
