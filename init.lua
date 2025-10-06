@@ -264,6 +264,35 @@ local function executable_path(entries)
     return nil
 end
 
+--- project-specific config
+
+--- @param path string
+--- @diagnostic disable-next-line: redefined-local
+local function read_json_file(path)
+    local file = io.open(path, "r")
+
+    if not file then error("Unable to open a file: " .. path) end
+
+    local json = file:read("a")
+
+    file:close()
+
+    return vim.json.decode(json)
+end
+
+--- @param file_path string
+local function normalise_file_path(file_path) return file_path:gsub("^~", vim.fn.expand("~")) end
+
+--- @param file_path string
+--- @param directory string
+local function is_inside_of_directory(file_path, directory) return file_path:sub(1, #directory) == directory end
+
+--- @type table<integer, string>
+local disable_format_on_save = vim.tbl_map(
+    normalise_file_path,
+    read_json_file(normalise_file_path("~/.config/nvim/disable-format-on-save.project.json"))
+)
+
 --- plugins
 
 local plugins = {
@@ -880,7 +909,13 @@ local plugins = {
                     })
 
                     vim.api.nvim_create_autocmd("BufWritePre", {
-                        callback = function() vim.lsp.buf.format() end,
+                        callback = function(event)
+                            for _, directory in pairs(disable_format_on_save) do
+                                if is_inside_of_directory(event.match, directory) then return end
+                            end
+
+                            vim.lsp.buf.format()
+                        end,
                         desc = "Format",
                         group = vim.api.nvim_create_augroup("format/efm", { clear = true }),
                     })
