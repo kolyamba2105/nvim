@@ -59,6 +59,12 @@ vim.keymap.set("n", "<leader>v", "<cmd>vsp<cr>", {
 vim.keymap.set("n", "<C-c>", "<cmd>close<cr>", {
     desc = "Close buffer/window",
 })
+vim.keymap.set("n", "<C-n>", "<cmd>bnext<cr>", {
+    desc = "Go to next buffer",
+})
+vim.keymap.set("n", "<C-p>", "<cmd>bprev<cr>", {
+    desc = "Go to prev buffer",
+})
 vim.keymap.set("v", "<leader>s", ":sort<cr>", {
     desc = "Sort selected items",
 })
