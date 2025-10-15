@@ -910,7 +910,9 @@ local plugins = {
                 filetypes = vim.tbl_keys(languages),
                 init_options = { documentFormatting = true },
                 on_attach = function(_, buffer)
-                    vim.api.nvim_buf_create_user_command(buffer, "LspFormat", function() vim.lsp.buf.format() end, {
+                    local function format() vim.lsp.buf.format({ name = "efm" }) end
+
+                    vim.api.nvim_buf_create_user_command(buffer, "LspFormat", format, {
                         desc = "EFM - Format",
                     })
 
@@ -920,7 +922,7 @@ local plugins = {
                                 if is_inside_of_directory(event.match, directory) then return end
                             end
 
-                            vim.lsp.buf.format()
+                            format()
                         end,
                         desc = "Format",
                         group = vim.api.nvim_create_augroup("format/efm", { clear = true }),
