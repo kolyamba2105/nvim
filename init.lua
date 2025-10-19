@@ -22,7 +22,6 @@ local local_options = {
     shiftwidth = 2,
     signcolumn = "yes",
     smartindent = true,
-    spell = true,
     splitbelow = true,
     splitright = true,
     swapfile = false,
