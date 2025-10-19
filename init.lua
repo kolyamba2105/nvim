@@ -934,6 +934,14 @@ local plugins = {
                 },
             })
 
+            vim.lsp.config("harper_ls", {
+                settings = {
+                    ["harper-ls"] = {
+                        userDictPath = "~/dots/harper-user-dict.txt",
+                    },
+                },
+            })
+
             vim.lsp.config("lua_ls", {
                 capabilities = capabilities,
                 on_attach = on_attach,
@@ -1053,6 +1061,7 @@ local plugins = {
                 "emmet_language_server",
                 "eslint",
                 "gh_actions_ls",
+                "harper_ls",
                 "html",
                 "jsonls",
                 "lua_ls",
