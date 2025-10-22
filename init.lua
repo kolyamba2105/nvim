@@ -937,6 +937,7 @@ local plugins = {
             vim.lsp.config("harper_ls", {
                 settings = {
                     ["harper-ls"] = {
+                        dialect = "British",
                         userDictPath = "~/dots/harper-user-dict.txt",
                     },
                 },
