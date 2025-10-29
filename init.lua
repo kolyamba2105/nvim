@@ -964,6 +964,7 @@ local plugins = {
                 },
             })
 
+            --- https://github.com/yioneko/vtsls/blob/main/packages/service/configuration.schema.json
             vim.lsp.config("vtsls", {
                 capabilities = capabilities,
                 on_attach = function(client, buffer)
@@ -996,6 +997,9 @@ local plugins = {
                             completion = {
                                 enableServerSideFuzzyMatch = true,
                                 entriesLimit = 1000,
+                            },
+                            preferences = {
+                                includePackageJsonAutoImports = "off",
                             },
                         },
                     },
@@ -1049,6 +1053,9 @@ local plugins = {
                             includeInlayPropertyDeclarationTypeHints = true,
                             includeInlayFunctionLikeReturnTypeHints = true,
                             includeInlayEnumMemberValueHints = true,
+                        },
+                        tsserver = {
+                            maxTsServerMemory = 4096,
                         },
                     },
                 },
