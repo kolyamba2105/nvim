@@ -1217,7 +1217,7 @@ local plugins = {
             local mappings = {
                 ["<c-h>"] = require("telescope.actions").file_split,
                 ["<c-x>"] = false,
-                ["<m-q>"] = function(bufnr)
+                ["<c-q>"] = function(bufnr)
                     require("telescope.actions").smart_send_to_qflist(bufnr)
                     require("telescope.builtin").quickfix()
                 end,
