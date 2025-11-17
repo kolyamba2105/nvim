@@ -212,11 +212,6 @@ local function on_attach(_, buffer)
         desc = "Open diagnostic float",
         silent = true,
     })
-    vim.keymap.set("n", "<leader>lh", function() vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled()) end, {
-        buffer = buffer,
-        desc = "Toggle inlay hints",
-        silent = true,
-    })
     vim.keymap.set("n", "<leader>ll", picker("diagnostics"), {
         buffer = buffer,
         desc = "Diagnostics",
