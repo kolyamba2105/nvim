@@ -996,14 +996,25 @@ local plugins = {
                         experimental = {
                             completion = {
                                 enableServerSideFuzzyMatch = true,
-                                entriesLimit = 1000,
-                            },
-                            preferences = {
-                                includePackageJsonAutoImports = "off",
+                                entriesLimit = 100,
                             },
                         },
                     },
+                    javascript = {
+                        preferences = {
+                            importModuleSpecifier = "non-relative",
+                            importModuleSpecifierEnding = "minimal",
+                            jsxAttributeCompletionStyle = "braces",
+                        },
+                    },
                     typescript = {
+                        preferences = {
+                            importModuleSpecifier = "non-relative",
+                            importModuleSpecifierEnding = "minimal",
+                            includePackageJsonAutoImports = "off",
+                            jsxAttributeCompletionStyle = "braces",
+                            preferTypeOnlyAutoImports = true,
+                        },
                         tsserver = {
                             maxTsServerMemory = 4096,
                         },
