@@ -1003,57 +1003,7 @@ local plugins = {
                             },
                         },
                     },
-                    javascript = {
-                        inlayHints = {
-                            enumMemberValues = {
-                                enabled = true,
-                            },
-                            functionLikeReturnTypes = {
-                                enabled = true,
-                            },
-                            parameterNames = {
-                                enabled = "literals",
-                            },
-                            parameterTypes = {
-                                enabled = true,
-                            },
-                            propertyDeclarationTypes = {
-                                enabled = true,
-                            },
-                            variableTypes = {
-                                enabled = true,
-                            },
-                        },
-                    },
                     typescript = {
-                        inlayHints = {
-                            enumMemberValues = {
-                                enabled = true,
-                            },
-                            functionLikeReturnTypes = {
-                                enabled = true,
-                            },
-                            parameterNames = {
-                                enabled = "literals",
-                            },
-                            parameterTypes = {
-                                enabled = true,
-                            },
-                            propertyDeclarationTypes = {
-                                enabled = true,
-                            },
-                            variableTypes = {
-                                enabled = true,
-                            },
-                            includeInlayParameterNameHints = "all", -- 'none' | 'literals' | 'all'
-                            includeInlayParameterNameHintsWhenArgumentMatchesName = true,
-                            includeInlayVariableTypeHints = true,
-                            includeInlayFunctionParameterTypeHints = true,
-                            includeInlayVariableTypeHintsWhenTypeMatchesName = true,
-                            includeInlayPropertyDeclarationTypeHints = true,
-                            includeInlayFunctionLikeReturnTypeHints = true,
-                            includeInlayEnumMemberValueHints = true,
-                        },
                         tsserver = {
                             maxTsServerMemory = 4096,
                         },
