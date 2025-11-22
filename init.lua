@@ -151,120 +151,6 @@ vim.api.nvim_create_autocmd("FileType", {
     },
 })
 
---- plugin manager setup
-
-local repo = "https://github.com/folke/lazy.nvim.git"
-
-local path = string.format("%s/lazy/lazy.nvim", vim.fn.stdpath("data"))
-
---- @diagnostic disable-next-line: undefined-field
-if not vim.loop.fs_stat(path) then
-    vim.fn.system({ "git", "clone", "--branch=stable", "--filter=blob:none", repo, path })
-end
-
-vim.opt.rtp:prepend(path)
-
---- telescope utils
-
---- @param name string
---- @param options? { [string]: unknown }
-local function picker(name, options)
-    return function()
-        return require("telescope.builtin")[name](vim.tbl_extend("force", { initial_mode = "insert" }, options or {}))
-    end
-end
-
---- lsp utils
-
-local function on_attach(_, buffer)
-    vim.keymap.set("n", "]g", function() vim.diagnostic.jump({ count = 1, float = true }) end, {
-        buffer = buffer,
-        desc = "Go to next diagnostic",
-        silent = true,
-    })
-    vim.keymap.set("n", "[g", function() vim.diagnostic.jump({ count = -1, float = true }) end, {
-        buffer = buffer,
-        desc = "Go to prev diagnostic",
-        silent = true,
-    })
-    vim.keymap.set(
-        "n",
-        "<leader>k",
-        function() vim.lsp.buf.hover({ close_events = { "BufHidden", "CursorMoved" } }) end,
-        {
-            buffer = buffer,
-            desc = "Hover",
-            silent = true,
-        }
-    )
-    vim.keymap.set("n", "<leader>la", vim.lsp.buf.code_action, {
-        buffer = buffer,
-        desc = "Code action",
-        silent = true,
-    })
-    vim.keymap.set("n", "<leader>ld", picker("lsp_definitions"), {
-        buffer = buffer,
-        desc = "Definitions",
-        silent = true,
-    })
-    vim.keymap.set("n", "<leader>le", vim.diagnostic.open_float, {
-        buffer = buffer,
-        desc = "Open diagnostic float",
-        silent = true,
-    })
-    vim.keymap.set("n", "<leader>ll", picker("diagnostics"), {
-        buffer = buffer,
-        desc = "Diagnostics",
-        silent = true,
-    })
-    vim.keymap.set("n", "<leader>ln", vim.lsp.buf.rename, {
-        buffer = buffer,
-        desc = "Rename",
-        silent = true,
-    })
-    vim.keymap.set("n", "<leader>lq", vim.diagnostic.setloclist, {
-        buffer = buffer,
-        desc = "Set location list",
-        silent = true,
-    })
-    vim.keymap.set("n", "<leader>lr", picker("lsp_references"), {
-        buffer = buffer,
-        desc = "References",
-        silent = true,
-    })
-    vim.keymap.set("n", "<leader>ls", picker("lsp_document_symbols"), {
-        buffer = buffer,
-        desc = "Document symbols",
-        silent = true,
-    })
-    vim.keymap.set("n", "<leader>lt", picker("lsp_type_definitions"), {
-        buffer = buffer,
-        desc = "Type definitions",
-        silent = true,
-    })
-    vim.keymap.set("n", "<leader>lw", picker("lsp_dynamic_workspace_symbols"), {
-        buffer = buffer,
-        desc = "Dynamic workspace symbols",
-        silent = true,
-    })
-end
-
---- @class Entry
---- @field priority number
---- @field path string
-
---- @param entries Entry[]
---- @return string | nil
-local function executable_path(entries)
-    table.sort(entries, function(a, b) return a.priority > b.priority end)
-
-    for _, entry in ipairs(entries) do
-        if vim.fn.filereadable(entry.path) ~= 0 then return entry.path end
-    end
-
-    return nil
-end
-
 --- project-specific config
 
 --- @param path string
@@ -293,6 +179,144 @@ local disable_format_on_save = vim.tbl_map(
     normalise_file_path,
     read_json_file(normalise_file_path("~/.config/nvim/disable-format-on-save.project.json"))
 )
+
+--- plugin manager setup
+
+local repo = "https://github.com/folke/lazy.nvim.git"
+
+local path = string.format("%s/lazy/lazy.nvim", vim.fn.stdpath("data"))
+
+--- @diagnostic disable-next-line: undefined-field
+if not vim.loop.fs_stat(path) then
+    vim.fn.system({ "git", "clone", "--branch=stable", "--filter=blob:none", repo, path })
+end
+
+vim.opt.rtp:prepend(path)
+
+--- telescope utils
+
+--- @param name string
+--- @param options? { [string]: unknown }
+local function picker(name, options)
+    return function()
+        return require("telescope.builtin")[name](vim.tbl_extend("force", { initial_mode = "insert" }, options or {}))
+    end
+end
+
+--- LSP utils
+
+--- @param client vim.lsp.Client
+--- @param bufnr integer
+local function on_attach(client, bufnr)
+    vim.keymap.set("n", "]g", function() vim.diagnostic.jump({ count = 1, float = true }) end, {
+        buffer = bufnr,
+        desc = "Go to next diagnostic",
+        silent = true,
+    })
+    vim.keymap.set("n", "[g", function() vim.diagnostic.jump({ count = -1, float = true }) end, {
+        buffer = bufnr,
+        desc = "Go to prev diagnostic",
+        silent = true,
+    })
+    vim.keymap.set(
+        "n",
+        "<leader>k",
+        function() vim.lsp.buf.hover({ close_events = { "BufHidden", "CursorMoved" } }) end,
+        {
+            buffer = bufnr,
+            desc = "Hover",
+            silent = true,
+        }
+    )
+    vim.keymap.set("n", "<leader>la", vim.lsp.buf.code_action, {
+        buffer = bufnr,
+        desc = "Code action",
+        silent = true,
+    })
+    vim.keymap.set("n", "<leader>ld", picker("lsp_definitions"), {
+        buffer = bufnr,
+        desc = "Definitions",
+        silent = true,
+    })
+    vim.keymap.set("n", "<leader>le", vim.diagnostic.open_float, {
+        buffer = bufnr,
+        desc = "Open diagnostic float",
+        silent = true,
+    })
+    vim.keymap.set("n", "<leader>ll", picker("diagnostics"), {
+        buffer = bufnr,
+        desc = "Diagnostics",
+        silent = true,
+    })
+    vim.keymap.set("n", "<leader>ln", vim.lsp.buf.rename, {
+        buffer = bufnr,
+        desc = "Rename",
+        silent = true,
+    })
+    vim.keymap.set("n", "<leader>lq", vim.diagnostic.setloclist, {
+        buffer = bufnr,
+        desc = "Set location list",
+        silent = true,
+    })
+    vim.keymap.set("n", "<leader>lr", picker("lsp_references"), {
+        buffer = bufnr,
+        desc = "References",
+        silent = true,
+    })
+    vim.keymap.set("n", "<leader>ls", picker("lsp_document_symbols"), {
+        buffer = bufnr,
+        desc = "Document symbols",
+        silent = true,
+    })
+    vim.keymap.set("n", "<leader>lt", picker("lsp_type_definitions"), {
+        buffer = bufnr,
+        desc = "Type definitions",
+        silent = true,
+    })
+    vim.keymap.set("n", "<leader>lw", picker("lsp_dynamic_workspace_symbols"), {
+        buffer = bufnr,
+        desc = "Dynamic workspace symbols",
+        silent = true,
+    })
+
+    if client.server_capabilities.documentFormattingProvider then
+        local function format()
+            vim.lsp.buf.format({ filter = function() vim.tbl_contains({ "efm", "gopls" }, client.name) end })
+        end
+
+        vim.api.nvim_buf_create_user_command(bufnr, "LspFormat", format, {
+            desc = "Format",
+        })
+
+        vim.api.nvim_create_autocmd("BufWritePre", {
+            callback = function(event)
+                for _, directory in pairs(disable_format_on_save) do
+                    if is_inside_of_directory(event.match, directory) then return end
+                end
+
+                format()
+            end,
+            desc = "Format",
+            group = vim.api.nvim_create_augroup("format", { clear = true }),
+        })
+    end
+end
+
+--- @class Entry
+--- @field priority number
+--- @field path string
+
+--- @param entries Entry[]
+--- @return string | nil
+local function executable_path(entries)
+    table.sort(entries, function(a, b) return a.priority > b.priority end)
+
+    for _, entry in ipairs(entries) do
+        if vim.fn.filereadable(entry.path) ~= 0 then return entry.path end
+    end
+
+    return nil
+end
 
 --- plugins
 
@@ -914,25 +938,7 @@ local plugins = {
                 capabilities = capabilities,
                 filetypes = vim.tbl_keys(languages),
                 init_options = { documentFormatting = true },
-                on_attach = function(_, buffer)
-                    local function format() vim.lsp.buf.format({ name = "efm" }) end
-
-                    vim.api.nvim_buf_create_user_command(buffer, "LspFormat", format, {
-                        desc = "EFM - Format",
-                    })
-
-                    vim.api.nvim_create_autocmd("BufWritePre", {
-                        callback = function(event)
-                            for _, directory in pairs(disable_format_on_save) do
-                                if is_inside_of_directory(event.match, directory) then return end
-                            end
-
-                            format()
-                        end,
-                        desc = "Format",
-                        group = vim.api.nvim_create_augroup("format/efm", { clear = true }),
-                    })
-                end,
+                on_attach = on_attach,
                 settings = {
                     languages = languages,
                     rootMarkers = { ".git", "package.json" },
