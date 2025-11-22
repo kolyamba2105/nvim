@@ -281,7 +281,7 @@ local function on_attach(client, bufnr)
 
     if client.server_capabilities.documentFormattingProvider then
         local function format()
-            vim.lsp.buf.format({ filter = function() vim.tbl_contains({ "efm", "gopls" }, client.name) end })
+            return vim.lsp.buf.format({ filter = function(c) return vim.tbl_contains({ "efm", "gopls" }, c.name) end })
         end
 
         vim.api.nvim_buf_create_user_command(bufnr, "LspFormat", format, {
