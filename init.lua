@@ -1047,6 +1047,7 @@ local plugins = {
                 "emmet_language_server",
                 "eslint",
                 "gh_actions_ls",
+                "gopls",
                 "harper_ls",
                 "html",
                 "jsonls",
