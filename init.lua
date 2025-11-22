@@ -1077,6 +1077,8 @@ local plugins = {
                     "css",
                     "dockerfile",
                     "fish",
+                    "go",
+                    "gomod",
                     "graphql",
                     "groovy",
                     "html",
