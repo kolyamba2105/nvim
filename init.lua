@@ -851,6 +851,16 @@ local plugins = {
             local prettier_config = {
                 formatCommand = string.format("%s --stdin-filepath ${INPUT}", prettier_executable),
                 formatStdin = true,
+                rootMarkers = {
+                    ".prettierrc",
+                    ".prettierrc.cjs",
+                    ".prettierrc.js",
+                    ".prettierrc.json",
+                    ".prettierrc.mjs",
+                    "prettier.config.cjs",
+                    "prettier.config.js",
+                    "prettier.config.mjs",
+                },
             }
 
             local lua_config = {
