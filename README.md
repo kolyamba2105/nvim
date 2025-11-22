@@ -16,14 +16,9 @@ brew upgarde neovim
 ## Install tools and language servers
 
 ```sh
-npm i -g @olrtg/emmet-language-server @tailwindcss/language-server @vtsls/language-server bash-language-server cssmodules-language-server gh-actions-language-server pnpm prettier serve typescript vscode-langservers-extracted yaml-language-server yarn
-```
+brew install efm-langserver go gopls harper node
 
-## Install efm language server
+npm i -g pnpm prettier serve typescript yarn
 
-```sh
-brew install efm-langserver
-
-# Without package manager
-go install github.com/mattn/efm-langserver@latest
+npm i -g @olrtg/emmet-language-server @tailwindcss/language-server @vtsls/language-server bash-language-server cssmodules-language-server gh-actions-language-server vscode-langservers-extracted yaml-language-server
 ```
