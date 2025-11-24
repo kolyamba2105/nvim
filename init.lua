@@ -509,20 +509,7 @@ local plugins = {
             require("mini.completion").setup({
                 delay = { completion = 50, info = 50, signature = 50 },
                 lsp_completion = {
-                    process_items = function(...)
-                        local items = require("mini.fuzzy").process_lsp_items(...)
-
-                        for _, item in ipairs(items) do
-                            if item.detail == "Emmet Abbreviation" then
-                                item.kind = 15
-                                item.labelDetails = nil
-                            else
-                                item.labelDetails = { detail = "C" }
-                            end
-                        end
-
-                        return items
-                    end,
+                    process_items = require("mini.fuzzy").process_lsp_items,
                 },
                 window = { info = { border = "double" }, signature = { border = "double" } },
             })
