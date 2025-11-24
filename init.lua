@@ -1050,7 +1050,6 @@ local plugins = {
                 "cssls",
                 "cssmodules_ls",
                 "efm",
-                "emmet_language_server",
                 "eslint",
                 "gh_actions_ls",
                 "gopls",
