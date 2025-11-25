@@ -1023,7 +1023,6 @@ local plugins = {
                             importModuleSpecifierEnding = "minimal",
                             includePackageJsonAutoImports = "off",
                             jsxAttributeCompletionStyle = "braces",
-                            preferTypeOnlyAutoImports = true,
                         },
                         tsserver = {
                             maxTsServerMemory = 4096,
