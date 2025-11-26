@@ -18,7 +18,7 @@ brew upgarde neovim
 ```sh
 brew install efm-langserver go gopls harper node
 
-npm i -g pnpm prettier serve typescript yarn
+npm i -g @github/copilot pnpm prettier serve typescript yarn
 
 npm i -g @tailwindcss/language-server @vtsls/language-server bash-language-server cssmodules-language-server gh-actions-language-server tombi vscode-langservers-extracted yaml-language-server
 ```
