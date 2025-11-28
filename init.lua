@@ -205,28 +205,9 @@ end
 
 --- LSP utils
 
---- @param forward boolean
-local function diagnostic(forward)
-    vim.diagnostic.jump({
-        count = forward and 1 or -1,
-        float = true,
-        severity = { min = vim.diagnostic.severity.WARN },
-    })
-end
-
 --- @param client vim.lsp.Client
 --- @param bufnr integer
 local function on_attach(client, bufnr)
-    vim.keymap.set("n", "]g", function() diagnostic(true) end, {
-        buffer = bufnr,
-        desc = "Go to next diagnostic",
-        silent = true,
-    })
-    vim.keymap.set("n", "[g", function() diagnostic(false) end, {
-        buffer = bufnr,
-        desc = "Go to prev diagnostic",
-        silent = true,
-    })
     vim.keymap.set(
         "n",
         "<leader>k",
@@ -436,11 +417,7 @@ local plugins = {
     },
     {
         "echasnovski/mini.bracketed",
-        config = function()
-            require("mini.bracketed").setup({
-                diagnostic = { options = { severity = vim.diagnostic.severity.ERROR } },
-            })
-        end,
+        config = function() require("mini.bracketed").setup({ diagnostic = { suffix = "" } }) end,
     },
     {
         "echasnovski/mini.bufremove",
@@ -851,6 +828,10 @@ local plugins = {
                 float = {
                     border = vim.g.neovide and "single" or "double",
                     show_header = false,
+                },
+                jump = {
+                    float = true,
+                    severity = { min = vim.diagnostic.severity.W },
                 },
                 severity_sort = true,
                 underline = true,
