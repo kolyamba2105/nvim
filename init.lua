@@ -308,16 +308,11 @@ local function on_attach(client, bufnr)
     end
 
     if client.server_capabilities.inlayHintProvider then
-        vim.keymap.set(
-            "n",
-            "<leader>lh",
-            function() vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled()) end,
-            {
-                buffer = bufnr,
-                desc = "Toggle inlay hints",
-                silent = true,
-            }
-        )
+        local function toggle() vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled()) end
+
+        vim.api.nvim_buf_create_user_command(bufnr, "LspInlayHint", toggle, {
+            desc = "Toggle inlay hints",
+        })
     end
 end
 
