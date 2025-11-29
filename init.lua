@@ -123,13 +123,12 @@ vim.api.nvim_create_autocmd("FileType", {
 
 vim.api.nvim_create_autocmd("FileType", {
     callback = function()
-        local print = tostring(tonumber(vim.fn.system("prettier-output-config printWidth")))
-        local tab = tonumber(vim.fn.system("prettier-output-config tabWidth")) or 2
+        if vim.fn.executable("prettier-output-config") == 0 then return end
 
-        vim.wo.colorcolumn = print
-        vim.bo.shiftwidth = tab
-        vim.bo.softtabstop = tab
-        vim.bo.tabstop = tab
+        local config = vim.json.decode(vim.fn.system("prettier-output-config"))
+
+        if config.printWidth ~= nil then vim.wo.colorcolumn = tostring(config.printWidth) end
+        if config.tabWidth ~= nil then vim.bo.shiftwidth = tonumber(config.tabWidth) end
     end,
     desc = "Set editor settings based on prettier-output-config",
     group = group("PrettierEditorSettings"),
@@ -835,11 +834,9 @@ local plugins = {
     {
         "echasnovski/mini.visits",
         config = function()
-            local visits = require("mini.visits")
+            require("mini.visits").setup()
 
-            visits.setup()
-
-            vim.keymap.set("n", "<leader>as", visits.select_path, {
+            vim.keymap.set("n", "<leader>as", MiniVisits.select_path, {
                 desc = "Select path",
                 silent = true,
             })
