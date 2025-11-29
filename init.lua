@@ -123,7 +123,9 @@ vim.api.nvim_create_autocmd("FileType", {
     callback = function()
         if vim.fn.executable("prettier-output-config") == 0 then return end
 
-        local config = vim.json.decode(vim.fn.system("prettier-output-config"))
+        local success, config = pcall(vim.json.decode, vim.fn.system("prettier-output-config"))
+
+        if not success then return end
 
         if config.printWidth ~= nil then vim.wo.colorcolumn = tostring(config.printWidth) end
         if config.tabWidth ~= nil then vim.bo.shiftwidth = tonumber(config.tabWidth) end
