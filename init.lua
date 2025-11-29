@@ -157,7 +157,6 @@ vim.diagnostic.config({
     },
     jump = {
         float = true,
-        severity = { min = vim.diagnostic.severity.W },
     },
     severity_sort = true,
     underline = true,
