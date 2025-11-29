@@ -151,6 +151,22 @@ vim.api.nvim_create_autocmd("FileType", {
     },
 })
 
+--- diagnostics
+
+vim.diagnostic.config({
+    float = {
+        border = vim.g.neovide and "single" or "double",
+        show_header = false,
+    },
+    jump = {
+        float = true,
+        severity = { min = vim.diagnostic.severity.W },
+    },
+    severity_sort = true,
+    underline = true,
+    virtual_text = false,
+})
+
 --- project-specific config
 
 --- @param path string
@@ -243,7 +259,7 @@ local function on_attach(client, bufnr)
         desc = "Rename",
         silent = true,
     })
-    vim.keymap.set("n", "<leader>lq", vim.diagnostic.setloclist, {
+    vim.keymap.set("n", "<leader>lq", vim.diagnostic.setqflist, {
         buffer = bufnr,
         desc = "Set location list",
         silent = true,
@@ -837,20 +853,6 @@ local plugins = {
     {
         "neovim/nvim-lspconfig",
         config = function()
-            vim.diagnostic.config({
-                float = {
-                    border = vim.g.neovide and "single" or "double",
-                    show_header = false,
-                },
-                jump = {
-                    float = true,
-                    severity = { min = vim.diagnostic.severity.W },
-                },
-                severity_sort = true,
-                underline = true,
-                virtual_text = false,
-            })
-
             local capabilities = require("mini.completion").get_lsp_capabilities()
 
             capabilities.textDocument.completion.completionItem.snippetSupport = true
