@@ -132,7 +132,6 @@ vim.api.nvim_create_autocmd("FileType", {
     group = group("PrettierEditorSettings"),
     pattern = {
         "css",
-        "graphql",
         "html",
         "javascript",
         "javascript.jsx",
@@ -1104,7 +1103,6 @@ local plugins = {
                     "fish",
                     "go",
                     "gomod",
-                    "graphql",
                     "groovy",
                     "html",
                     "javascript",
