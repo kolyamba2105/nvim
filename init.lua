@@ -92,8 +92,6 @@ vim.api.nvim_create_autocmd("FileType", {
     callback = function()
         vim.wo.colorcolumn = "120"
         vim.bo.shiftwidth = 4
-        vim.bo.softtabstop = 4
-        vim.bo.tabstop = 4
     end,
     desc = "Set Vim settings for Lua files",
     group = group("LuaEditorSettings"),
