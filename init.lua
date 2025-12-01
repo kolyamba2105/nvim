@@ -149,7 +149,7 @@ vim.api.nvim_create_autocmd("FileType", {
     },
 })
 
---- diagnostics
+--- diagnostic
 
 vim.diagnostic.config({
     float = {
@@ -161,7 +161,7 @@ vim.diagnostic.config({
     },
     severity_sort = true,
     underline = {
-        severity = { min = vim.diagnostic.severity.E },
+        severity = { min = vim.diagnostic.severity.W },
     },
     virtual_text = false,
 })
