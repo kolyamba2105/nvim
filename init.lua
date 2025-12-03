@@ -959,7 +959,9 @@ local plugins = {
                 },
             })
 
-            local indentSize = tonumber(vim.fn.system("prettier-output-config tabWidth")) or 2
+            local success, config = pcall(vim.json.decode, vim.fn.system("prettier-output-config"))
+
+            local indentSize = success and config.tabWidth ~= nil and tonumber(config.tabWidth) or 2
 
             --- https://github.com/yioneko/vtsls/blob/main/packages/service/configuration.schema.json
             vim.lsp.config("vtsls", {
