@@ -1011,17 +1011,11 @@ local plugins = {
                     },
                     javascript = {
                         inlayHints = {
-                            enumMemberValues = {
-                                enabled = true,
-                            },
                             functionLikeReturnTypes = {
                                 enabled = true,
                             },
                             parameterNames = {
                                 enabled = "literals",
-                            },
-                            parameterTypes = {
-                                enabled = true,
                             },
                             propertyDeclarationTypes = {
                                 enabled = true,
@@ -1038,6 +1032,9 @@ local plugins = {
                     },
                     typescript = {
                         inlayHints = {
+                            enumMemberValues = {
+                                enabled = true,
+                            },
                             functionLikeReturnTypes = {
                                 enabled = true,
                             },
