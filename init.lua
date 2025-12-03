@@ -1079,7 +1079,7 @@ local plugins = {
                 "lua_ls",
                 "tailwindcss",
                 "tombi",
-                "tsgo",
+                "vtsls",
                 "yamlls",
             })
         end,
