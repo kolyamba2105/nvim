@@ -1058,7 +1058,8 @@ local plugins = {
                             jsxAttributeCompletionStyle = "braces",
                         },
                         tsserver = {
-                            maxTsServerMemory = 4096,
+                            maxTsServerMemory = 8192,
+                            nodePath = "/opt/homebrew/bin/node",
                         },
                     },
                 },
