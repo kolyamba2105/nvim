@@ -7,6 +7,7 @@
   "mini.bracketed": { "branch": "main", "commit": "e50e3abcf6a3a5d234f58e4a247dfb3035f30a65" },
   "mini.bufremove": { "branch": "main", "commit": "10857aa39160c127694151828914df3131ba83b6" },
   "mini.clue": { "branch": "main", "commit": "c465495a962d8bcca1718666ec33769b6f6969ad" },
+  "mini.cmdline": { "branch": "main", "commit": "c96216461df3b02abca31a0e360847750357137a" },
   "mini.completion": { "branch": "main", "commit": "7c5edfc0e479dd4edd898cc9ddd1920d8c1ce420" },
   "mini.cursorword": { "branch": "main", "commit": "dda0f57d55bb1fa19423b7201b2ba892c7d2bb3c" },
   "mini.diff": { "branch": "main", "commit": "fbb93ea1728e7c9d0944df8bd022a68402bd2e7e" },

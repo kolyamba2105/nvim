@@ -513,6 +513,11 @@ local plugins = {
         event = "VeryLazy",
     },
     {
+
+        "nvim-mini/mini.cmdline",
+        config = function() require("mini.cmdline").setup() end,
+    },
+    {
         "nvim-mini/mini.completion",
         config = function()
             require("mini.completion").setup({
