@@ -418,12 +418,12 @@ local plugins = {
         main = "ibl",
     },
     {
-        "echasnovski/mini.ai",
+        "nvim-mini/mini.ai",
         config = function() require("mini.ai").setup() end,
         event = "BufRead",
     },
     {
-        "echasnovski/mini.basics",
+        "nvim-mini/mini.basics",
         config = function()
             require("mini.basics").setup({
                 autocommands = {
@@ -439,11 +439,11 @@ local plugins = {
         end,
     },
     {
-        "echasnovski/mini.bracketed",
+        "nvim-mini/mini.bracketed",
         config = function() require("mini.bracketed").setup({ diagnostic = { suffix = "" } }) end,
     },
     {
-        "echasnovski/mini.bufremove",
+        "nvim-mini/mini.bufremove",
         config = function()
             require("mini.bufremove").setup()
 
@@ -454,7 +454,7 @@ local plugins = {
         end,
     },
     {
-        "echasnovski/mini.clue",
+        "nvim-mini/mini.clue",
         config = function()
             local clue = require("mini.clue")
 
@@ -513,7 +513,7 @@ local plugins = {
         event = "VeryLazy",
     },
     {
-        "echasnovski/mini.completion",
+        "nvim-mini/mini.completion",
         config = function()
             require("mini.completion").setup({
                 delay = { completion = 50, info = 50, signature = 50 },
@@ -524,12 +524,12 @@ local plugins = {
             })
         end,
         dependencies = {
-            "echasnovski/mini.fuzzy",
+            "nvim-mini/mini.fuzzy",
         },
         event = "VeryLazy",
     },
     {
-        "echasnovski/mini.cursorword",
+        "nvim-mini/mini.cursorword",
         config = function()
             local colors = require("catppuccin.palettes").get_palette("mocha")
 
@@ -544,7 +544,7 @@ local plugins = {
         event = "BufRead",
     },
     {
-        "echasnovski/mini.diff",
+        "nvim-mini/mini.diff",
         config = function()
             require("mini.diff").setup({
                 options = {
@@ -564,7 +564,7 @@ local plugins = {
         end,
     },
     {
-        "echasnovski/mini.files",
+        "nvim-mini/mini.files",
         config = function()
             require("mini.files").setup({
                 content = {
@@ -588,12 +588,12 @@ local plugins = {
         event = "VeryLazy",
     },
     {
-        "echasnovski/mini.fuzzy",
+        "nvim-mini/mini.fuzzy",
         config = function() require("mini.fuzzy").setup() end,
         event = "VeryLazy",
     },
     {
-        "echasnovski/mini.hipatterns",
+        "nvim-mini/mini.hipatterns",
         config = function()
             require("mini.hipatterns").setup({
                 highlighters = {
@@ -604,7 +604,7 @@ local plugins = {
         event = "BufRead",
     },
     {
-        "echasnovski/mini.icons",
+        "nvim-mini/mini.icons",
         config = function()
             require("mini.icons").setup()
 
@@ -614,7 +614,7 @@ local plugins = {
         event = "VeryLazy",
     },
     {
-        "echasnovski/mini.indentscope",
+        "nvim-mini/mini.indentscope",
         config = function()
             require("mini.indentscope").setup({
                 draw = {
@@ -626,7 +626,7 @@ local plugins = {
         event = "BufRead",
     },
     {
-        "echasnovski/mini.jump2d",
+        "nvim-mini/mini.jump2d",
         config = function()
             require("mini.jump2d").setup({
                 mappings = {
@@ -640,7 +640,7 @@ local plugins = {
         event = "BufRead",
     },
     {
-        "echasnovski/mini.map",
+        "nvim-mini/mini.map",
         config = function()
             local MiniMap = require("mini.map")
 
@@ -689,7 +689,7 @@ local plugins = {
         event = "VeryLazy",
     },
     {
-        "echasnovski/mini.misc",
+        "nvim-mini/mini.misc",
         config = function()
             require("mini.misc").setup()
 
@@ -706,7 +706,7 @@ local plugins = {
         end,
     },
     {
-        "echasnovski/mini.move",
+        "nvim-mini/mini.move",
         config = function()
             require("mini.move").setup({
                 mappings = {
@@ -726,7 +726,7 @@ local plugins = {
         event = "VeryLazy",
     },
     {
-        "echasnovski/mini.notify",
+        "nvim-mini/mini.notify",
         config = function()
             require("mini.notify").setup({
                 content = {
@@ -750,17 +750,17 @@ local plugins = {
         end,
     },
     {
-        "echasnovski/mini.operators",
+        "nvim-mini/mini.operators",
         config = function() require("mini.operators").setup() end,
         event = "VeryLazy",
     },
     {
-        "echasnovski/mini.pairs",
+        "nvim-mini/mini.pairs",
         config = function() require("mini.pairs").setup() end,
         event = "VeryLazy",
     },
     {
-        "echasnovski/mini.snippets",
+        "nvim-mini/mini.snippets",
         config = function()
             require("mini.snippets").setup({
                 snippets = {
@@ -774,12 +774,12 @@ local plugins = {
         enabled = false,
     },
     {
-        "echasnovski/mini.splitjoin",
+        "nvim-mini/mini.splitjoin",
         config = function() require("mini.splitjoin").setup() end,
         event = "VeryLazy",
     },
     {
-        "echasnovski/mini.statusline",
+        "nvim-mini/mini.statusline",
         config = function()
             local MiniStatusLine = require("mini.statusline")
 
@@ -819,20 +819,20 @@ local plugins = {
         end,
     },
     {
-        "echasnovski/mini.surround",
+        "nvim-mini/mini.surround",
         config = function() require("mini.surround").setup() end,
         event = "VeryLazy",
     },
     {
-        "echasnovski/mini.tabline",
+        "nvim-mini/mini.tabline",
         config = function() require("mini.tabline").setup() end,
     },
     {
-        "echasnovski/mini.trailspace",
+        "nvim-mini/mini.trailspace",
         config = function() require("mini.trailspace").setup() end,
     },
     {
-        "echasnovski/mini.visits",
+        "nvim-mini/mini.visits",
         config = function()
             require("mini.visits").setup()
 
