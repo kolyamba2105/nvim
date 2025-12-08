@@ -516,6 +516,7 @@ local plugins = {
 
         "nvim-mini/mini.cmdline",
         config = function() require("mini.cmdline").setup() end,
+        enabled = false,
     },
     {
         "nvim-mini/mini.completion",
@@ -1280,6 +1281,9 @@ local plugins = {
             })
         end,
         enabled = false,
+    },
+    {
+        "tpope/vim-dispatch",
     },
     {
         "tpope/vim-fugitive",
