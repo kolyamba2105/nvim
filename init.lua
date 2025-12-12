@@ -936,6 +936,7 @@ local plugins = {
             })
 
             vim.lsp.config("harper_ls", {
+                filetypes = { "markdown" },
                 settings = {
                     ["harper-ls"] = {
                         dialect = "British",
