@@ -806,7 +806,7 @@ local plugins = {
                             {
                                 hl = "StatusLine",
                                 strings = {
-                                    vim.bo.buftype == "terminal" and "%t" or "%f%m",
+                                    vim.bo.buftype == "terminal" and "%t" or "%t%m",
                                     "%<",
                                     head ~= "" and string.format(" %s", head),
                                     "%<",
