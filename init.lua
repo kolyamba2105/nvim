@@ -160,9 +160,7 @@ vim.diagnostic.config({
         float = true,
     },
     severity_sort = true,
-    underline = {
-        severity = { min = vim.diagnostic.severity.W },
-    },
+    underline = true,
     virtual_text = false,
 })
 
