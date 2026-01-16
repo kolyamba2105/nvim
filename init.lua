@@ -231,11 +231,6 @@ local function on_attach(client, bufnr)
         desc = "Definitions",
         silent = true,
     })
-    vim.keymap.set("n", "<leader>le", vim.diagnostic.open_float, {
-        buffer = bufnr,
-        desc = "Open diagnostic float",
-        silent = true,
-    })
     vim.keymap.set("n", "<leader>ll", picker("diagnostics"), {
         buffer = bufnr,
         desc = "Diagnostics",
