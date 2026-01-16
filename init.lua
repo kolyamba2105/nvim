@@ -246,11 +246,6 @@ local function on_attach(client, bufnr)
         desc = "Rename",
         silent = true,
     })
-    vim.keymap.set("n", "<leader>lq", vim.diagnostic.setqflist, {
-        buffer = bufnr,
-        desc = "Set location list",
-        silent = true,
-    })
     vim.keymap.set("n", "<leader>lr", picker("lsp_references"), {
         buffer = bufnr,
         desc = "References",
