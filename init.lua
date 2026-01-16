@@ -224,42 +224,34 @@ local function on_attach(client, bufnr)
     vim.keymap.set("n", "<leader>la", vim.lsp.buf.code_action, {
         buffer = bufnr,
         desc = "Code action",
-        silent = true,
     })
     vim.keymap.set("n", "<leader>ld", picker("lsp_definitions"), {
         buffer = bufnr,
         desc = "Definitions",
-        silent = true,
     })
     vim.keymap.set("n", "<leader>ll", picker("diagnostics"), {
         buffer = bufnr,
         desc = "Diagnostics",
-        silent = true,
     })
     vim.keymap.set("n", "<leader>ln", vim.lsp.buf.rename, {
         buffer = bufnr,
         desc = "Rename",
-        silent = true,
     })
     vim.keymap.set("n", "<leader>lr", picker("lsp_references"), {
         buffer = bufnr,
         desc = "References",
-        silent = true,
     })
     vim.keymap.set("n", "<leader>ls", picker("lsp_document_symbols"), {
         buffer = bufnr,
         desc = "Document symbols",
-        silent = true,
     })
     vim.keymap.set("n", "<leader>lt", picker("lsp_type_definitions"), {
         buffer = bufnr,
         desc = "Type definitions",
-        silent = true,
     })
     vim.keymap.set("n", "<leader>lw", picker("lsp_dynamic_workspace_symbols"), {
         buffer = bufnr,
         desc = "Dynamic workspace symbols",
-        silent = true,
     })
 
     if client.server_capabilities.documentFormattingProvider then
