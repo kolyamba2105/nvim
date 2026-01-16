@@ -221,35 +221,39 @@ end
 --- @param client vim.lsp.Client
 --- @param bufnr integer
 local function on_attach(client, bufnr)
-    vim.keymap.set("n", "<leader>la", vim.lsp.buf.code_action, {
+    vim.keymap.set("n", "gra", vim.lsp.buf.code_action, {
         buffer = bufnr,
         desc = "Code action",
     })
-    vim.keymap.set("n", "<leader>ld", picker("lsp_definitions"), {
+    vim.keymap.set("n", "grd", picker("lsp_definitions"), {
         buffer = bufnr,
         desc = "Definitions",
     })
-    vim.keymap.set("n", "<leader>ll", picker("diagnostics"), {
+    vim.keymap.set("n", "gri", picker("lsp_implementations"), {
+        buffer = bufnr,
+        desc = "Implementations",
+    })
+    vim.keymap.set("n", "grl", picker("diagnostics"), {
         buffer = bufnr,
         desc = "Diagnostics",
     })
-    vim.keymap.set("n", "<leader>ln", vim.lsp.buf.rename, {
+    vim.keymap.set("n", "grn", vim.lsp.buf.rename, {
         buffer = bufnr,
         desc = "Rename",
     })
-    vim.keymap.set("n", "<leader>lr", picker("lsp_references"), {
+    vim.keymap.set("n", "grr", picker("lsp_references"), {
         buffer = bufnr,
         desc = "References",
     })
-    vim.keymap.set("n", "<leader>ls", picker("lsp_document_symbols"), {
+    vim.keymap.set("n", "grs", picker("lsp_document_symbols"), {
         buffer = bufnr,
         desc = "Document symbols",
     })
-    vim.keymap.set("n", "<leader>lt", picker("lsp_type_definitions"), {
+    vim.keymap.set("n", "grt", picker("lsp_type_definitions"), {
         buffer = bufnr,
         desc = "Type definitions",
     })
-    vim.keymap.set("n", "<leader>lw", picker("lsp_dynamic_workspace_symbols"), {
+    vim.keymap.set("n", "grw", picker("lsp_dynamic_workspace_symbols"), {
         buffer = bufnr,
         desc = "Dynamic workspace symbols",
     })
@@ -436,6 +440,11 @@ local plugins = {
                     clue.gen_clues.z(),
 
                     {
+                        desc = "LSP",
+                        keys = "gr",
+                        mode = "n",
+                    },
+                    {
                         desc = "Telescope",
                         keys = "<Leader>f",
                         mode = "n",
@@ -443,11 +452,6 @@ local plugins = {
                     {
                         desc = "Git",
                         keys = "<Leader>g",
-                        mode = "n",
-                    },
-                    {
-                        desc = "LSP",
-                        keys = "<Leader>l",
                         mode = "n",
                     },
                     {
