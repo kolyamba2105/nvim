@@ -221,16 +221,6 @@ end
 --- @param client vim.lsp.Client
 --- @param bufnr integer
 local function on_attach(client, bufnr)
-    vim.keymap.set(
-        "n",
-        "<leader>k",
-        function() vim.lsp.buf.hover({ close_events = { "BufHidden", "CursorMoved" } }) end,
-        {
-            buffer = bufnr,
-            desc = "Hover",
-            silent = true,
-        }
-    )
     vim.keymap.set("n", "<leader>la", vim.lsp.buf.code_action, {
         buffer = bufnr,
         desc = "Code action",
