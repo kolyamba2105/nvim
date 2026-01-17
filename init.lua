@@ -52,27 +52,35 @@ end
 
 vim.keymap.set("n", "<leader>h", "<cmd>sp<cr>", {
     desc = "Create horizontal split",
+    silent = true,
 })
 vim.keymap.set("n", "<leader>v", "<cmd>vsp<cr>", {
     desc = "Create vertical split",
+    silent = true,
 })
 vim.keymap.set("n", "<C-c>", "<cmd>close<cr>", {
     desc = "Close buffer/window",
+    silent = true,
 })
 vim.keymap.set("n", "<C-n>", "<cmd>bnext<cr>", {
     desc = "Go to next buffer",
+    silent = true,
 })
 vim.keymap.set("n", "<C-p>", "<cmd>bprev<cr>", {
     desc = "Go to prev buffer",
+    silent = true,
 })
 vim.keymap.set("v", "<leader>s", ":sort<cr>", {
     desc = "Sort selected items",
+    silent = true,
 })
 vim.keymap.set("n", "Q", "@q", {
     desc = "Apply macro",
+    silent = true,
 })
 vim.keymap.set("v", "Q", ":norm @q<cr>", {
     desc = "Apply macro multiple times",
+    silent = true,
 })
 
 --- commands
@@ -108,6 +116,7 @@ vim.api.nvim_create_autocmd("FileType", {
 
         vim.keymap.set("n", "<leader>lc", "<cmd>make<cr>", {
             desc = "Run TypeScript compiler",
+            silent = true,
         })
     end,
     desc = "Set compiler options for TypeScript files",
@@ -224,38 +233,47 @@ local function on_attach(client, bufnr)
     vim.keymap.set("n", "gra", vim.lsp.buf.code_action, {
         buffer = bufnr,
         desc = "Code action",
+        silent = true,
     })
     vim.keymap.set("n", "grd", picker("lsp_definitions"), {
         buffer = bufnr,
         desc = "Definitions",
+        silent = true,
     })
     vim.keymap.set("n", "gri", picker("lsp_implementations"), {
         buffer = bufnr,
         desc = "Implementations",
+        silent = true,
     })
     vim.keymap.set("n", "grl", picker("diagnostics"), {
         buffer = bufnr,
         desc = "Diagnostics",
+        silent = true,
     })
     vim.keymap.set("n", "grn", vim.lsp.buf.rename, {
         buffer = bufnr,
         desc = "Rename",
+        silent = true,
     })
     vim.keymap.set("n", "grr", picker("lsp_references"), {
         buffer = bufnr,
         desc = "References",
+        silent = true,
     })
     vim.keymap.set("n", "grs", picker("lsp_document_symbols"), {
         buffer = bufnr,
         desc = "Document symbols",
+        silent = true,
     })
     vim.keymap.set("n", "grt", picker("lsp_type_definitions"), {
         buffer = bufnr,
         desc = "Type definitions",
+        silent = true,
     })
     vim.keymap.set("n", "grw", picker("lsp_dynamic_workspace_symbols"), {
         buffer = bufnr,
         desc = "Dynamic workspace symbols",
+        silent = true,
     })
 
     if client.server_capabilities.documentFormattingProvider then
