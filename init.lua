@@ -317,7 +317,7 @@ local function on_attach(client, bufnr)
     if client.server_capabilities.inlayHintProvider then
         local function toggle() vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled()) end
 
-        vim.api.nvim_buf_create_user_command(bufnr, "LspInlayHint", toggle, {
+        vim.api.nvim_buf_create_user_command(bufnr, "LspInlayHintToggle", toggle, {
             desc = "Toggle inlay hints",
         })
     end
