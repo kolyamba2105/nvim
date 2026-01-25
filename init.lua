@@ -298,6 +298,22 @@ local function on_attach(client, bufnr)
         })
     end
 
+    if client.server_capabilities.codeLensProvider then
+        local code_lens = {
+            hide = function() vim.lsp.codelens.clear(client.id, bufnr) end,
+            show = function() vim.lsp.codelens.refresh({ bufnr = bufnr }) end,
+        }
+
+        code_lens.show()
+
+        vim.api.nvim_buf_create_user_command(bufnr, "LspCodeLensShow", code_lens.show, {
+            desc = "Show code lens",
+        })
+        vim.api.nvim_buf_create_user_command(bufnr, "LspCodeLensHide", code_lens.hide, {
+            desc = "Hide code lens",
+        })
+    end
+
     if client.server_capabilities.inlayHintProvider then
         local function toggle() vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled()) end
 
@@ -941,8 +957,17 @@ local plugins = {
                             importModuleSpecifierEnding = "minimal",
                             jsxAttributeCompletionStyle = "braces",
                         },
+                        referencesCodeLens = {
+                            enabled = true,
+                            showOnAllFunctions = true,
+                        },
                     },
                     typescript = {
+                        implementationsCodeLens = {
+                            enabled = true,
+                            showOnAllClassMethods = true,
+                            showOnInterfaceMethods = true,
+                        },
                         inlayHints = {
                             enumMemberValues = {
                                 enabled = true,
@@ -968,6 +993,10 @@ local plugins = {
                             importModuleSpecifierEnding = "minimal",
                             includePackageJsonAutoImports = "off",
                             jsxAttributeCompletionStyle = "braces",
+                        },
+                        referencesCodeLens = {
+                            enabled = true,
+                            showOnAllFunctions = true,
                         },
                         tsserver = {
                             maxTsServerMemory = 8192,
