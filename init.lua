@@ -300,8 +300,8 @@ local function on_attach(client, bufnr)
 
     if client.server_capabilities.codeLensProvider then
         local code_lens = {
-            hide = function() vim.lsp.codelens.clear(client.id, bufnr) end,
-            show = function() vim.lsp.codelens.refresh({ bufnr = bufnr }) end,
+            hide = function() vim.lsp.codelens.clear() end,
+            show = function() vim.lsp.codelens.refresh() end,
         }
 
         code_lens.show()
