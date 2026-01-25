@@ -410,13 +410,12 @@ local plugins = {
         main = "ibl",
     },
     {
-        "nvim-mini/mini.ai",
-        config = function() require("mini.ai").setup() end,
-        event = "BufRead",
-    },
-    {
-        "nvim-mini/mini.basics",
+        "nvim-mini/mini.nvim",
         config = function()
+            -- mini.ai
+            require("mini.ai").setup()
+
+            -- mini.basics
             require("mini.basics").setup({
                 autocommands = {
                     relnum_in_visual_mode = true,
@@ -428,34 +427,27 @@ local plugins = {
                     win_borders = vim.g.neovide and "single" or "double",
                 },
             })
-        end,
-    },
-    {
-        "nvim-mini/mini.bracketed",
-        config = function() require("mini.bracketed").setup({ diagnostic = { suffix = "" } }) end,
-    },
-    {
-        "nvim-mini/mini.bufremove",
-        config = function()
+
+            -- mini.bracketed
+            require("mini.bracketed").setup({ diagnostic = { suffix = "" } })
+
+            -- mini.bufremove
             require("mini.bufremove").setup()
 
             vim.keymap.set("n", "<C-x>", require("mini.bufremove").delete, {
                 desc = "Remove buffer",
                 silent = true,
             })
-        end,
-    },
-    {
-        "nvim-mini/mini.clue",
-        config = function()
-            local clue = require("mini.clue")
 
-            clue.setup({
+            -- mini.clue
+            local MiniClue = require("mini.clue")
+
+            MiniClue.setup({
                 clues = {
-                    clue.gen_clues.builtin_completion(),
-                    clue.gen_clues.g(),
-                    clue.gen_clues.windows(),
-                    clue.gen_clues.z(),
+                    MiniClue.gen_clues.builtin_completion(),
+                    MiniClue.gen_clues.g(),
+                    MiniClue.gen_clues.windows(),
+                    MiniClue.gen_clues.z(),
 
                     {
                         desc = "LSP",
@@ -501,18 +493,8 @@ local plugins = {
                     delay = 1000,
                 },
             })
-        end,
-        event = "VeryLazy",
-    },
-    {
 
-        "nvim-mini/mini.cmdline",
-        config = function() require("mini.cmdline").setup() end,
-        enabled = false,
-    },
-    {
-        "nvim-mini/mini.completion",
-        config = function()
+            -- mini.completion
             require("mini.completion").setup({
                 delay = { completion = 50, info = 50, signature = 50 },
                 lsp_completion = {
@@ -520,30 +502,16 @@ local plugins = {
                 },
                 window = { info = { border = "double" }, signature = { border = "double" } },
             })
-        end,
-        dependencies = {
-            "nvim-mini/mini.fuzzy",
-        },
-        event = "VeryLazy",
-    },
-    {
-        "nvim-mini/mini.cursorword",
-        config = function()
+
+            -- mini.cursorword
             local colors = require("catppuccin.palettes").get_palette("mocha")
 
             require("mini.cursorword").setup({ delay = 1000 })
 
             vim.api.nvim_set_hl(0, "MiniCursorword", { bg = colors.surface1, fg = colors.peach })
             vim.api.nvim_set_hl(0, "MiniCursorwordCurrent", { bg = colors.surface1, fg = colors.peach })
-        end,
-        dependencies = {
-            "catppuccin/nvim",
-        },
-        event = "BufRead",
-    },
-    {
-        "nvim-mini/mini.diff",
-        config = function()
+
+            -- mini.diff
             require("mini.diff").setup({
                 options = {
                     wrap_goto = true,
@@ -559,11 +527,8 @@ local plugins = {
                 desc = "Show diff",
                 silent = true,
             })
-        end,
-    },
-    {
-        "nvim-mini/mini.files",
-        config = function()
+
+            -- mini.files
             require("mini.files").setup({
                 content = {
                     filter = function(entry) return entry.name ~= ".DS_Store" end,
@@ -582,50 +547,32 @@ local plugins = {
                 desc = "Open mini.files (cwd)",
                 silent = true,
             })
-        end,
-        event = "VeryLazy",
-    },
-    {
-        "nvim-mini/mini.fuzzy",
-        config = function() require("mini.fuzzy").setup() end,
-        event = "VeryLazy",
-    },
-    {
-        "nvim-mini/mini.hipatterns",
-        config = function()
+
+            -- mini.fuzzy
+            require("mini.fuzzy").setup()
+
+            -- mini.hipatterns
             require("mini.hipatterns").setup({
                 highlighters = {
                     hex_color = require("mini.hipatterns").gen_highlighter.hex_color(),
                 },
             })
-        end,
-        event = "BufRead",
-    },
-    {
-        "nvim-mini/mini.icons",
-        config = function()
+
+            -- mini.icons
             require("mini.icons").setup()
 
             require("mini.icons").mock_nvim_web_devicons()
             require("mini.icons").tweak_lsp_kind()
-        end,
-        event = "VeryLazy",
-    },
-    {
-        "nvim-mini/mini.indentscope",
-        config = function()
+
+            -- mini.indentscope
             require("mini.indentscope").setup({
                 draw = {
                     delay = 10,
                     animation = function() return 10 end,
                 },
             })
-        end,
-        event = "BufRead",
-    },
-    {
-        "nvim-mini/mini.jump2d",
-        config = function()
+
+            -- mini.jump2d
             require("mini.jump2d").setup({
                 mappings = {
                     start_jumping = "<leader>j",
@@ -634,12 +581,8 @@ local plugins = {
                     dim = true,
                 },
             })
-        end,
-        event = "BufRead",
-    },
-    {
-        "nvim-mini/mini.map",
-        config = function()
+
+            -- mini.map
             local MiniMap = require("mini.map")
 
             MiniMap.setup({
@@ -683,12 +626,8 @@ local plugins = {
                 desc = "Toggle",
                 silent = true,
             })
-        end,
-        event = "VeryLazy",
-    },
-    {
-        "nvim-mini/mini.misc",
-        config = function()
+
+            -- mini.misc
             require("mini.misc").setup()
 
             vim.api.nvim_create_user_command("ToggleZoom", function()
@@ -701,11 +640,8 @@ local plugins = {
 
                 require("mini.misc").zoom(0, { col = center, title = file_name, width = window_width })
             end, { desc = "Toggle zoom" })
-        end,
-    },
-    {
-        "nvim-mini/mini.move",
-        config = function()
+
+            -- mini.move
             require("mini.move").setup({
                 mappings = {
                     -- stylua: ignore start
@@ -720,17 +656,12 @@ local plugins = {
                     -- stylua: ignore end
                 },
             })
-        end,
-        event = "VeryLazy",
-    },
-    {
-        "nvim-mini/mini.notify",
-        config = function()
+
+            -- mini.notify
             require("mini.notify").setup({
                 content = {
                     format = function(notification)
                         local time = vim.fn.strftime("%H:%M:%S", math.floor(notification.ts_update))
-
                         return string.format("%s -> %s", time, notification.msg)
                     end,
                 },
@@ -745,49 +676,33 @@ local plugins = {
             })
 
             vim.notify = require("mini.notify").make_notify()
-        end,
-    },
-    {
-        "nvim-mini/mini.operators",
-        config = function() require("mini.operators").setup() end,
-        event = "VeryLazy",
-    },
-    {
-        "nvim-mini/mini.pairs",
-        config = function() require("mini.pairs").setup() end,
-        event = "VeryLazy",
-    },
-    {
-        "nvim-mini/mini.snippets",
-        config = function()
-            require("mini.snippets").setup({
+
+            -- mini.operators
+            require("mini.operators").setup()
+
+            -- mini.pairs
+            require("mini.pairs").setup()
+
+            -- mini.snippets
+            local MiniSnippets = require("mini.snippets")
+
+            MiniSnippets.setup({
                 snippets = {
-                    require("mini.snippets").gen_loader.from_lang(),
+                    MiniSnippets.gen_loader.from_lang(),
                 },
             })
-        end,
-        dependencies = {
-            "rafamadriz/friendly-snippets",
-        },
-        enabled = false,
-    },
-    {
-        "nvim-mini/mini.splitjoin",
-        config = function() require("mini.splitjoin").setup() end,
-        event = "VeryLazy",
-    },
-    {
-        "nvim-mini/mini.statusline",
-        config = function()
+
+            -- mini.splitjoin
+            require("mini.splitjoin").setup()
+
+            -- mini.statusline
             local MiniStatusLine = require("mini.statusline")
 
             MiniStatusLine.setup({
                 content = {
                     active = function()
                         local _, mode_hl = MiniStatusLine.section_mode({ trunc_width = 75 })
-
                         local head = vim.fn.FugitiveHead()
-
                         return MiniStatusLine.combine_groups({
                             {
                                 hl = mode_hl,
@@ -814,31 +729,29 @@ local plugins = {
                 },
                 set_vim_settings = false,
             })
-        end,
-    },
-    {
-        "nvim-mini/mini.surround",
-        config = function() require("mini.surround").setup() end,
-        event = "VeryLazy",
-    },
-    {
-        "nvim-mini/mini.tabline",
-        config = function() require("mini.tabline").setup() end,
-    },
-    {
-        "nvim-mini/mini.trailspace",
-        config = function() require("mini.trailspace").setup() end,
-    },
-    {
-        "nvim-mini/mini.visits",
-        config = function()
+
+            -- mini.surround
+            require("mini.surround").setup()
+
+            -- mini.tabline
+            require("mini.tabline").setup()
+
+            -- mini.trailspace
+            require("mini.trailspace").setup()
+
+            -- mini.visits
             require("mini.visits").setup()
 
-            vim.keymap.set("n", "<leader>as", MiniVisits.select_path, {
+            vim.keymap.set("n", "<leader>as", require("mini.visits").select_path, {
                 desc = "Select path",
                 silent = true,
             })
         end,
+        dependencies = {
+            "catppuccin/nvim",
+            "rafamadriz/friendly-snippets",
+        },
+        version = false,
     },
     {
         "neovim/nvim-lspconfig",
@@ -1083,7 +996,7 @@ local plugins = {
             })
         end,
         dependencies = {
-            "mini.completion",
+            "nvim-mini/mini.nvim",
         },
         event = "BufReadPre",
     },
