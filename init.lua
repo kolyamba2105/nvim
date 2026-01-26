@@ -295,10 +295,14 @@ local function on_attach(client, bufnr)
     if client.server_capabilities.codeLensProvider then
         local code_lens = {
             hide = function() vim.lsp.codelens.clear() end,
-            show = function() vim.lsp.codelens.refresh() end,
+            show = function() vim.lsp.codelens.refresh({ bufnr = 0 }) end,
         }
 
-        code_lens.show()
+        vim.api.nvim_create_autocmd("BufEnter", {
+            callback = code_lens.show,
+            desc = "Show code lens",
+            group = vim.api.nvim_create_augroup("codeLens/refresh", { clear = true }),
+        })
 
         vim.api.nvim_buf_create_user_command(bufnr, "LspCodeLensShow", code_lens.show, {
             desc = "Show code lens",
