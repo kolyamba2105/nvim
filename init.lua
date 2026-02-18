@@ -458,8 +458,11 @@ local plugins = {
 
             MiniClue.setup({
                 clues = {
+                    MiniClue.gen_clues.square_brackets(),
                     MiniClue.gen_clues.builtin_completion(),
                     MiniClue.gen_clues.g(),
+                    MiniClue.gen_clues.marks(),
+                    MiniClue.gen_clues.registers(),
                     MiniClue.gen_clues.windows(),
                     MiniClue.gen_clues.z(),
 
