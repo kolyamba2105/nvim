@@ -50,18 +50,6 @@ end
 
 --- mappings
 
-vim.keymap.set("n", "<leader>h", "<cmd>sp<cr>", {
-    desc = "Create horizontal split",
-    silent = true,
-})
-vim.keymap.set("n", "<leader>v", "<cmd>vsp<cr>", {
-    desc = "Create vertical split",
-    silent = true,
-})
-vim.keymap.set("n", "<C-c>", "<cmd>close<cr>", {
-    desc = "Close buffer/window",
-    silent = true,
-})
 vim.keymap.set("n", "<C-n>", "<cmd>bnext<cr>", {
     desc = "Go to next buffer",
     silent = true,
@@ -70,12 +58,24 @@ vim.keymap.set("n", "<C-p>", "<cmd>bprev<cr>", {
     desc = "Go to prev buffer",
     silent = true,
 })
-vim.keymap.set("v", "<leader>s", ":sort<cr>", {
-    desc = "Sort selected items",
+vim.keymap.set("n", "<leader>c", "<cmd>close<cr>", {
+    desc = "Close buffer/window",
+    silent = true,
+})
+vim.keymap.set("n", "<leader>h", "<cmd>sp<cr>", {
+    desc = "Create horizontal split",
+    silent = true,
+})
+vim.keymap.set("n", "<leader>v", "<cmd>vsp<cr>", {
+    desc = "Create vertical split",
     silent = true,
 })
 vim.keymap.set("n", "Q", "@q", {
     desc = "Apply macro",
+    silent = true,
+})
+vim.keymap.set("v", "<leader>s", ":sort<cr>", {
+    desc = "Sort selected items",
     silent = true,
 })
 vim.keymap.set("v", "Q", ":norm @q<cr>", {
@@ -448,7 +448,7 @@ local plugins = {
             -- mini.bufremove
             require("mini.bufremove").setup()
 
-            vim.keymap.set("n", "<C-x>", require("mini.bufremove").delete, {
+            vim.keymap.set("n", "<leader>x", require("mini.bufremove").delete, {
                 desc = "Remove buffer",
                 silent = true,
             })
