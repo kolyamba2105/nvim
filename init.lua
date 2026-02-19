@@ -444,7 +444,7 @@ local plugins = {
             -- mini.bufremove
             require("mini.bufremove").setup()
 
-            vim.keymap.set("n", "<leader>x", require("mini.bufremove").delete, {
+            vim.keymap.set("n", "<C-w>a", require("mini.bufremove").delete, {
                 desc = "Remove buffer",
                 silent = true,
             })
