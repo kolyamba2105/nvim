@@ -58,10 +58,6 @@ vim.keymap.set("n", "<C-p>", "<cmd>bprev<cr>", {
     desc = "Go to prev buffer",
     silent = true,
 })
-vim.keymap.set("n", "<leader>c", "<cmd>close<cr>", {
-    desc = "Close buffer/window",
-    silent = true,
-})
 vim.keymap.set("n", "<leader>h", "<cmd>sp<cr>", {
     desc = "Create horizontal split",
     silent = true,
