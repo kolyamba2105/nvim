@@ -1028,62 +1028,73 @@ local plugins = {
     },
     {
         "nvim-treesitter/nvim-treesitter",
+        branch = "main",
         build = ":TSUpdate",
         config = function()
-            --- @diagnostic disable-next-line: missing-fields
-            require("nvim-treesitter.configs").setup({
-                context_commentstring = {
-                    enable = true,
-                },
-                ensure_installed = {
-                    "bash",
-                    "comment",
-                    "css",
-                    "dockerfile",
-                    "fish",
-                    "go",
-                    "gomod",
-                    "groovy",
-                    "html",
-                    "javascript",
-                    "jsdoc",
-                    "json",
-                    "jsonc",
-                    "kdl",
-                    "lua",
-                    "markdown",
-                    "prisma",
-                    "scss",
-                    "sql",
-                    "toml",
-                    "tsx",
-                    "typescript",
-                    "vimdoc",
-                    "yaml",
-                },
-                highlight = {
-                    enable = true,
-                    disable = function(_, buf)
-                        local max_file_size = 100 * 1024 -- 100 KB
+            local parsers = {
+                "bash",
+                "comment",
+                "css",
+                "diff",
+                "dockerfile",
+                "embedded_template",
+                "fish",
+                "git_config",
+                "git_rebase",
+                "gitcommit",
+                "gitignore",
+                "go",
+                "gomod",
+                "groovy",
+                "html",
+                "http",
+                "javascript",
+                "jq",
+                "jsdoc",
+                "json",
+                "kdl",
+                "lua",
+                "luadoc",
+                "markdown",
+                "markdown_inline",
+                "prisma",
+                "query",
+                "regex",
+                "scss",
+                "sql",
+                "toml",
+                "tsx",
+                "typescript",
+                "vim",
+                "vimdoc",
+                "yaml",
+            }
 
-                        --- @diagnostic disable-next-line: undefined-field
-                        local ok, stats = pcall(vim.loop.fs_stat, vim.api.nvim_buf_get_name(buf))
+            require("nvim-treesitter").install(parsers)
 
-                        return ok and stats and stats.size > max_file_size
-                    end,
-                },
-                incremental_selection = {
-                    enable = false,
-                },
-                indent = {
-                    enable = true,
-                },
+            vim.api.nvim_create_autocmd("FileType", {
+                callback = function(args)
+                    local language = vim.treesitter.language.get_lang(args.match)
+
+                    if not language then return end
+
+                    if not vim.treesitter.language.add(language) then return end
+
+                    --- @diagnostic disable-next-line: undefined-field
+                    local ok, stats = pcall(vim.uv.fs_stat, vim.api.nvim_buf_get_name(args.buf))
+
+                    if ok and stats and stats.size > 100 * 1024 then return end
+
+                    vim.treesitter.start(args.buf, language)
+
+                    vim.bo[args.buf].indentexpr = 'v:lua.require("nvim-treesitter").indentexpr()'
+                end,
             })
 
             vim.wo.foldmethod = "expr"
-            vim.wo.foldexpr = "nvim_treesitter#foldexpr()"
+            vim.wo.foldexpr = "v:lua.vim.treesitter.foldexpr()"
         end,
-        event = "BufRead",
+        lazy = false,
     },
     {
         "nvim-telescope/telescope.nvim",
