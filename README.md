@@ -13,7 +13,7 @@ brew list --pinned
 brew upgarde neovim
 ```
 
-## Install tools and language servers
+## Install Tools and Language Servers
 
 ```sh
 brew install efm-langserver go gopls harper node
