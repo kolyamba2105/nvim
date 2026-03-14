@@ -990,6 +990,7 @@ local plugins = {
                             importModuleSpecifierEnding = "minimal",
                             includePackageJsonAutoImports = "off",
                             jsxAttributeCompletionStyle = "braces",
+                            preferTypeOnlyAutoImports = true,
                         },
                         referencesCodeLens = {
                             enabled = true,
