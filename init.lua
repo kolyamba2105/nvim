@@ -113,7 +113,6 @@ vim.api.nvim_create_autocmd("FileType", {
     group = group("TypeScriptOptions"),
     pattern = {
         "typescript",
-        "typescript.tsx",
         "typescriptreact",
     },
 })
@@ -135,14 +134,12 @@ vim.api.nvim_create_autocmd("FileType", {
         "css",
         "html",
         "javascript",
-        "javascript.jsx",
         "javascriptreact",
         "json",
         "jsonc",
         "markdown",
         "scss",
         "typescript",
-        "typescript.tsx",
         "typescriptreact",
         "yaml",
     },
