@@ -952,7 +952,6 @@ local plugins = {
                         preferences = {
                             importModuleSpecifier = "non-relative",
                             importModuleSpecifierEnding = "minimal",
-                            jsxAttributeCompletionStyle = "braces",
                         },
                         referencesCodeLens = {
                             enabled = true,
@@ -989,7 +988,6 @@ local plugins = {
                             importModuleSpecifier = "non-relative",
                             importModuleSpecifierEnding = "minimal",
                             includePackageJsonAutoImports = "off",
-                            jsxAttributeCompletionStyle = "braces",
                             preferTypeOnlyAutoImports = true,
                         },
                         referencesCodeLens = {
