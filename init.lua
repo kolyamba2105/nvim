@@ -1071,6 +1071,8 @@ local plugins = {
 
             require("nvim-treesitter").install(parsers)
 
+            vim.treesitter.language.register("tsx", "typescriptreact")
+
             vim.api.nvim_create_autocmd("FileType", {
                 callback = function(args)
                     local language = vim.treesitter.language.get_lang(args.match)
