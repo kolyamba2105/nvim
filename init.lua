@@ -286,23 +286,23 @@ local function on_attach(client, bufnr)
     end
 
     if client.server_capabilities.codeLensProvider then
-        local code_lens = {
-            hide = function() vim.lsp.codelens.clear() end,
-            show = function() vim.lsp.codelens.refresh({ bufnr = 0 }) end,
-        }
-
         vim.api.nvim_create_autocmd("BufEnter", {
-            callback = code_lens.show,
-            desc = "Show code lens",
+            callback = function() vim.lsp.codelens.refresh({ bufnr = 0 }) end,
+            desc = "Refresh code lenses",
             group = vim.api.nvim_create_augroup("codeLens/refresh", { clear = true }),
         })
 
-        vim.api.nvim_buf_create_user_command(bufnr, "LspCodeLensShow", code_lens.show, {
-            desc = "Show code lens",
+        vim.api.nvim_buf_create_user_command(bufnr, "LspCodeLensClear", function() vim.lsp.codelens.clear() end, {
+            desc = "Clear code lenses",
         })
-        vim.api.nvim_buf_create_user_command(bufnr, "LspCodeLensHide", code_lens.hide, {
-            desc = "Hide code lens",
-        })
+        vim.api.nvim_buf_create_user_command(
+            bufnr,
+            "LspCodeLensRefresh",
+            function() vim.lsp.codelens.refresh({ bufnr = 0 }) end,
+            {
+                desc = "Refresh code lenses",
+            }
+        )
     end
 
     if client.server_capabilities.inlayHintProvider then
