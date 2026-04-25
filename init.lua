@@ -449,7 +449,7 @@ local plugins = {
                         mode = "n",
                     },
                     {
-                        desc = "Telescope",
+                        desc = "Picker",
                         keys = "<Leader>f",
                         mode = "n",
                     },
