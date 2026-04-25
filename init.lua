@@ -369,23 +369,6 @@ local plugins = {
         version = "1.10.0",
     },
     {
-        "Bekaboo/dropbar.nvim",
-        dependencies = {
-            "nvim-telescope/telescope-fzf-native.nvim",
-        },
-        enabled = false,
-        opts = {
-            bar = {
-                padding = {
-                    left = 6,
-                },
-            },
-            win_configs = {
-                border = vim.g.neovide and "single" or "double",
-            },
-        },
-    },
-    {
         "lukas-reineke/indent-blankline.nvim",
         config = function()
             require("ibl").setup({
