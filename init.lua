@@ -337,6 +337,12 @@ local plugins = {
                         ["@lsp.type.operator.toml"] = {
                             fg = colors.overlay2,
                         },
+                        ["MiniPickBorderText"] = {
+                            fg = colors.text,
+                        },
+                        ["MiniPickPrompt"] = {
+                            fg = colors.text,
+                        },
                         ["Pmenu"] = {
                             bg = mocha.mantle,
                         },
