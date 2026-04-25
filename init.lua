@@ -340,6 +340,13 @@ local plugins = {
                         ["MiniPickBorderText"] = {
                             fg = colors.text,
                         },
+                        ["MiniPickMatchRanges"] = {
+                            fg = colors.mauve,
+                        },
+                        ["MiniPickPreviewRegion"] = {
+                            bg = colors.mauve,
+                            fg = colors.crust,
+                        },
                         ["MiniPickPrompt"] = {
                             fg = colors.text,
                         },
