@@ -772,6 +772,10 @@ local plugins = {
                 desc = "Commits",
                 silent = true,
             })
+            vim.keymap.set("n", "<leader>gh", function() require("mini.extra").pickers.git_hunks() end, {
+                desc = "Hunks",
+                silent = true,
+            })
             vim.keymap.set("n", "<leader>gr", function() require("mini.extra").pickers.git_branches() end, {
                 desc = "Branches",
                 silent = true,
