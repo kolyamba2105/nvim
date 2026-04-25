@@ -695,6 +695,10 @@ local plugins = {
                 })
             end
 
+            vim.keymap.set("n", "<leader>fa", require("mini.pick").builtin.resume, {
+                desc = "Resume",
+                silent = true,
+            })
             vim.keymap.set("n", "<leader>fb", require("mini.pick").builtin.buffers, {
                 desc = "Buffers",
                 silent = true,
