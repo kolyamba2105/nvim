@@ -202,16 +202,6 @@ end
 
 vim.opt.rtp:prepend(path)
 
---- telescope utils
-
---- @param name string
---- @param options? { [string]: unknown }
-local function picker(name, options)
-    return function()
-        return require("telescope.builtin")[name](vim.tbl_extend("force", { initial_mode = "insert" }, options or {}))
-    end
-end
-
 --- LSP utils
 
 --- @param client vim.lsp.Client
@@ -222,17 +212,17 @@ local function on_attach(client, bufnr)
         desc = "Code action",
         silent = true,
     })
-    vim.keymap.set("n", "grd", picker("lsp_definitions"), {
+    vim.keymap.set("n", "grd", function() require("mini.extra").pickers.lsp({ scope = "definition" }) end, {
         buffer = bufnr,
         desc = "Definitions",
         silent = true,
     })
-    vim.keymap.set("n", "gri", picker("lsp_implementations"), {
+    vim.keymap.set("n", "gri", function() require("mini.extra").pickers.lsp({ scope = "implementation" }) end, {
         buffer = bufnr,
         desc = "Implementations",
         silent = true,
     })
-    vim.keymap.set("n", "grl", picker("diagnostics"), {
+    vim.keymap.set("n", "grl", function() require("mini.extra").pickers.diagnostic() end, {
         buffer = bufnr,
         desc = "Diagnostics",
         silent = true,
@@ -242,22 +232,22 @@ local function on_attach(client, bufnr)
         desc = "Rename",
         silent = true,
     })
-    vim.keymap.set("n", "grr", picker("lsp_references"), {
+    vim.keymap.set("n", "grr", function() require("mini.extra").pickers.lsp({ scope = "references" }) end, {
         buffer = bufnr,
         desc = "References",
         silent = true,
     })
-    vim.keymap.set("n", "grs", picker("lsp_document_symbols"), {
+    vim.keymap.set("n", "grs", function() require("mini.extra").pickers.lsp({ scope = "document_symbol" }) end, {
         buffer = bufnr,
         desc = "Document symbols",
         silent = true,
     })
-    vim.keymap.set("n", "grt", picker("lsp_type_definitions"), {
+    vim.keymap.set("n", "grt", function() require("mini.extra").pickers.lsp({ scope = "type_definition" }) end, {
         buffer = bufnr,
         desc = "Type definitions",
         silent = true,
     })
-    vim.keymap.set("n", "grw", picker("lsp_dynamic_workspace_symbols"), {
+    vim.keymap.set("n", "grw", function() require("mini.extra").pickers.lsp({ scope = "workspace_symbol_live" }) end, {
         buffer = bufnr,
         desc = "Dynamic workspace symbols",
         silent = true,
@@ -532,6 +522,9 @@ local plugins = {
                 silent = true,
             })
 
+            -- mini.extra
+            require("mini.extra").setup()
+
             -- mini.files
             require("mini.files").setup({
                 content = {
@@ -686,6 +679,103 @@ local plugins = {
 
             -- mini.pairs
             require("mini.pairs").setup()
+
+            -- mini.pick
+            require("mini.pick").setup()
+
+            --- @diagnostic disable-next-line: duplicate-set-field
+            vim.ui.select = function(items, opts, on_choice)
+                local format = opts and opts.format_item or tostring
+
+                local width = 0
+
+                for _, item in ipairs(items) do
+                    width = math.max(width, vim.fn.strwidth(format(item)))
+                end
+
+                local border = 1
+                local offset = 1
+                local height = #items
+
+                return require("mini.pick").ui_select(items, opts, on_choice, {
+                    window = {
+                        config = function()
+                            return {
+                                relative = "cursor",
+                                col = 0,
+                                row = height + border * 2 + offset,
+                                width = width,
+                                height = height,
+                            }
+                        end,
+                    },
+                })
+            end
+
+            vim.keymap.set("n", "<leader>fb", require("mini.pick").builtin.buffers, {
+                desc = "Buffers",
+                silent = true,
+            })
+            vim.keymap.set("n", "<leader>fc", function() require("mini.extra").pickers.history({ scope = ":" }) end, {
+                desc = "Command history",
+                silent = true,
+            })
+            vim.keymap.set("n", "<leader>ff", require("mini.pick").builtin.files, {
+                desc = "Find files",
+                silent = true,
+            })
+            vim.keymap.set("n", "<leader>fg", require("mini.pick").builtin.grep_live, {
+                desc = "Live grep",
+                silent = true,
+            })
+            vim.keymap.set("n", "<leader>fh", require("mini.pick").builtin.help, {
+                desc = "Help tags",
+                silent = true,
+            })
+            vim.keymap.set("n", "<leader>fj", function() require("mini.extra").pickers.list({ scope = "jump" }) end, {
+                desc = "JumpList",
+                silent = true,
+            })
+            vim.keymap.set("n", "<leader>fm", function() require("mini.extra").pickers.marks() end, {
+                desc = "Marks",
+                silent = true,
+            })
+            vim.keymap.set(
+                "n",
+                "<leader>fq",
+                function() require("mini.extra").pickers.list({ scope = "quickfix" }) end,
+                {
+                    desc = "QuickFix list",
+                    silent = true,
+                }
+            )
+            vim.keymap.set(
+                "n",
+                "<leader>fr",
+                function() require("mini.pick").builtin.grep({ pattern = vim.fn.expand("<cword>") }) end,
+                {
+                    desc = "Grep string",
+                    silent = true,
+                }
+            )
+            vim.keymap.set("n", "<leader>fs", function() require("mini.extra").pickers.history({ scope = "/" }) end, {
+                desc = "Search history",
+                silent = true,
+            })
+            vim.keymap.set("n", "<leader>ft", function() require("mini.extra").pickers.treesitter() end, {
+                desc = "Treesitter",
+                silent = true,
+            })
+
+            -- Git
+            vim.keymap.set("n", "<leader>gc", function() require("mini.extra").pickers.git_commits() end, {
+                desc = "Commits",
+                silent = true,
+            })
+            vim.keymap.set("n", "<leader>gr", function() require("mini.extra").pickers.git_branches() end, {
+                desc = "Branches",
+                silent = true,
+            })
 
             -- mini.snippets
             local MiniSnippets = require("mini.snippets")
@@ -1087,123 +1177,6 @@ local plugins = {
             vim.wo.foldexpr = "v:lua.vim.treesitter.foldexpr()"
         end,
         lazy = false,
-    },
-    {
-        "nvim-telescope/telescope.nvim",
-        config = function()
-            local telescope = require("telescope")
-
-            vim.keymap.set("n", "<leader>fa", picker("resume"), {
-                desc = "Resume",
-                silent = true,
-            })
-            vim.keymap.set("n", "<leader>fb", picker("buffers"), {
-                desc = "Buffers",
-                silent = true,
-            })
-            vim.keymap.set("n", "<leader>fc", picker("command_history"), {
-                desc = "Command history",
-                silent = true,
-            })
-            vim.keymap.set("n", "<leader>ff", picker("find_files"), {
-                desc = "Find files",
-                silent = true,
-            })
-            vim.keymap.set("n", "<leader>fg", picker("live_grep"), {
-                desc = "Live grep",
-                silent = true,
-            })
-            vim.keymap.set("n", "<leader>fh", picker("help_tags"), {
-                desc = "Help tags",
-                silent = true,
-            })
-            vim.keymap.set("n", "<leader>fj", picker("jumplist"), {
-                desc = "JumpList",
-                silent = true,
-            })
-            vim.keymap.set("n", "<leader>fm", picker("marks"), {
-                desc = "Marks",
-                silent = true,
-            })
-            vim.keymap.set("n", "<leader>fq", picker("quickfix"), {
-                desc = "QuickFix list",
-                silent = true,
-            })
-            vim.keymap.set("n", "<leader>fr", picker("grep_string"), {
-                desc = "Grep string",
-                silent = true,
-            })
-            vim.keymap.set("n", "<leader>fs", picker("search_history"), {
-                desc = "Search history",
-                silent = true,
-            })
-            vim.keymap.set("n", "<leader>ft", picker("treesitter"), {
-                desc = "Treesitter",
-                silent = true,
-            })
-
-            -- Git
-            vim.keymap.set("n", "<leader>gc", picker("git_commits"), {
-                desc = "Commits",
-                silent = true,
-            })
-            vim.keymap.set("n", "<leader>gr", picker("git_branches"), {
-                desc = "Branches",
-                silent = true,
-            })
-            vim.keymap.set("n", "<leader>gs", picker("git_status"), {
-                desc = "Status",
-                silent = true,
-            })
-            vim.keymap.set("n", "<leader>gt", picker("git_stash"), {
-                desc = "Stash",
-                silent = true,
-            })
-
-            local mappings = {
-                ["<c-h>"] = require("telescope.actions").file_split,
-                ["<c-x>"] = false,
-                ["<c-q>"] = function(bufnr)
-                    require("telescope.actions").smart_send_to_qflist(bufnr)
-                    require("telescope.builtin").quickfix()
-                end,
-            }
-
-            telescope.setup({
-                defaults = require("telescope.themes").get_ivy({
-                    initial_mode = "insert",
-                    mappings = { i = mappings, n = mappings },
-                }),
-                extensions = {
-                    ["ui-select"] = require("telescope.themes").get_cursor({
-                        initial_mode = "insert",
-                    }),
-                },
-                pickers = {
-                    buffers = {
-                        mappings = {
-                            i = {
-                                ["<c-x>"] = "delete_buffer",
-                            },
-                            n = {
-                                ["<c-x>"] = "delete_buffer",
-                            },
-                        },
-                    },
-                    find_files = {
-                        hidden = true,
-                    },
-                },
-            })
-
-            telescope.load_extension("fzf")
-            telescope.load_extension("ui-select")
-        end,
-        dependencies = {
-            { "nvim-lua/plenary.nvim" },
-            { "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
-            { "nvim-telescope/telescope-ui-select.nvim" },
-        },
     },
     {
         "tpope/vim-dadbod",
