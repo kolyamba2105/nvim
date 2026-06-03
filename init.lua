@@ -107,7 +107,7 @@ vim.api.nvim_create_autocmd("FileType", {
 vim.api.nvim_create_autocmd("FileType", {
     callback = function()
         vim.cmd.compiler("tsc")
-        vim.bo.makeprg = "npx tsc -b"
+        vim.bo.makeprg = "npx tsc -b --noEmit"
     end,
     desc = "Set compiler options for TypeScript files",
     group = group("TypeScriptOptions"),
