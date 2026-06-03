@@ -625,7 +625,10 @@ local plugins = {
 
             vim.api.nvim_create_user_command("ToggleZoom", function()
                 local screen_width = vim.opt.columns:get()
-                local window_width = 160
+
+                local success, config = pcall(vim.json.decode, vim.fn.system("prettier-output-config"))
+
+                local window_width = success and config.printWidth ~= nil and tonumber(config.printWidth) or 160
 
                 local center = (screen_width - window_width) / 2
 
