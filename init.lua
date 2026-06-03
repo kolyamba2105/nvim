@@ -625,13 +625,9 @@ local plugins = {
 
             vim.api.nvim_create_user_command("ToggleZoom", function()
                 local screen_width = vim.opt.columns:get()
-
                 local success, config = pcall(vim.json.decode, vim.fn.system("prettier-output-config"))
-
                 local window_width = success and config.printWidth ~= nil and tonumber(config.printWidth) or 160
-
                 local center = (screen_width - window_width) / 2
-
                 local file_name = vim.fn.fnamemodify(vim.api.nvim_buf_get_name(0), ":." .. vim.fn.getcwd())
 
                 require("mini.misc").zoom(0, { col = center, title = file_name, width = window_width })
