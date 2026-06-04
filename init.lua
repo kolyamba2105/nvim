@@ -337,6 +337,9 @@ local plugins = {
                         ["@lsp.type.operator.toml"] = {
                             fg = colors.overlay2,
                         },
+                        ["MiniInputPrompt"] = {
+                            fg = colors.blue,
+                        },
                         ["MiniPickBorderText"] = {
                             fg = colors.text,
                         },
@@ -564,6 +567,8 @@ local plugins = {
                     animation = function() return 10 end,
                 },
             })
+
+            require("mini.input").setup()
 
             -- mini.jump2d
             require("mini.jump2d").setup({
