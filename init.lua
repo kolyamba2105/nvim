@@ -889,6 +889,11 @@ local plugins = {
                 formatStdin = true,
             }
 
+            local tombi_config = {
+                formatCommand = "tombi format -",
+                formatStdin = true,
+            }
+
             local languages = {
                 css = {
                     prettier_config,
@@ -919,6 +924,9 @@ local plugins = {
                 },
                 scss = {
                     prettier_config,
+                },
+                toml = {
+                    tombi_config,
                 },
                 typescript = {
                     prettier_config,
