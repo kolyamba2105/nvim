@@ -154,6 +154,7 @@ vim.diagnostic.config({
     },
     jump = {
         on_jump = function(_, bufnr) vim.diagnostic.open_float({ bufnr = bufnr, focus = false, scope = "cursor" }) end,
+        severity = vim.diagnostic.severity.ERROR,
     },
     severity_sort = true,
     underline = true,
