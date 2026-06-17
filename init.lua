@@ -153,7 +153,7 @@ vim.diagnostic.config({
         show_header = false,
     },
     jump = {
-        float = true,
+        on_jump = function(_, bufnr) vim.diagnostic.open_float({ bufnr = bufnr, focus = false, scope = "cursor" }) end,
     },
     severity_sort = true,
     underline = true,
