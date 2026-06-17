@@ -218,14 +218,14 @@ local function on_attach(client, bufnr)
         desc = "Definitions",
         silent = true,
     })
+    vim.keymap.set("n", "gre", function() require("mini.extra").pickers.diagnostic() end, {
+        buffer = bufnr,
+        desc = "Diagnostics",
+        silent = true,
+    })
     vim.keymap.set("n", "gri", function() require("mini.extra").pickers.lsp({ scope = "implementation" }) end, {
         buffer = bufnr,
         desc = "Implementations",
-        silent = true,
-    })
-    vim.keymap.set("n", "grl", function() require("mini.extra").pickers.diagnostic() end, {
-        buffer = bufnr,
-        desc = "Diagnostics",
         silent = true,
     })
     vim.keymap.set("n", "grn", vim.lsp.buf.rename, {
@@ -1245,4 +1245,11 @@ local plugins = {
     },
 }
 
-require("lazy").setup(plugins, { change_detection = { enabled = false } })
+require("lazy").setup(plugins, {
+    change_detection = {
+        enabled = false,
+    },
+    rocks = {
+        enabled = false,
+    },
+})
