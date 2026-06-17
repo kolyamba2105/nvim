@@ -329,12 +329,6 @@ local plugins = {
                 },
                 custom_highlights = function(colors)
                     return {
-                        ["@keyword.export"] = {
-                            fg = colors.mauve,
-                        },
-                        ["@keyword.operator"] = {
-                            fg = colors.mauve,
-                        },
                         ["@lsp.type.operator.toml"] = {
                             fg = colors.overlay2,
                         },
