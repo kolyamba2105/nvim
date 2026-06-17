@@ -376,14 +376,13 @@ local plugins = {
                 },
                 no_bold = true,
                 no_italic = true,
-                show_end_of_buffer = false,
             })
 
-            vim.cmd.colorscheme("catppuccin")
+            vim.cmd.colorscheme("catppuccin-nvim")
         end,
         name = "catppuccin",
         priority = 1000,
-        version = "1.10.0",
+        version = false,
     },
     {
         "lukas-reineke/indent-blankline.nvim",
