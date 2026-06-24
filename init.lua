@@ -154,7 +154,9 @@ vim.diagnostic.config({
     },
     jump = {
         on_jump = function(_, bufnr) vim.diagnostic.open_float({ bufnr = bufnr, focus = false, scope = "cursor" }) end,
-        severity = vim.diagnostic.severity.ERROR,
+        severity = {
+            min = vim.diagnostic.severity.WARN,
+        },
     },
     severity_sort = true,
     underline = true,
@@ -413,7 +415,14 @@ local plugins = {
             })
 
             -- mini.bracketed
-            require("mini.bracketed").setup({ diagnostic = { suffix = "" } })
+            require("mini.bracketed").setup({
+                diagnostic = {
+                    options = {
+                        severity = vim.diagnostic.severity.ERROR,
+                    },
+                    suffix = "e",
+                },
+            })
 
             -- mini.bufremove
             require("mini.bufremove").setup()
