@@ -1093,6 +1093,56 @@ local plugins = {
                 },
             })
 
+            vim.lsp.config("tsgo", {
+                capabilities = capabilities,
+                cmd = { "/opt/homebrew/bin/tsgo", "--lsp", "--stdio" },
+                filetypes = {
+                    "javascript",
+                    "javascriptreact",
+                    "typescript",
+                    "typescriptreact",
+                },
+                on_attach = function(client, buffer)
+                    on_attach(client, buffer)
+
+                    local function organise_imports()
+                        vim.lsp.buf.code_action({
+                            apply = true,
+                            context = { diagnostics = {}, only = { "source.organizeImports" } },
+                        })
+                    end
+
+                    vim.api.nvim_buf_create_user_command(buffer, "LspOrganiseImports", organise_imports, {
+                        desc = "[JS/TS] Organise imports",
+                    })
+                end,
+                root_markers = { "tsconfig.json", "jsconfig.json", "package.json", ".git" },
+                settings = {
+                    typescript = {
+                        inlayHints = {
+                            enumMemberValues = {
+                                enabled = true,
+                            },
+                            functionLikeReturnTypes = {
+                                enabled = true,
+                            },
+                            parameterNames = {
+                                enabled = "literals",
+                            },
+                            parameterTypes = {
+                                enabled = true,
+                            },
+                            propertyDeclarationTypes = {
+                                enabled = true,
+                            },
+                            variableTypes = {
+                                enabled = true,
+                            },
+                        },
+                    },
+                },
+            })
+
             vim.lsp.enable({
                 "bashls",
                 "cssls",
