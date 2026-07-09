@@ -276,16 +276,10 @@ local function on_attach(client, bufnr)
     end
 
     if client.server_capabilities.codeLensProvider then
-        vim.api.nvim_buf_create_user_command(
-            bufnr,
-            "LspCodeLensDisable",
-            function() vim.lsp.codelens.enable(false) end,
-            {
-                desc = "Disable code lenses",
-            }
-        )
-        vim.api.nvim_buf_create_user_command(bufnr, "LspCodeLensEnable", function() vim.lsp.codelens.enable(true) end, {
-            desc = "Enable code lenses",
+        local function toggle() vim.lsp.codelens.enable(not vim.lsp.codelens.is_enabled()) end
+
+        vim.api.nvim_buf_create_user_command(bufnr, "LspCodeLensToggle", toggle, {
+            desc = "Toggle code lenses",
         })
     end
 
