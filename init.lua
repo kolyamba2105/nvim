@@ -374,7 +374,7 @@ local plugins = {
                 no_italic = true,
             })
 
-            vim.cmd.colorscheme("catppuccin-nvim")
+            vim.cmd.colorscheme("catppuccin-mocha")
         end,
         name = "catppuccin",
         priority = 1000,
