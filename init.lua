@@ -322,6 +322,15 @@ local plugins = {
                 },
                 custom_highlights = function(colors)
                     return {
+                        ["@keyword.conditional.ternary"] = {
+                            fg = colors.text,
+                        },
+                        ["@keyword.export"] = {
+                            fg = colors.mauve,
+                        },
+                        ["@keyword.operator"] = {
+                            fg = colors.mauve,
+                        },
                         ["@lsp.type.operator.toml"] = {
                             fg = colors.overlay2,
                         },
@@ -365,7 +374,7 @@ local plugins = {
                 no_italic = true,
             })
 
-            vim.cmd.colorscheme("catppuccin-mocha")
+            vim.cmd.colorscheme("catppuccin")
         end,
         name = "catppuccin",
         priority = 1000,
