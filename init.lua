@@ -255,7 +255,9 @@ local function on_attach(client, bufnr)
 
     if client.server_capabilities.documentFormattingProvider then
         local function format()
-            return vim.lsp.buf.format({ filter = function(c) return vim.tbl_contains({ "efm", "gopls" }, c.name) end })
+            return vim.lsp.buf.format({
+                filter = function(c) return vim.tbl_contains({ "efm", "efm/biome", "efm/prettier", "gopls" }, c.name) end,
+            })
         end
 
         vim.api.nvim_buf_create_user_command(bufnr, "LspFormat", format, {
@@ -298,7 +300,7 @@ end
 
 --- @param entries Entry[]
 --- @return string | nil
-local function executable_path(entries)
+local function binary_path(entries)
     table.sort(entries, function(a, b) return a.priority > b.priority end)
 
     for _, entry in ipairs(entries) do
@@ -867,80 +869,84 @@ local plugins = {
 
             vim.lsp.config("*", { capabilities = capabilities, on_attach = on_attach })
 
-            local prettier_executable = executable_path({
-                { priority = 0, path = string.format("%s/%s", "/opt/homebrew/bin", "prettier") },
-                --- @diagnostic disable-next-line: undefined-field
-                { priority = 1, path = string.format("%s/%s", vim.loop.cwd(), "node_modules/.bin/prettier") },
-            })
-            local prettier_config = {
-                formatCommand = string.format("%s --stdin-filepath ${INPUT}", prettier_executable),
-                formatStdin = true,
-                rootMarkers = {
-                    ".prettierrc",
-                    ".prettierrc.cjs",
-                    ".prettierrc.js",
-                    ".prettierrc.json",
-                    ".prettierrc.mjs",
-                    "prettier.config.cjs",
-                    "prettier.config.js",
-                    "prettier.config.mjs",
-                },
-            }
-
+            local root_markers = { ".git" }
             local lua_config = {
                 formatCommand = "stylua --color Never -",
                 formatStdin = true,
             }
-
             local tombi_config = {
                 formatCommand = "tombi format -",
                 formatStdin = true,
             }
+            local languages = { lua = { lua_config }, toml = { tombi_config } }
 
-            local languages = {
-                css = {
-                    prettier_config,
-                },
-                html = {
-                    prettier_config,
-                },
-                javascript = {
-                    prettier_config,
-                },
-                javascriptreact = {
-                    prettier_config,
-                },
-                json = {
-                    prettier_config,
-                },
-                jsonc = {
-                    prettier_config,
-                },
-                lua = {
-                    lua_config,
-                },
-                markdown = {
-                    prettier_config,
-                },
-                sass = {
-                    prettier_config,
-                },
-                scss = {
-                    prettier_config,
-                },
-                toml = {
-                    tombi_config,
-                },
-                typescript = {
-                    prettier_config,
-                },
-                typescriptreact = {
-                    prettier_config,
-                },
-                yaml = {
-                    prettier_config,
-                },
+            local prettier_root_markers = {
+                ".prettierrc",
+                ".prettierrc.cjs",
+                ".prettierrc.js",
+                ".prettierrc.json",
+                ".prettierrc.mjs",
+                "prettier.config.cjs",
+                "prettier.config.js",
+                "prettier.config.mjs",
             }
+            local prettier_binary = binary_path({
+                { priority = 0, path = string.format("%s/%s", "/opt/homebrew/bin", "prettier") },
+                { priority = 1, path = string.format("%s/%s", vim.loop.cwd(), "node_modules/.bin/prettier") },
+            })
+            local prettier_config = {
+                formatCommand = string.format("%s --stdin-filepath ${INPUT}", prettier_binary),
+                formatStdin = true,
+                rootMarkers = prettier_root_markers,
+            }
+            local prettier_filetypes = {
+                "css",
+                "html",
+                "javascript",
+                "javascriptreact",
+                "json",
+                "jsonc",
+                "markdown",
+                "sass",
+                "scss",
+                "typescript",
+                "typescriptreact",
+                "yaml",
+            }
+            local prettier_languages = {}
+
+            for _, filetype in ipairs(prettier_filetypes) do
+                prettier_languages[filetype] = { prettier_config }
+            end
+
+            local biome_root_markers = {
+                "biome.json",
+                "biome.jsonc",
+            }
+            local biome_binary = binary_path({
+                { priority = 0, path = string.format("%s/%s", "/opt/homebrew/bin", "biome") },
+                { priority = 1, path = string.format("%s/%s", vim.loop.cwd(), "node_modules/.bin/biome") },
+            })
+            local biome_config = {
+                formatCommand = string.format("%s check --write --stdin-file-path ${INPUT}", biome_binary),
+                formatStdin = true,
+                rootMarkers = biome_root_markers,
+            }
+            local biome_filetypes = {
+                "css",
+                "html",
+                "javascript",
+                "javascriptreact",
+                "json",
+                "jsonc",
+                "typescript",
+                "typescriptreact",
+            }
+            local biome_languages = {}
+
+            for _, filetype in ipairs(biome_filetypes) do
+                biome_languages[filetype] = { biome_config }
+            end
 
             vim.lsp.config("efm", {
                 capabilities = capabilities,
@@ -949,7 +955,51 @@ local plugins = {
                 on_attach = on_attach,
                 settings = {
                     languages = languages,
-                    rootMarkers = { ".git", "package.json" },
+                    rootMarkers = root_markers,
+                },
+            })
+
+            vim.lsp.config("efm/biome", {
+                capabilities = capabilities,
+                cmd = { "efm-langserver" },
+                filetypes = biome_filetypes,
+                init_options = { documentFormatting = true },
+                on_attach = on_attach,
+                root_dir = function(bufnr, on_dir)
+                    local fname = vim.api.nvim_buf_get_name(bufnr)
+
+                    if vim.fs.root(fname, prettier_root_markers) then return end
+
+                    local root = vim.fs.root(fname, root_markers)
+
+                    if root then on_dir(root) end
+                end,
+                settings = {
+                    languages = biome_languages,
+                    rootMarkers = biome_root_markers,
+                },
+            })
+
+            vim.lsp.config("efm/prettier", {
+                capabilities = capabilities,
+                cmd = { "efm-langserver" },
+                filetypes = prettier_filetypes,
+                init_options = { documentFormatting = true },
+                on_attach = on_attach,
+                root_dir = function(bufnr, on_dir)
+                    local fname = vim.api.nvim_buf_get_name(bufnr)
+
+                    if vim.fn.executable("biome") ~= 0 then return end
+
+                    if vim.fs.root(fname, biome_root_markers) then return end
+
+                    local root = vim.fs.root(fname, root_markers)
+
+                    if root then on_dir(root) end
+                end,
+                settings = {
+                    languages = prettier_languages,
+                    rootMarkers = prettier_root_markers,
                 },
             })
 
@@ -1154,9 +1204,12 @@ local plugins = {
 
             vim.lsp.enable({
                 "bashls",
+                "biome",
                 "cssls",
                 "cssmodules_ls",
                 "efm",
+                "efm/biome",
+                "efm/prettier",
                 "eslint",
                 "gh_actions_ls",
                 "gopls",
