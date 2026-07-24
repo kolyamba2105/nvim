@@ -966,11 +966,11 @@ local plugins = {
                 init_options = { documentFormatting = true },
                 on_attach = on_attach,
                 root_dir = function(bufnr, on_dir)
-                    local fname = vim.api.nvim_buf_get_name(bufnr)
+                    local filename = vim.api.nvim_buf_get_name(bufnr)
 
-                    if vim.fs.root(fname, prettier_root_markers) then return end
+                    if vim.fs.root(filename, prettier_root_markers) then return end
 
-                    local root = vim.fs.root(fname, root_markers)
+                    local root = vim.fs.root(filename, root_markers)
 
                     if root then on_dir(root) end
                 end,
@@ -987,13 +987,15 @@ local plugins = {
                 init_options = { documentFormatting = true },
                 on_attach = on_attach,
                 root_dir = function(bufnr, on_dir)
-                    local fname = vim.api.nvim_buf_get_name(bufnr)
+                    local filename = vim.api.nvim_buf_get_name(bufnr)
+                    local filetype = vim.bo[bufnr].filetype
 
-                    if vim.fn.executable("biome") ~= 0 then return end
+                    if vim.tbl_contains(biome_filetypes, filetype) then
+                        if vim.fn.executable("biome") ~= 0 then return end
+                        if vim.fs.root(filename, biome_root_markers) then return end
+                    end
 
-                    if vim.fs.root(fname, biome_root_markers) then return end
-
-                    local root = vim.fs.root(fname, root_markers)
+                    local root = vim.fs.root(filename, root_markers)
 
                     if root then on_dir(root) end
                 end,
