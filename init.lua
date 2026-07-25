@@ -79,15 +79,6 @@ vim.keymap.set("v", "Q", ":norm @q<cr>", {
     silent = true,
 })
 
---- commands
-
-vim.api.nvim_create_user_command("CopyBufferPath", function()
-    local file_name = vim.fn.fnamemodify(vim.api.nvim_buf_get_name(0), ":." .. vim.fn.getcwd())
-
-    vim.fn.setreg("+", file_name)
-    print(string.format("Copied: %s", file_name))
-end, { desc = "Copy current buffer path" })
-
 --- auto-commands
 
 local function group(name) return vim.api.nvim_create_augroup(name, { clear = false }) end
@@ -309,6 +300,67 @@ local function binary_path(entries)
 
     return nil
 end
+
+--- user commands
+
+vim.api.nvim_create_user_command("CopyBufferPath", function()
+    local file_name = vim.fn.fnamemodify(vim.api.nvim_buf_get_name(0), ":." .. vim.fn.getcwd())
+
+    vim.fn.setreg("+", file_name)
+    print(string.format("Copied: %s", file_name))
+end, { desc = "Copy current buffer path" })
+
+vim.api.nvim_create_user_command("BiomeDiagnostics", function()
+    local biome_binary = binary_path({
+        { priority = 0, path = "/opt/homebrew/bin/biome" },
+        { priority = 1, path = vim.loop.cwd() .. "/node_modules/.bin/biome" },
+    })
+
+    if not biome_binary then
+        return vim.notify("BiomeDiagnostics: Unable to find biome binary.", vim.log.levels.ERROR)
+    end
+
+    vim.notify("BiomeDiagnostics: Running...", vim.log.levels.INFO)
+
+    vim.system({ biome_binary, "check", "--reporter=json", "." }, { cwd = vim.fn.getcwd() }, function(result)
+        vim.schedule(function()
+            local ok, output = pcall(vim.json.decode, result.stdout)
+
+            if not ok then return vim.notify("BiomeDiagnostics: Unable to parse JSON output.", vim.log.levels.ERROR) end
+
+            local items = vim.tbl_map(
+                function(item)
+                    return {
+                        col = item.location.start.column,
+                        filename = item.location.path,
+                        lnum = item.location.start.line,
+                        text = item.message .. " [" .. item.category .. "]",
+                        type = item.severity == "error" and "E" or "W",
+                    }
+                end,
+                vim.tbl_filter(function(item) return item.category ~= "format" end, output.diagnostics)
+            )
+
+            vim.fn.setqflist(items)
+
+            local errors = output.summary.errors
+            local warnings = output.summary.warnings
+
+            local message = string.format("BiomeDiagnostics: %d error(s), %d warning(s).", errors, warnings)
+            local level = vim.log.levels.INFO
+
+            if errors > 0 then
+                level = vim.log.levels.ERROR
+            elseif warnings > 0 then
+                level = vim.log.levels.WARN
+            end
+
+            vim.notify(message, level)
+
+            if #items > 0 then vim.cmd("copen") end
+        end)
+    end)
+end, { desc = "Run Biome diagnostics across the project" })
 
 --- plugins
 
