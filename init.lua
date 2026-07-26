@@ -980,7 +980,7 @@ local plugins = {
                 { priority = 1, path = string.format("%s/%s", vim.loop.cwd(), "node_modules/.bin/biome") },
             })
             local biome_config = {
-                formatCommand = string.format("%s check --write --stdin-file-path ${INPUT}", biome_binary),
+                formatCommand = string.format("%s check --write --unsafe --stdin-file-path ${INPUT}", biome_binary),
                 formatStdin = true,
                 rootMarkers = biome_root_markers,
             }
