@@ -362,6 +362,28 @@ vim.api.nvim_create_user_command("BiomeDiagnostics", function()
     end)
 end, { desc = "Run Biome diagnostics across the project" })
 
+vim.api.nvim_create_user_command("BiomeCheckWrite", function()
+    local biome_binary = binary_path({
+        { priority = 0, path = "/opt/homebrew/bin/biome" },
+        { priority = 1, path = vim.loop.cwd() .. "/node_modules/.bin/biome" },
+    })
+
+    if not biome_binary then
+        return vim.notify("BiomeCheckWrite: Unable to find biome binary.", vim.log.levels.ERROR)
+    end
+
+    local filename = vim.api.nvim_buf_get_name(vim.api.nvim_get_current_buf())
+
+    if filename == "" then return vim.notify("BiomeCheckWrite: Buffer has no file path.", vim.log.levels.ERROR) end
+
+    vim.system({ biome_binary, "check", "--write", "--unsafe", filename }, { cwd = vim.fn.getcwd() }, function()
+        vim.schedule(function()
+            vim.cmd("edit")
+            vim.notify("BiomeCheckWrite: Done.", vim.log.levels.INFO)
+        end)
+    end)
+end, { desc = "Run biome check --write --unsafe on current buffer" })
+
 --- plugins
 
 local plugins = {
