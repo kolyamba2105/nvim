@@ -1042,9 +1042,8 @@ local plugins = {
                     local filename = vim.api.nvim_buf_get_name(bufnr)
                     local filetype = vim.bo[bufnr].filetype
 
-                    if vim.tbl_contains(biome_filetypes, filetype) then
-                        if vim.fn.executable("biome") ~= 0 then return end
-                        if vim.fs.root(filename, biome_root_markers) then return end
+                    if vim.tbl_contains(biome_filetypes, filetype) and vim.fs.root(filename, biome_root_markers) then
+                        return
                     end
 
                     local root = vim.fs.root(filename, root_markers)
