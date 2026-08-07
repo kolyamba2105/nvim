@@ -382,7 +382,7 @@ vim.api.nvim_create_user_command("BiomeCheckWrite", function()
             vim.notify("BiomeCheckWrite: Done.", vim.log.levels.INFO)
         end)
     end)
-end, { desc = "Run biome check --write --unsafe on current buffer" })
+end, { desc = 'Run "biome check --write --unsafe" on current buffer' })
 
 --- plugins
 
@@ -941,7 +941,10 @@ local plugins = {
 
             capabilities.textDocument.completion.completionItem.snippetSupport = true
 
-            vim.lsp.config("*", { capabilities = capabilities, on_attach = on_attach })
+            vim.lsp.config("*", {
+                capabilities = capabilities,
+                on_attach = on_attach,
+            })
 
             local root_markers = { ".git" }
             local lua_config = {
