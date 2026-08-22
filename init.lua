@@ -311,12 +311,9 @@ vim.api.nvim_create_user_command("CopyBufferPath", function()
 end, { desc = "Copy current buffer path" })
 
 vim.api.nvim_create_user_command("BiomeDiagnostics", function()
-    local biome_binary = binary_path({
-        { priority = 0, path = "/opt/homebrew/bin/biome" },
-        { priority = 1, path = vim.loop.cwd() .. "/node_modules/.bin/biome" },
-    })
+    local biome_binary = vim.loop.cwd() .. "/node_modules/.bin/biome"
 
-    if not biome_binary then
+    if vim.fn.executable(biome_binary) == 0 then
         return vim.notify("BiomeDiagnostics: Unable to find biome binary.", vim.log.levels.ERROR)
     end
 
@@ -363,13 +360,10 @@ vim.api.nvim_create_user_command("BiomeDiagnostics", function()
 end, { desc = "Run Biome diagnostics across the project" })
 
 vim.api.nvim_create_user_command("BiomeCheckWrite", function()
-    local biome_binary = binary_path({
-        { priority = 0, path = "/opt/homebrew/bin/biome" },
-        { priority = 1, path = vim.loop.cwd() .. "/node_modules/.bin/biome" },
-    })
+    local biome_binary = vim.loop.cwd() .. "/node_modules/.bin/biome"
 
-    if not biome_binary then
-        return vim.notify("BiomeCheckWrite: Unable to find biome binary.", vim.log.levels.ERROR)
+    if vim.fn.executable(biome_binary) == 0 then
+        return vim.notify("BiomeDiagnostics: Unable to find biome binary.", vim.log.levels.ERROR)
     end
 
     local filename = vim.api.nvim_buf_get_name(vim.api.nvim_get_current_buf())
