@@ -1111,26 +1111,28 @@ local plugins = {
                 on_attach = function(client, buffer)
                     on_attach(client, buffer)
 
-                    local function action(name)
-                        vim.lsp.buf.code_action({ apply = true, context = { diagnostics = {}, only = { name } } })
+                    local function add_missing_imports()
+                        vim.lsp.buf.code_action({
+                            apply = true,
+                            ---@diagnostic disable-next-line: assign-type-mismatch
+                            context = { only = { "source.addMissingImports.ts" } },
+                        })
                     end
 
-                    vim.api.nvim_buf_create_user_command(
-                        buffer,
-                        "LspAddMissingImports",
-                        function() action("source.addMissingImports.ts") end,
-                        {
-                            desc = "[JS/TS] Add missing imports",
-                        }
-                    )
-                    vim.api.nvim_buf_create_user_command(
-                        buffer,
-                        "LspOrganiseImports",
-                        function() action("source.organizeImports") end,
-                        {
-                            desc = "[JS/TS] Organise imports",
-                        }
-                    )
+                    vim.api.nvim_buf_create_user_command(buffer, "LspAddMissingImports", add_missing_imports, {
+                        desc = "[JS/TS] Add missing imports",
+                    })
+
+                    local function organise_imports()
+                        vim.lsp.buf.code_action({
+                            apply = true,
+                            context = { only = { "source.organizeImports" } },
+                        })
+                    end
+
+                    vim.api.nvim_buf_create_user_command(buffer, "LspOrganiseImports", organise_imports, {
+                        desc = "[JS/TS] Organise imports",
+                    })
                 end,
                 settings = {
                     vtsls = {
