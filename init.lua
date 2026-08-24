@@ -960,12 +960,20 @@ local plugins = {
                 formatStdin = true,
             }
 
+            local shfmt_config = {
+                formatCommand = "shfmt -i 4 --filename ${INPUT}",
+                formatStdin = true,
+            }
+
             local tombi_config = {
                 formatCommand = "tombi format -",
                 formatStdin = true,
             }
 
             local languages = {
+                bash = {
+                    shfmt_config,
+                },
                 css = {
                     prettier_global_config,
                     prettier_config,
@@ -1006,6 +1014,9 @@ local plugins = {
                 sass = {
                     prettier_global_config,
                     prettier_config,
+                },
+                sh = {
+                    shfmt_config,
                 },
                 scss = {
                     prettier_global_config,
