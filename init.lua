@@ -1086,6 +1086,21 @@ local plugins = {
                 },
             })
 
+            vim.lsp.config("tsc", {
+                capabilities = capabilities,
+                on_attach = function(client, buffer)
+                    on_attach(client, buffer)
+
+                    local function organise_imports()
+                        vim.lsp.buf.code_action({ apply = true, context = { only = { "source.organizeImports" } } })
+                    end
+
+                    vim.api.nvim_buf_create_user_command(buffer, "LspOrganiseImports", organise_imports, {
+                        desc = "[JS/TS] Organise imports",
+                    })
+                end,
+            })
+
             local success, config = pcall(vim.json.decode, vim.fn.system("prettier-output-config"))
 
             local indentSize = success and config.tabWidth ~= nil and tonumber(config.tabWidth) or 2
@@ -1219,6 +1234,7 @@ local plugins = {
                 "lua_ls",
                 "tailwindcss",
                 "tombi",
+                "tsc",
                 "vtsls",
                 "yamlls",
             })
