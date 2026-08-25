@@ -126,7 +126,7 @@ vim.api.nvim_create_autocmd("FileType", {
 
 vim.diagnostic.config({
     float = {
-        border = vim.g.neovide and "single" or "double",
+        border = "double",
         show_header = false,
     },
     jump = {
@@ -450,7 +450,7 @@ local plugins = {
                     windows = false,
                 },
                 options = {
-                    win_borders = vim.g.neovide and "single" or "double",
+                    win_borders = "double",
                 },
             })
 
