@@ -2,51 +2,39 @@
 
 --- options
 
-local local_options = {
-    backup = false,
-    clipboard = "unnamed,unnamedplus",
-    cmdheight = 2,
-    colorcolumn = "80",
-    completeopt = "menuone,noselect,fuzzy",
-    confirm = true,
-    cursorline = true,
-    emoji = false,
-    expandtab = true,
-    foldlevel = 99,
-    foldlevelstart = 99,
-    guifont = "JetBrainsMono Nerd Font:h14",
-    ignorecase = true,
-    laststatus = 3,
-    number = true,
-    scrolloff = 16,
-    shiftwidth = 2,
-    signcolumn = "yes",
-    smartindent = true,
-    splitbelow = true,
-    splitright = true,
-    swapfile = false,
-    tabstop = 2,
-    termguicolors = true,
-    undofile = true,
-    updatetime = 100,
-    wildignore = "*/tmp/*,*.so,*.swp,*.zip,*.svg,*.png,*.jpg,*.gif,node_modules",
-    winborder = "double",
-    wrap = false,
-    writebackup = false,
-}
+vim.opt.backup = false
+vim.opt.clipboard = "unnamed,unnamedplus"
+vim.opt.cmdheight = 2
+vim.opt.colorcolumn = "80"
+vim.opt.completeopt = "menuone,noselect,fuzzy"
+vim.opt.confirm = true
+vim.opt.cursorline = true
+vim.opt.emoji = false
+vim.opt.expandtab = true
+vim.opt.foldlevel = 99
+vim.opt.foldlevelstart = 99
+vim.opt.guifont = "JetBrainsMono Nerd Font:h14"
+vim.opt.ignorecase = true
+vim.opt.laststatus = 3
+vim.opt.number = true
+vim.opt.scrolloff = 16
+vim.opt.shiftwidth = 2
+vim.opt.signcolumn = "yes"
+vim.opt.smartindent = true
+vim.opt.splitbelow = true
+vim.opt.splitright = true
+vim.opt.swapfile = false
+vim.opt.tabstop = 2
+vim.opt.termguicolors = true
+vim.opt.undofile = true
+vim.opt.updatetime = 100
+vim.opt.wildignore = "*/tmp/*,*.so,*.swp,*.zip,*.svg,*.png,*.jpg,*.gif,node_modules"
+vim.opt.winborder = "double"
+vim.opt.wrap = false
+vim.opt.writebackup = false
 
-for k, v in pairs(local_options) do
-    vim.opt[k] = v
-end
-
-local global_options = {
-    mapleader = " ",
-    maplocalleader = " ",
-}
-
-for k, v in pairs(global_options) do
-    vim.g[k] = v
-end
+vim.g.mapleader = " "
+vim.g.maplocalleader = " "
 
 --- mappings
 
