@@ -25,10 +25,8 @@ vim.opt.swapfile = false
 vim.opt.tabstop = 2
 vim.opt.undofile = true
 vim.opt.updatetime = 100
-vim.opt.wildignore = "*/tmp/*,*.so,*.swp,*.zip,*.svg,*.png,*.jpg,*.gif,node_modules"
 vim.opt.winborder = "double"
 vim.opt.wrap = false
-vim.opt.writebackup = false
 
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
