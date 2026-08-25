@@ -2,7 +2,7 @@
 
 --- options
 
-vim.opt.clipboard = "unnamed,unnamedplus"
+vim.opt.clipboard = "unnamedplus"
 vim.opt.cmdheight = 2
 vim.opt.colorcolumn = "80"
 vim.opt.completeopt = "menuone,noinsert,noselect"
