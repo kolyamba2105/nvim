@@ -2,7 +2,6 @@
 
 --- options
 
-vim.opt.backup = false
 vim.opt.clipboard = "unnamed,unnamedplus"
 vim.opt.cmdheight = 2
 vim.opt.colorcolumn = "80"
@@ -20,12 +19,10 @@ vim.opt.number = true
 vim.opt.scrolloff = 16
 vim.opt.shiftwidth = 2
 vim.opt.signcolumn = "yes"
-vim.opt.smartindent = true
 vim.opt.splitbelow = true
 vim.opt.splitright = true
 vim.opt.swapfile = false
 vim.opt.tabstop = 2
-vim.opt.termguicolors = true
 vim.opt.undofile = true
 vim.opt.updatetime = 100
 vim.opt.wildignore = "*/tmp/*,*.so,*.swp,*.zip,*.svg,*.png,*.jpg,*.gif,node_modules"
