@@ -2,7 +2,6 @@
 
 --- options
 
-vim.opt.clipboard = "unnamedplus"
 vim.opt.cmdheight = 2
 vim.opt.colorcolumn = "80"
 vim.opt.completeopt = "menuone,noinsert,noselect"
@@ -27,6 +26,8 @@ vim.opt.undofile = true
 vim.opt.updatetime = 100
 vim.opt.winborder = "double"
 vim.opt.wrap = false
+
+vim.schedule(function() vim.opt.clipboard = "unnamedplus" end)
 
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
