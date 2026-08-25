@@ -5,7 +5,7 @@
 vim.opt.clipboard = "unnamed,unnamedplus"
 vim.opt.cmdheight = 2
 vim.opt.colorcolumn = "80"
-vim.opt.completeopt = "menuone,noselect,fuzzy"
+vim.opt.completeopt = "menuone,noinsert,noselect"
 vim.opt.confirm = true
 vim.opt.cursorline = true
 vim.opt.emoji = false
