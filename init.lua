@@ -19,6 +19,7 @@ vim.opt.number = true
 vim.opt.scrolloff = 16
 vim.opt.shiftwidth = 2
 vim.opt.signcolumn = "yes"
+vim.opt.smartcase = true
 vim.opt.splitbelow = true
 vim.opt.splitright = true
 vim.opt.swapfile = false
