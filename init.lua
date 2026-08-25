@@ -12,7 +12,6 @@ vim.opt.emoji = false
 vim.opt.expandtab = true
 vim.opt.foldlevel = 99
 vim.opt.foldlevelstart = 99
-vim.opt.guifont = "JetBrainsMono Nerd Font:h14"
 vim.opt.ignorecase = true
 vim.opt.laststatus = 3
 vim.opt.number = true
