@@ -1220,7 +1220,6 @@ local plugins = {
                 "lua_ls",
                 "tailwindcss",
                 "tombi",
-                "tsc",
                 "vtsls",
                 "yamlls",
             })
