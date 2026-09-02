@@ -919,16 +919,8 @@ local plugins = {
             }
 
             local prettier_binary = vim.loop.cwd() .. "/node_modules/.bin/prettier"
-
-            local function prettier_command_template(binary)
-                return string.format(
-                    "%s --print-width 120 --quote-props consistent --trailing-comma all --stdin-filepath ${INPUT}",
-                    binary
-                )
-            end
-
             local prettier_config = {
-                formatCommand = prettier_command_template(prettier_binary),
+                formatCommand = prettier_binary,
                 formatStdin = true,
                 rootMarkers = {
                     ".prettierrc",
@@ -941,6 +933,13 @@ local plugins = {
                     "prettier.config.mjs",
                 },
             }
+
+            local function prettier_command_template(binary)
+                return string.format(
+                    "%s --print-width 120 --quote-props consistent --trailing-comma all --stdin-filepath ${INPUT}",
+                    binary
+                )
+            end
 
             local prettier_global_config = {
                 formatCommand = prettier_command_template("prettier"),
