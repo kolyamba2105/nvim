@@ -231,7 +231,7 @@ local function on_attach(client, bufnr)
     if client.server_capabilities.documentFormattingProvider then
         local function format()
             return vim.lsp.buf.format({
-                filter = function(c) return vim.tbl_contains({ "efm", "gopls" }, c.name) end,
+                filter = function(c) return vim.tbl_contains({ "efm", "gopls", "rust_analyzer" }, c.name) end,
             })
         end
 
@@ -1077,6 +1077,18 @@ local plugins = {
                 },
             })
 
+            vim.lsp.config("rust_analyzer", {
+                capabilities = capabilities,
+                on_attach = on_attach,
+                settings = {
+                    ["rust-analyzer"] = {
+                        check = {
+                            command = "clippy",
+                        },
+                    },
+                },
+            })
+
             vim.lsp.config("tsc", {
                 capabilities = capabilities,
                 on_attach = function(client, buffer)
@@ -1225,6 +1237,7 @@ local plugins = {
                 "html",
                 "jsonls",
                 "lua_ls",
+                "rust_analyzer",
                 "tailwindcss",
                 "tombi",
                 "vtsls",
@@ -1270,6 +1283,7 @@ local plugins = {
                 "prisma",
                 "query",
                 "regex",
+                "rust",
                 "scss",
                 "sql",
                 "toml",
