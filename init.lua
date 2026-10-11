@@ -1095,7 +1095,13 @@ local plugins = {
                     on_attach(client, buffer)
 
                     local function organise_imports()
-                        vim.lsp.buf.code_action({ apply = true, context = { only = { "source.organizeImports" } } })
+                        vim.lsp.buf.code_action({
+                            apply = true,
+                            context = { only = { "source.organizeImports" } },
+                            filter = function(_, client_id)
+                                return client_id == client.id
+                            end,
+                        })
                     end
 
                     vim.api.nvim_buf_create_user_command(buffer, "LspOrganiseImports", organise_imports, {
@@ -1119,6 +1125,9 @@ local plugins = {
                             apply = true,
                             ---@diagnostic disable-next-line: assign-type-mismatch
                             context = { only = { "source.addMissingImports.ts" } },
+                            filter = function(_, client_id)
+                                return client_id == client.id
+                            end,
                         })
                     end
 
@@ -1130,6 +1139,9 @@ local plugins = {
                         vim.lsp.buf.code_action({
                             apply = true,
                             context = { only = { "source.organizeImports" } },
+                            filter = function(_, client_id)
+                                return client_id == client.id
+                            end,
                         })
                     end
 
