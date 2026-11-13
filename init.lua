@@ -50,16 +50,16 @@ vim.keymap.set("n", "<leader>v", "<cmd>vsp<cr>", {
     desc = "Create vertical split",
     silent = true,
 })
-vim.keymap.set("n", "Q", "@q", {
+vim.keymap.set("n", "<leader>q", "@q", {
     desc = "Apply macro",
+    silent = true,
+})
+vim.keymap.set("v", "<leader>q", ":norm @q<cr>", {
+    desc = "Apply macro multiple times",
     silent = true,
 })
 vim.keymap.set("v", "<leader>s", ":sort<cr>", {
     desc = "Sort selected items",
-    silent = true,
-})
-vim.keymap.set("v", "Q", ":norm @q<cr>", {
-    desc = "Apply macro multiple times",
     silent = true,
 })
 
