@@ -838,6 +838,9 @@ local plugins = {
             -- mini.splitjoin
             require("mini.splitjoin").setup()
 
+            -- mini.statuscolumn
+            require("mini.statuscolumn").setup()
+
             -- mini.statusline
             local MiniStatusLine = require("mini.statusline")
 
